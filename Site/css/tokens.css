@@ -1,0 +1,92 @@
+/* =========================================================================
+   TVMG — Design Tokens
+   Single source of truth for colour, type, spacing and motion.
+   Values extracted verbatim from the brand pack:
+   ./Brand/TVMG_brand_guide.pdf  +  README_TVMG_brand_assets.txt
+   Do NOT introduce colours/fonts outside this file.
+   ========================================================================= */
+
+:root {
+  /* ---- Brand palette (exact hex from brand guide) ---- */
+  --tvmg-navy:        #061B3F; /* TVMG Navy   — primary dark / backgrounds */
+  --media-blue:       #0B63CE; /* Media Blue  — primary brand blue */
+  --signal-blue:      #1683FF; /* Signal Blue — bright accent / CTAs / highlights */
+  --ice-white:        #F7FAFF; /* Ice White   — light surface / page bg */
+  --ink:              #0E1726; /* Ink         — near-black text on light */
+  --silver:           #CBD5E1; /* Silver      — borders, muted text on dark */
+
+  /* ---- Derived / functional tokens (built from the palette only) ---- */
+  --bg:               var(--ice-white);
+  --bg-dark:          var(--tvmg-navy);
+  --surface:          #FFFFFF;
+  --surface-dark:     #0A2350;          /* navy lifted ~6% for cards on dark */
+  --border:           #E3EAF5;          /* ice-white tinted hairline */
+  --border-dark:      rgba(203, 213, 225, 0.16);
+
+  --text:             var(--ink);
+  --text-muted:       #4A5A72;          /* ink lightened for body copy */
+  --text-on-dark:     var(--ice-white);
+  --text-on-dark-mut: #9DB2D4;          /* silver/blue muted on navy */
+
+  --accent:           var(--signal-blue);
+  --accent-strong:    var(--media-blue);
+
+  /* Gradients */
+  --grad-brand:       linear-gradient(135deg, var(--media-blue) 0%, var(--signal-blue) 100%);
+  --grad-navy:        linear-gradient(160deg, #07204A 0%, var(--tvmg-navy) 55%, #04132E 100%);
+
+  /* ---- Typography ----
+     Headlines: geometric ExtraBold sans (Montserrat) — per brand direction.
+     Body/UI:   Inter — per brand direction. */
+  --font-head: "Montserrat", "Sora", "Manrope", system-ui, sans-serif;
+  --font-body: "Inter", "Manrope", "Noto Sans", system-ui, -apple-system, sans-serif;
+
+  --fw-head:   800;   /* ExtraBold */
+  --fw-bold:   700;
+  --fw-med:    600;
+  --fw-reg:    400;
+
+  /* Fluid type scale (mobile-first; clamps up for larger viewports) */
+  --fs-hero:   clamp(2.5rem, 7vw + 0.5rem, 5rem);
+  --fs-h2:     clamp(1.9rem, 4vw + 0.5rem, 3rem);
+  --fs-h3:     clamp(1.25rem, 1.4vw + 0.9rem, 1.6rem);
+  --fs-lead:   clamp(1.05rem, 1vw + 0.85rem, 1.3rem);
+  --fs-body:   1.0625rem;
+  --fs-small:  0.875rem;
+  --fs-eyebrow:0.78rem;
+
+  --lh-tight:  1.05;
+  --lh-snug:   1.25;
+  --lh-body:   1.65;
+  --tracking-wide: 0.18em;  /* tracked-out uppercase — "training/media systems feel" */
+
+  /* ---- Spacing scale ---- */
+  --space-xs:  0.5rem;
+  --space-sm:  1rem;
+  --space-md:  1.75rem;
+  --space-lg:  3rem;
+  --space-xl:  5rem;
+  --space-2xl: 8rem;
+
+  --maxw:        1180px;
+  --maxw-narrow: 760px;
+
+  /* ---- Radius / elevation ---- */
+  --radius-sm: 10px;
+  --radius:    16px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+
+  --shadow-sm:  0 2px 8px rgba(6, 27, 63, 0.06);
+  --shadow:     0 12px 32px rgba(6, 27, 63, 0.10);
+  --shadow-lg:  0 28px 64px rgba(6, 27, 63, 0.16);
+  --shadow-blue:0 14px 30px rgba(22, 131, 255, 0.30);
+
+  /* ---- Motion ---- */
+  --ease:      cubic-bezier(0.22, 1, 0.36, 1);
+  --dur:       0.6s;
+  --dur-fast:  0.25s;
+
+  /* ---- Layout helpers ---- */
+  --header-h:  72px;
+}

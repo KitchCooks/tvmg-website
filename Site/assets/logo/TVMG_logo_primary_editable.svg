@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-label="TVMG logo">
+  <defs><linearGradient id="blueGrad" x1="0" x2="1" y1="0" y2="1"><stop offset="0%" stop-color="#061B3F"/><stop offset="100%" stop-color="#1683FF"/></linearGradient></defs>
+  <rect width="1200" height="760" fill="white"/>
+  <g transform="translate(335 80)" fill="none" stroke-linejoin="round">
+    <path d="M55 52 H430 L380 94 H95 V285 H360 V145 H242 L280 105 H392 V334 H55 Q20 334 20 299 V87 Q20 52 55 52 Z" fill="#061B3F"/>
+    <path d="M360 334 H485 Q515 334 515 304 V105 L485 135 V285 H405 Z" fill="#0B63CE"/>
+    <path d="M432 28 L555 0 L532 124 L503 96 L418 168 L382 168 L480 70 Z" fill="#0B63CE"/>
+    <path d="M395 170 L472 218 Q490 230 472 243 L395 291 Q375 304 375 280 V181 Q375 156 395 170 Z" fill="#0B63CE"/>
+  </g>
+  <text x="600" y="560" text-anchor="middle" font-family="Montserrat, Sora, Manrope, Arial, sans-serif" font-weight="900" font-size="150" letter-spacing="-6"><tspan fill="#061B3F">TV</tspan><tspan fill="#0B63CE">MG</tspan></text>
+  <text x="600" y="650" text-anchor="middle" font-family="Inter, Manrope, Arial, sans-serif" font-size="32" font-weight="700" letter-spacing="10" fill="#061B3F">TRAIN VISUAL MEDIA GROUP</text>
+  <line x1="150" x2="235" y1="638" y2="638" stroke="#0B63CE" stroke-width="5"/><line x1="965" x2="1050" y1="638" y2="638" stroke="#0B63CE" stroke-width="5"/>
+</svg>

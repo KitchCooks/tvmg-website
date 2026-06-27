@@ -1,0 +1,21 @@
+---
+# Afrihost / cPanel "Git Version Control" auto-deploy.
+# In cPanel -> Git Version Control, clone this repo, then Pull + Deploy runs these.
+# The site is fully static (no server-side code).
+#
+# >>> SET DEPLOYPATH for this account before first deploy. <<<
+#   Primary domain (tvmg.co.za is the main domain on the account):
+#       /home/<CPANEL_USER>/public_html/
+#   Addon domain (tvmg.co.za added onto another account):
+#       /home/<CPANEL_USER>/tvmg.co.za/   (or whatever cPanel set as the doc root)
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/CPANEL_USER/public_html/
+    - /bin/mkdir -p $DEPLOYPATH
+    # Clear the folders we manage so re-deploys don't nest, then copy fresh.
+    - /bin/rm -rf $DEPLOYPATH/css $DEPLOYPATH/js $DEPLOYPATH/assets
+    - /bin/cp -R Site/index.html $DEPLOYPATH
+    - /bin/cp -R Site/terms.html $DEPLOYPATH
+    - /bin/cp -R Site/css $DEPLOYPATH
+    - /bin/cp -R Site/js $DEPLOYPATH
+    - /bin/cp -R Site/assets $DEPLOYPATH

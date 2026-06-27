@@ -1,0 +1,24 @@
+# OS / editor
+.DS_Store
+*.log
+
+# Secrets / env (never commit API keys)
+.env
+.env.local
+
+# Local Claude config + preview launcher
+.claude/
+Site/.claude/
+
+# Large source / non-published material (the live site only needs Site/)
+Brand/TVMG_brand_assets.zip
+*.docx
+Clients/
+Marketing/
+
+# Build intermediates (regenerable). NOTE: video_build/out/*/audio_*.mp3 and the
+# slide PNGs ARE kept in git on purpose — the audio costs ElevenLabs credits to remake.
+video_build/out/*/clip_*.mp4
+video_build/out/*/concat.txt
+node_modules/
+dist/
