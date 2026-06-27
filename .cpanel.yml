@@ -1,21 +1,19 @@
 ---
-# Afrihost / cPanel "Git Version Control" auto-deploy.
-# In cPanel -> Git Version Control, clone this repo, then Pull + Deploy runs these.
-# The site is fully static (no server-side code).
+# Afrihost / cPanel "Git Version Control" auto-deploy for tvmg.co.za.
+# tvmg.co.za is the PRIMARY domain on this account, so its doc root is public_html.
 #
-# >>> SET DEPLOYPATH for this account before first deploy. <<<
-#   Primary domain (tvmg.co.za is the main domain on the account):
-#       /home/<CPANEL_USER>/public_html/
-#   Addon domain (tvmg.co.za added onto another account):
-#       /home/<CPANEL_USER>/tvmg.co.za/   (or whatever cPanel set as the doc root)
+# In cPanel:  Git Version Control -> Create -> clone this repo, then "Pull or Deploy".
+# These tasks run as your cPanel user, so $HOME resolves to /home/<your-user>.
+# (If $HOME ever isn't set in the deploy shell, replace it with the absolute path
+#  cPanel shows for the account, e.g. /home/tvmgxxxx/public_html/.)
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/CPANEL_USER/public_html/
-    - /bin/mkdir -p $DEPLOYPATH
+    - export DEPLOYPATH="$HOME/public_html/"
+    - /bin/mkdir -p "$DEPLOYPATH"
     # Clear the folders we manage so re-deploys don't nest, then copy fresh.
-    - /bin/rm -rf $DEPLOYPATH/css $DEPLOYPATH/js $DEPLOYPATH/assets
-    - /bin/cp -R Site/index.html $DEPLOYPATH
-    - /bin/cp -R Site/terms.html $DEPLOYPATH
-    - /bin/cp -R Site/css $DEPLOYPATH
-    - /bin/cp -R Site/js $DEPLOYPATH
-    - /bin/cp -R Site/assets $DEPLOYPATH
+    - /bin/rm -rf "$DEPLOYPATH/css" "$DEPLOYPATH/js" "$DEPLOYPATH/assets"
+    - /bin/cp -R Site/index.html "$DEPLOYPATH"
+    - /bin/cp -R Site/terms.html "$DEPLOYPATH"
+    - /bin/cp -R Site/css "$DEPLOYPATH"
+    - /bin/cp -R Site/js "$DEPLOYPATH"
+    - /bin/cp -R Site/assets "$DEPLOYPATH"
