@@ -10,6 +10,9 @@ deployment:
   tasks:
     - export DEPLOYPATH="$HOME/public_html/"
     - /bin/mkdir -p "$DEPLOYPATH"
+    # Remove the Afrihost default placeholder so it can't shadow our index.html
+    # (Apache serves index.php before index.html). The site is pure static HTML.
+    - /bin/rm -f "$DEPLOYPATH/index.php"
     # Clear the folders we manage so re-deploys don't nest, then copy fresh.
     - /bin/rm -rf "$DEPLOYPATH/css" "$DEPLOYPATH/js" "$DEPLOYPATH/assets"
     - /bin/cp -R Site/index.html "$DEPLOYPATH"

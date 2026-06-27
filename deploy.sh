@@ -12,6 +12,7 @@ git pull --ff-only || true
 DEST="${DEST:-$HOME/public_html}"
 echo "-> deploying to $DEST"
 mkdir -p "$DEST"
+rm -f "$DEST/index.php"   # remove Afrihost placeholder that shadows index.html
 rm -rf "$DEST/css" "$DEST/js" "$DEST/assets"
 cp -R Site/index.html Site/terms.html Site/css Site/js Site/assets "$DEST/"
 
