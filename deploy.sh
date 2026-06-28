@@ -14,6 +14,6 @@ echo "-> deploying to $DEST"
 mkdir -p "$DEST"
 rm -f "$DEST/index.php"   # remove Afrihost placeholder that shadows index.html
 rm -rf "$DEST/css" "$DEST/js" "$DEST/assets"
-cp -R Site/index.html Site/terms.html Site/intake.html Site/css Site/js Site/assets "$DEST/"
+cp -R Site/index.html Site/terms.html Site/intake.html Site/demo.html Site/css Site/js Site/assets "$DEST/"
 
 echo "deployed. https://tvmg.co.za is now serving the latest build."

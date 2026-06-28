@@ -22,3 +22,6 @@ video_build/out/*/clip_*.mp4
 video_build/out/*/concat.txt
 node_modules/
 dist/
+
+# Internal build specs (not for public repo)
+MD files/

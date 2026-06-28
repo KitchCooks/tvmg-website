@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- UNLISTED: link sent to a warm lead after they request a demo. Not linked in nav/footer. -->
+  <meta name="robots" content="noindex, nofollow" />
+
+  <title>Request your demo · TVMG</title>
+  <meta name="description" content="Request a free, personalised TVMG demo video." />
+  <meta name="theme-color" content="#061B3F" />
+
+  <link rel="icon" href="assets/favicon/TVMG_favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/TVMG_favicon_32x32_transparent.png" />
+  <link rel="apple-touch-icon" href="assets/favicon/TVMG_app_icon_180x180_navy.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/tokens.css?v=2" />
+  <link rel="stylesheet" href="css/styles.css?v=2" />
+</head>
+<body>
+  <a class="skip-link" href="#demo-form">Skip to form</a>
+
+  <header class="legal-header">
+    <div class="container">
+      <a class="brand-link" href="/" aria-label="TVMG home">
+        <img src="assets/logo/TVMG_logo_mono_white_transparent.png" alt="TVMG · Train Visual Media Group" />
+      </a>
+      <h1>Request your demo</h1>
+      <p>A free, personalised sample built around your business. It takes two minutes — give us a little of your own content and we’ll bring it to life.</p>
+    </div>
+  </header>
+
+  <main class="legal-body intake-body">
+    <div class="container">
+      <div id="demo-config-warning" class="intake-warning" hidden>
+        This form isn’t connected to its backend yet. Add your Supabase URL and anon key in
+        <code>js/demo.js</code>, then redeploy. (Setup: <code>supabase/demo_setup.sql</code>.)
+      </div>
+
+      <form class="enquiry-form intake-form" id="demo-form" novalidate enctype="multipart/form-data">
+
+        <!-- ===== SECTION 1 — WHO ===== -->
+        <fieldset class="intake-section">
+          <legend><span class="sec-num">1</span> Who you are</legend>
+          <div class="field-row">
+            <div class="field">
+              <label for="business_name">Business / organisation name <span class="req">*</span></label>
+              <input type="text" id="business_name" name="business_name" autocomplete="organization" required />
+              <span class="form-error">Please enter your business name.</span>
+            </div>
+            <div class="field">
+              <label for="contact_name">Contact person — full name <span class="req">*</span></label>
+              <input type="text" id="contact_name" name="contact_name" autocomplete="name" required />
+              <span class="form-error">Please enter your name.</span>
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="email">Email <span class="req">*</span></label>
+              <input type="email" id="email" name="email" autocomplete="email" required />
+              <span class="form-error">Please enter a valid email.</span>
+            </div>
+            <div class="field">
+              <label for="phone">Phone <span class="req">*</span></label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel" required />
+              <span class="form-error">Please enter a contact number.</span>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- ===== SECTION 2 — THE DEMO ===== -->
+        <fieldset class="intake-section">
+          <legend><span class="sec-num">2</span> The demo</legend>
+
+          <div class="field">
+            <span class="group-label">Demo type <span class="req">*</span></span>
+            <div class="radio-group" id="demo_type_group">
+              <label class="check-pill"><input type="radio" name="demo_type" value="Standalone (30–60s)" required /> Standalone — 30–60 second demo</label>
+              <label class="check-pill"><input type="radio" name="demo_type" value="Training set (1–2 min variation)" /> Training set — 1–2 minute variation</label>
+            </div>
+            <span class="form-error">Please choose a demo type.</span>
+          </div>
+
+          <div class="field">
+            <label for="topic">Topic — what should the demo be about? <span class="req">*</span></label>
+            <input type="text" id="topic" name="topic" required />
+            <small class="hint">In one line — what would you like the demo to cover?</small>
+            <span class="form-error">Please give the demo a topic.</span>
+          </div>
+
+          <div class="field">
+            <label for="use_case">What’s the use case?</label>
+            <input type="text" id="use_case" name="use_case" />
+            <small class="hint">Optional — e.g. staff induction, a safety procedure, a product walkthrough.</small>
+          </div>
+        </fieldset>
+
+        <!-- ===== SECTION 3 — CONTENT ===== -->
+        <fieldset class="intake-section intake-section--key">
+          <legend><span class="sec-num">3</span> Your content</legend>
+          <p class="sec-callout">
+            <strong>Give us a chunk of your own content</strong> so the demo is built around your business —
+            a few paragraphs is plenty. The more relevant the content, the more useful the demo.
+          </p>
+
+          <div class="field">
+            <label for="content_pasted">Paste the content you’d like brought to life <span class="req">*</span></label>
+            <textarea id="content_pasted" name="content_pasted" class="tall"
+                      placeholder="A few paragraphs of the actual content you’d want in a video."></textarea>
+            <span class="form-error">Please paste some content, or upload a document below.</span>
+          </div>
+
+          <div class="field">
+            <label for="content_files">Or upload a document</label>
+            <input type="file" id="content_files" name="content_files" multiple
+                   accept=".pdf,.doc,.docx,.ppt,.pptx,.txt,.rtf,.pages,.key,.md,.csv,.xls,.xlsx,.png,.jpg,.jpeg,.webp,.zip" />
+            <small class="hint">Optional — a doc, policy, or slides if you’d rather upload. Up to 50&nbsp;MB per file.</small>
+            <ul class="file-list" id="content_files_list"></ul>
+          </div>
+        </fieldset>
+
+        <!-- ===== SECTION 4 — VOICE & FEEL ===== -->
+        <fieldset class="intake-section">
+          <legend><span class="sec-num">4</span> Voice &amp; feel</legend>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="language">Language <span class="req">*</span></label>
+              <select id="language" name="language" required data-controls="language_other_wrap" data-show-on="Other">
+                <option value="">Select…</option>
+                <option>English</option>
+                <option>Afrikaans</option>
+                <option>Other</option>
+              </select>
+              <span class="form-error">Please choose a language.</span>
+            </div>
+            <div class="field conditional" id="language_other_wrap" hidden>
+              <label for="language_other">Other language — specify <span class="req">*</span></label>
+              <input type="text" id="language_other" name="language_other" />
+              <small class="hint">Note: for other languages, you’d review the final wording yourself.</small>
+              <span class="form-error">Please specify the language.</span>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="voice_pref">Voice preference <span class="req">*</span></label>
+              <select id="voice_pref" name="voice_pref" required>
+                <option value="">Select…</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>No preference</option>
+              </select>
+              <span class="form-error">Please choose a voice.</span>
+            </div>
+            <div class="field">
+              <label for="accent_pref">Accent preference <span class="req">*</span></label>
+              <select id="accent_pref" name="accent_pref" required>
+                <option value="">Select…</option>
+                <option>South African</option>
+                <option>Neutral</option>
+                <option>No preference</option>
+              </select>
+              <span class="form-error">Please choose an accent.</span>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- ===== SECTION 5 — BRANDING ===== -->
+        <fieldset class="intake-section">
+          <legend><span class="sec-num">5</span> Branding <span class="legend-opt">(optional)</span></legend>
+
+          <div class="field">
+            <label for="logo_file">Upload your logo</label>
+            <input type="file" id="logo_file" name="logo_file"
+                   accept=".png,.jpg,.jpeg,.svg,.pdf,.webp,.ai,.eps" />
+            <small class="hint">Optional — drop your logo and we’ll brand the demo to your business.</small>
+            <ul class="file-list" id="logo_file_list"></ul>
+          </div>
+
+          <div class="field">
+            <label for="brand_colours">Brand colours (hex if known)</label>
+            <input type="text" id="brand_colours" name="brand_colours" placeholder="e.g. #0B2545, #1683FF" />
+          </div>
+
+          <button type="submit" class="btn btn--primary form-submit" id="demo-submit">Request my demo</button>
+          <p class="form-trust" id="demo-status"></p>
+        </fieldset>
+      </form>
+
+      <div class="form-success" id="demo-success" role="status" aria-live="polite">
+        <div class="check" aria-hidden="true">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3>Thanks — we’ve got everything we need.</h3>
+        <p>We’ll put your demo together and be in touch shortly.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="margin-top:0;border-top:0">
+        <span>&copy; <span id="year">2026</span> Train Visual Media Group. All rights reserved.</span>
+        <a href="/">Back to tvmg.co.za</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/demo.js?v=1"></script>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
