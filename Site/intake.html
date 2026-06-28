@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- UNLISTED PAGE: client intake, completed after payment. Not linked in nav/footer. -->
+  <meta name="robots" content="noindex, nofollow" />
+
+  <title>Project Intake · TVMG</title>
+  <meta name="description" content="TVMG client project intake form." />
+  <meta name="theme-color" content="#061B3F" />
+
+  <link rel="icon" href="assets/favicon/TVMG_favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/TVMG_favicon_32x32_transparent.png" />
+  <link rel="apple-touch-icon" href="assets/favicon/TVMG_app_icon_180x180_navy.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#intake-form">Skip to form</a>
+
+  <header class="legal-header">
+    <div class="container">
+      <a class="brand-link" href="/" aria-label="TVMG home">
+        <img src="assets/logo/TVMG_logo_mono_white_transparent.png" alt="TVMG · Train Visual Media Group" />
+      </a>
+      <h1>Project intake</h1>
+      <p>Thanks for your order. Complete this once and we have everything we need to start producing your video. The more complete your content, the better and faster your video.</p>
+    </div>
+  </header>
+
+  <main class="legal-body intake-body">
+    <div class="container">
+      <!-- progress rail -->
+      <ol class="intake-steps" aria-hidden="true">
+        <li data-step="1">Basics</li>
+        <li data-step="2">Video</li>
+        <li data-step="3">Content</li>
+        <li data-step="4">Voice</li>
+        <li data-step="5">Branding</li>
+        <li data-step="6">Portal</li>
+        <li data-step="7">Sign-off</li>
+      </ol>
+
+      <!-- Not-configured notice (shown by JS if Supabase keys aren't set) -->
+      <div id="intake-config-warning" class="intake-warning" hidden>
+        This form isn’t connected to its backend yet. Add your Supabase URL and anon key in
+        <code>js/intake.js</code>, then redeploy. (Setup steps: <code>supabase/intake_setup.sql</code>.)
+      </div>
+
+      <form class="enquiry-form intake-form" id="intake-form" novalidate enctype="multipart/form-data">
+
+        <!-- ============ SECTION 1 — BASICS ============ -->
+        <fieldset class="intake-section">
+          <legend><span class="sec-num">1</span> Client &amp; project basics</legend>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="business_name">Business / organisation name <span class="req">*</span></label>
+              <input type="text" id="business_name" name="business_name" autocomplete="organization" required />
+              <span class="form-error">Please enter your business name.</span>
+            </div>
+            <div class="field">
+              <label for="contact_name">Contact person — full name <span class="req">*</span></label>
+              <input type="text" id="contact_name" name="contact_name" autocomplete="name" required />
+              <small class="hint">For delivery and revision queries.</small>
+              <span class="form-error">Please enter the contact person.</span>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="email">Email <span class="req">*</span></label>
+              <input type="email" id="email" name="email" autocomplete="email" required />
+              <span class="form-error">Please enter a valid email.</span>
+            </div>
+            <div class="field">
+              <label for="phone">Phone <span class="req">*</span></label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel" required />
+              <span class="form-error">Please enter a contact number.</span>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="quote_ref">Quote / invoice reference <span class="req">*</span></label>
+              <input type="text" id="quote_ref" name="quote_ref" required />
+              <small class="hint">From your quote or invoice — so we can match it to your order.</small>
+              <span class="form-error">Please enter your quote or invoice reference.</span>
+            </div>
+            <div class="field">
+              <label for="package">Which package did you purchase? <span class="req">*</span></label>
+              <select id="package" name="package" required>
+                <option value="">Select…</option>
+                <option>0–10 min</option>
+                <option>10–20 min</option>
+                <option>20–30 min</option>
+                <option>30–60 min</option>
+                <option>Training set (custom)</option>
+                <option>Not sure</option>
+              </select>
+              <span class="form-error">Please select your package.</span>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- ============ SECTION 2 — VIDEO SCOPE ============ -->
+        <fieldset class="intake-section">
+          <legend><span class="sec-num">2</span> The video</legend>
+
+          <div class="field">
+            <label for="video_title">Video topic / title <span class="req">*</span></label>
+            <input type="text" id="video_title" name="video_title" required />
+            <small class="hint">In one line, what is this video about?</small>
+            <span class="form-error">Please give the video a topic or title.</span>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="length_tier">Video length tier <span class="req">*</span></label>
+              <select id="length_tier" name="length_tier" required>
+                <option value="">Select…</option>
+                <option>0–10 min</option>
+                <option>10–20 min</option>
+                <option>20–30 min</option>
+                <option>30–60 min</option>
+              </select>
+              <small class="hint">Confirms scope.</small>
+              <span class="form-error">Please confirm the length tier.</span>
+            </div>
+            <div class="field">
+              <label for="purpose">Purpose <span class="req">*</span></label>
+              <select id="purpose" name="purpose" required data-controls="purpose_other_wrap" data-show-on="Other">
+                <option value="">Select…</option>
+                <option>Induction / onboarding</option>
+                <option>Health &amp; safety</option>
+                <option>Compliance</option>
+                <option>Product or process training</option>
+                <option>Other</option>
+              </select>
+              <span class="form-error">Please choose a purpose.</span>
+            </div>
+          </div>
+
+          <div class="field conditional" id="purpose_other_wrap" hidden>
+            <label for="purpose_other">If “Other”, please specify <span class="req">*</span></label>
+            <input type="text" id="purpose_other" name="purpose_other" />
+            <span class="form-error">Please specify the purpose.</span>
+          </div>
+
+          <div class="field">
+            <label for="audience">Who is the audience? <span class="req">*</span></label>
+            <input type="text" id="audience" name="audience" required />
+            <small class="hint">e.g. new hires, all staff, a specific department, customers. Helps us set the tone.</small>
+            <span class="form-error">Please tell us the audience.</span>
+          </div>
+
+          <div class="field">
+            <label for="learning_outcome">What should someone know or be able to do after watching? <span class="req">*</span></label>
+            <textarea id="learning_outcome" name="learning_outcome" required placeholder="The learning outcome — keeps us aligned on what “done” looks like."></textarea>
+            <span class="form-error">Please describe the learning outcome.</span>
+          </div>
+        </fieldset>
+
+        <!-- ============ SECTION 3 — CONTENT ============ -->
+        <fieldset class="intake-section intake-section--key">
+          <legend><span class="sec-num">3</span> The content</legend>
+          <p class="sec-callout">
+            <strong>This is the most important section.</strong> The quality of your video depends on the
+            content you provide here. The more complete and clear your content, the better and faster your
+            video. We build from what you supply.
+          </p>
+
+          <div class="field" id="source_wrap">
+            <label for="source_files">Upload your source content <span class="req">*</span></label>
+            <input type="file" id="source_files" name="source_files" multiple
+                   accept=".pdf,.doc,.docx,.ppt,.pptx,.txt,.rtf,.pages,.key,.md,.csv,.xls,.xlsx,.zip" />
+            <small class="hint">Documents, slides, policies, manuals, scripts, bullet points — whatever covers the content. Please provide everything you want covered.</small>
+            <span class="form-error">Please upload your source content, or paste your content below.</span>
+            <ul class="file-list" id="source_files_list"></ul>
+          </div>
+
+          <div class="field">
+            <label for="content_pasted">Or paste your content / key points</label>
+            <textarea id="content_pasted" name="content_pasted" placeholder="No documents? Paste your content or key points here."></textarea>
+            <small class="hint">Optional — use this if you don’t have documents to upload.</small>
+          </div>
+
+          <div class="field">
+            <label for="section_breakdown">Section-by-section breakdown <span class="req">*</span></label>
+            <textarea id="section_breakdown" name="section_breakdown" required class="tall"
+                      placeholder="List the main sections this video should cover, in order. e.g.&#10;1. Welcome&#10;2. Company values&#10;3. Safety basics…"></textarea>
+            <small class="hint">This becomes the structure of your video.</small>
+            <span class="form-error">Please give the section-by-section breakdown.</span>
+          </div>
+
+          <div class="field">
+            <label for="must_include">Anything that must be included word-for-word?</label>
+            <textarea id="must_include" name="must_include" placeholder="Legal disclaimers, compliance wording, exact policy language."></textarea>
+            <small class="hint">Optional — but critical for compliance videos.</small>
+          </div>
+
+          <div class="field">
+            <label for="avoid_text">Anything to avoid or leave out?</label>
+            <textarea id="avoid_text" name="avoid_text"></textarea>
+          </div>
+        </fieldset>
+
+        <!-- ============ SECTION 4 — VOICE & LANGUAGE ============ -->
+        <fieldset class="intake-section">
+          <legend><span class="sec-num">4</span> Voice &amp; language</legend>
+
+          <div class="field">
+            <span class="group-label">Language(s) <span class="req">*</span></span>
+            <div class="check-group" id="languages_group" data-controls="language_other_wrap" data-show-on="Other">
+              <label class="check-pill"><input type="checkbox" name="languages" value="English" /> English</label>
+              <label class="check-pill"><input type="checkbox" name="languages" value="Afrikaans" /> Afrikaans</label>
+              <label class="check-pill"><input type="checkbox" name="languages" value="Other" /> Other</label>
+            </div>
+            <span class="form-error">Please pick at least one language.</span>
+          </div>
+
+          <div class="field conditional" id="language_other_wrap" hidden>
+            <label for="language_other">Other language — please specify <span class="req">*</span></label>
+            <input type="text" id="language_other" name="language_other" />
+            <small class="hint"><strong>Note:</strong> for languages other than English/Afrikaans, you are responsible for having a fluent speaker review the final version before sign-off.</small>
+            <span class="form-error">Please specify the language.</span>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="voice_pref">Voice preference <span class="req">*</span></label>
+              <select id="voice_pref" name="voice_pref" required>
+                <option value="">Select…</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>No preference</option>
+              </select>
+              <span class="form-error">Please choose a voice preference.</span>
+            </div>
+            <div class="field">
+              <label for="accent_pref">Accent preference <span class="req">*</span></label>
+              <select id="accent_pref" name="accent_pref" required data-controls="accent_other_wrap" data-show-on="Other">
+                <option value="">Select…</option>
+                <option>South African</option>
+                <option>Neutral</option>
+                <option>Other</option>
+              </select>
+              <span class="form-error">Please choose an accent preference.</span>
+            </div>
+          </div>
+
+          <div class="field conditional" id="accent_other_wrap" hidden>
+            <label for="accent_other">Other accent — please specify <span class="req">*</span></label>
+            <input type="text" id="accent_other" name="accent_other" />
+            <small class="hint">Tailored to your liking, in an accent of your choice.</small>
+            <span class="form-error">Please specify the accent.</span>
+          </div>
+
+          <div class="field">
+            <label for="tone">Tone <span class="req">*</span></label>
+            <select id="tone" name="tone" required>
+              <option value="">Select…</option>
+              <option>Formal / corporate</option>
+              <option>Friendly / approachable</option>
+              <option>Authoritative</option>
+            </select>
+            <span class="form-error">Please choose a tone.</span>
+          </div>
+        </fieldset>
+
+        <!-- ============ SECTION 5 — BRANDING & DESIGN ============ -->
+        <fieldset class="intake-section">
+          <legend><span class="sec-num">5</span> Branding &amp; design</legend>
+
+          <div class="field">
+            <span class="group-label">Do you want it branded to your business? <span class="req">*</span></span>
+            <div class="radio-group" id="branded_group" data-controls="branding_yes_wrap" data-show-on="Yes">
+              <label class="check-pill"><input type="radio" name="branded" value="Yes" required /> Yes — bespoke design (upcharge applies)</label>
+              <label class="check-pill"><input type="radio" name="branded" value="No" /> No — use TVMG house style</label>
+            </div>
+            <span class="form-error">Please choose one.</span>
+          </div>
+
+          <div class="conditional" id="branding_yes_wrap" hidden>
+            <div class="field">
+              <label for="brand_files">Upload logo, brand colours, fonts, guidelines</label>
+              <input type="file" id="brand_files" name="brand_files" multiple
+                     accept=".pdf,.png,.jpg,.jpeg,.svg,.ai,.eps,.zip,.otf,.ttf,.woff,.woff2,.doc,.docx" />
+              <small class="hint">Logo, brand guidelines, font files.</small>
+              <ul class="file-list" id="brand_files_list"></ul>
+            </div>
+            <div class="field">
+              <label for="brand_colours">Brand colours (hex if known)</label>
+              <input type="text" id="brand_colours" name="brand_colours" placeholder="e.g. #0B2545, #1683FF" />
+            </div>
+            <div class="field">
+              <label for="visual_prefs">Visual preferences / examples you like</label>
+              <textarea id="visual_prefs" name="visual_prefs"></textarea>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="image_files">Images / photos / screenshots to include</label>
+            <input type="file" id="image_files" name="image_files" multiple
+                   accept=".png,.jpg,.jpeg,.gif,.webp,.heic,.pdf,.zip" />
+            <small class="hint">Optional — e.g. your premises, equipment, staff, product shots.</small>
+            <ul class="file-list" id="image_files_list"></ul>
+          </div>
+        </fieldset>
+
+        <!-- ============ SECTION 6 — PORTAL ============ -->
+        <fieldset class="intake-section">
+          <legend><span class="sec-num">6</span> Training portal</legend>
+
+          <div class="field">
+            <span class="group-label">Did you purchase the interactive training portal? <span class="req">*</span></span>
+            <div class="radio-group" id="portal_group" data-controls="portal_yes_wrap" data-show-on="Yes">
+              <label class="check-pill"><input type="radio" name="portal_purchased" value="Yes" required /> Yes</label>
+              <label class="check-pill"><input type="radio" name="portal_purchased" value="No" /> No</label>
+            </div>
+            <span class="form-error">Please choose one.</span>
+          </div>
+
+          <div class="conditional" id="portal_yes_wrap" hidden>
+            <div class="field-row">
+              <div class="field">
+                <label for="portal_seats">How many staff need access?</label>
+                <input type="number" id="portal_seats" name="portal_seats" min="1" />
+              </div>
+            </div>
+            <div class="field">
+              <label for="portal_notes">Any setup notes?</label>
+              <textarea id="portal_notes" name="portal_notes" placeholder="How you’d like it set up."></textarea>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- ============ SECTION 7 — LOGISTICS & SIGN-OFF ============ -->
+        <fieldset class="intake-section">
+          <legend><span class="sec-num">7</span> Logistics &amp; sign-off</legend>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="deadline">Deadline / when do you need this by? <span class="req">*</span></label>
+              <input type="date" id="deadline" name="deadline" required />
+              <small class="hint">Urgent timelines may carry a priority surcharge — we’ll confirm if so.</small>
+              <span class="form-error">Please give a deadline.</span>
+            </div>
+            <div class="field">
+              <label for="approver">Who is the single approver? <span class="req">*</span></label>
+              <input type="text" id="approver" name="approver" required />
+              <small class="hint"><strong>One person</strong> who signs off and requests revisions. This keeps your project on track and avoids conflicting feedback.</small>
+              <span class="form-error">Please name a single approver.</span>
+            </div>
+          </div>
+
+          <div class="checkbox">
+            <input type="checkbox" id="confirm_content" name="confirm_content" required />
+            <label for="confirm_content">I confirm I have provided all the content needed for this video, and I understand the video will be produced based on the information supplied above.
+              <span class="form-error">Please confirm you’ve provided the content.</span>
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <input type="checkbox" id="accept_terms" name="accept_terms" required />
+            <label for="accept_terms">I accept the <a href="/terms.html" target="_blank" rel="noopener">Terms &amp; Conditions</a>.
+              <span class="form-error">Please accept the Terms &amp; Conditions.</span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn--primary form-submit" id="intake-submit">Submit project intake</button>
+          <p class="form-trust" id="intake-status"></p>
+        </fieldset>
+      </form>
+
+      <!-- Success state -->
+      <div class="form-success" id="intake-success" role="status" aria-live="polite">
+        <div class="check" aria-hidden="true">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3>Thanks — we’ve received everything.</h3>
+        <p>We’ll be in touch and start production. You’ll hear from us within one business day.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="margin-top:0;border-top:0">
+        <span>&copy; <span id="year">2026</span> Train Visual Media Group. All rights reserved.</span>
+        <a href="/">Back to tvmg.co.za</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Supabase JS (Storage + Database). intake.js reads config + handles submit. -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/intake.js"></script>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>

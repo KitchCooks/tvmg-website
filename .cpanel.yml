@@ -17,6 +17,7 @@ deployment:
     - /bin/rm -rf "$DEPLOYPATH/css" "$DEPLOYPATH/js" "$DEPLOYPATH/assets"
     - /bin/cp -R Site/index.html "$DEPLOYPATH"
     - /bin/cp -R Site/terms.html "$DEPLOYPATH"
+    - /bin/cp -R Site/intake.html "$DEPLOYPATH"
     - /bin/cp -R Site/css "$DEPLOYPATH"
     - /bin/cp -R Site/js "$DEPLOYPATH"
     - /bin/cp -R Site/assets "$DEPLOYPATH"

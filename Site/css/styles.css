@@ -617,6 +617,95 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
 }
 
 /* =========================================================================
+   Intake form page (/intake)
+   ========================================================================= */
+.intake-body .container { max-width: 880px; }
+.intake-warning {
+  background: rgba(22,131,255,0.08); border: 1px solid rgba(22,131,255,0.3);
+  border-radius: var(--radius); padding: 1rem 1.25rem; margin-bottom: 1.75rem;
+  color: var(--ink); font-size: 0.95rem;
+}
+.intake-warning code { background: #EEF2F9; padding: 0.1rem 0.4rem; border-radius: 6px; font-size: 0.88em; }
+
+/* step rail (decorative) */
+.intake-steps {
+  list-style: none; counter-reset: s; display: flex; flex-wrap: wrap; gap: 0.5rem 0.75rem;
+  margin: 0 0 2rem; padding: 0;
+}
+.intake-steps li {
+  counter-increment: s; display: flex; align-items: center; gap: 0.5rem;
+  font-family: var(--font-head); font-weight: 600; font-size: 0.82rem; color: var(--text-muted);
+  background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-pill);
+  padding: 0.4rem 0.85rem 0.4rem 0.45rem;
+}
+.intake-steps li::before {
+  content: counter(s); display: grid; place-items: center; width: 22px; height: 22px;
+  border-radius: 50%; background: var(--grad-brand); color: #fff; font-size: 0.72rem; font-weight: 800;
+}
+
+/* sections */
+.intake-form { padding: clamp(1.25rem, 3vw, 2rem); }
+.intake-section { border: 0; padding: 0; margin: 0 0 2.5rem; min-width: 0; }
+.intake-section legend {
+  display: flex; align-items: center; gap: 0.75rem; padding: 0; margin-bottom: 1.25rem;
+  font-family: var(--font-head); font-weight: 800; font-size: 1.4rem; color: var(--ink); letter-spacing: -0.01em;
+}
+.intake-section .sec-num {
+  display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px;
+  background: var(--grad-brand); color: #fff; font-size: 1.05rem; flex: none;
+}
+.intake-section--key { border-left: 4px solid var(--signal-blue); padding-left: 1.25rem; }
+.sec-callout {
+  background: rgba(22,131,255,0.08); border: 1px solid rgba(22,131,255,0.28);
+  border-radius: var(--radius-sm); padding: 1rem 1.1rem; margin-bottom: 1.5rem;
+  color: var(--ink); font-size: 0.96rem; line-height: 1.55;
+}
+.sec-callout strong { color: var(--media-blue); }
+
+small.hint { display: block; color: var(--text-muted); font-size: 0.82rem; margin-top: 0.4rem; line-height: 1.45; }
+.group-label { display: block; font-weight: var(--fw-med); font-size: 0.9rem; margin-bottom: 0.6rem; color: var(--ink); }
+.field textarea.tall { min-height: 160px; }
+
+/* pill choices (checkbox / radio groups) */
+.check-group, .radio-group { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.check-pill {
+  display: inline-flex; align-items: center; gap: 0.55rem; cursor: pointer;
+  background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius-pill);
+  padding: 0.6rem 1rem; font-size: 0.95rem; font-weight: var(--fw-med); color: var(--ink);
+  transition: border-color var(--dur-fast), background var(--dur-fast);
+}
+.check-pill:hover { border-color: var(--silver); }
+.check-pill input { width: 18px; height: 18px; margin: 0; accent-color: var(--media-blue); flex: none; }
+.check-pill:has(input:checked) { border-color: var(--signal-blue); background: rgba(22,131,255,0.07); }
+
+/* file inputs */
+.intake-form input[type="file"] {
+  width: 100%; font-size: 0.92rem; color: var(--text-muted);
+  background: var(--bg); border: 1.5px dashed var(--silver); border-radius: var(--radius-sm);
+  padding: 0.9rem; cursor: pointer;
+}
+.intake-form input[type="file"]:hover { border-color: var(--media-blue); }
+.intake-form input[type="file"]::file-selector-button {
+  font: inherit; font-weight: 600; margin-right: 0.9rem; cursor: pointer;
+  background: var(--tvmg-navy); color: #fff; border: 0; border-radius: var(--radius-pill); padding: 0.5rem 1rem;
+}
+.file-list { list-style: none; margin: 0.7rem 0 0; padding: 0; display: grid; gap: 0.35rem; }
+.file-list li { font-size: 0.85rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.45rem; }
+.file-list li::before { content: "📄"; }
+.file-list li.over { color: #C0392B; font-weight: 600; }
+
+/* conditional blocks */
+.conditional[hidden] { display: none; }
+.conditional { border-left: 2px solid var(--border); padding-left: 1rem; margin-left: 0.25rem; }
+
+/* invalid radio/checkbox groups */
+.field.invalid .check-pill, .field.invalid input[type="file"] { border-color: #C0392B; }
+
+#intake-status { min-height: 1.2em; }
+#intake-status.err { color: #C0392B; }
+.intake-form .form-submit { margin-top: 0.5rem; }
+
+/* =========================================================================
    Terms page (terms.tvmg.co.za) — clean legal layout
    ========================================================================= */
 .legal-header { background: var(--grad-navy); color: #fff; padding-top: calc(var(--header-h) + 2.5rem); padding-bottom: 2.5rem; }
