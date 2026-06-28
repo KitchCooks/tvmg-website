@@ -264,6 +264,24 @@ var BUCKET = "intake";
     return L.join("\n");
   }
 
+  /* ---------- upload progress bar ---------- */
+  var progress = (function () {
+    var wrap = document.createElement("div"); wrap.className = "upload-progress"; wrap.hidden = true;
+    var label = document.createElement("div"); label.className = "up-label";
+    var track = document.createElement("div"); track.className = "up-track";
+    var fill = document.createElement("div"); fill.className = "up-fill";
+    track.appendChild(fill); wrap.appendChild(label); wrap.appendChild(track);
+    if (submitBtn && submitBtn.parentNode) submitBtn.parentNode.insertBefore(wrap, submitBtn.nextSibling);
+    return {
+      show: function () { wrap.hidden = false; },
+      hide: function () { wrap.hidden = true; },
+      set: function (frac, text) {
+        fill.style.width = Math.max(2, Math.min(100, Math.round(frac * 100))) + "%";
+        if (text != null) label.textContent = text;
+      }
+    };
+  })();
+
   /* ---------- submit ---------- */
   form.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -276,28 +294,26 @@ var BUCKET = "intake";
 
     var slug = slugify(val("business_name")) + "-" + shortId();
     submitBtn.disabled = true;
+    submitBtn.textContent = "Submitting…";
     statusEl.classList.remove("err");
-    statusEl.textContent = "Uploading your content…";
+    statusEl.textContent = "";
+    progress.show();
 
     var uploads = [
       { id: "source_files", sub: "01-source-content" },
       { id: "brand_files",  sub: "02-branding" },
       { id: "image_files",  sub: "03-images-media" }
     ];
-    var filePaths = [];
-
-    function uploadAll() {
-      var jobs = [];
-      uploads.forEach(function (u) {
-        Array.prototype.forEach.call(filesOf(u.id), function (f) {
-          var path = slug + "/" + u.sub + "/" + safeName(f.name);
-          filePaths.push(path);
-          jobs.push(sb.storage.from(BUCKET).upload(path, f, { upsert: false, contentType: f.type || undefined })
-            .then(function (r) { if (r.error) throw r.error; }));
-        });
+    var filePaths = [], fileJobs = [];
+    uploads.forEach(function (u) {
+      Array.prototype.forEach.call(filesOf(u.id), function (f) {
+        var path = slug + "/" + u.sub + "/" + safeName(f.name);
+        filePaths.push(path);
+        fileJobs.push({ path: path, file: f });
       });
-      return Promise.all(jobs);
-    }
+    });
+    var totalSteps = fileJobs.length + 2;  // files + brief + db insert
+    var done = 0;
 
     var rec = {
       client_slug: slug,
@@ -322,18 +338,32 @@ var BUCKET = "intake";
       accept_terms: !!form.elements["accept_terms"].checked
     };
 
-    uploadAll()
+    progress.set(0, fileJobs.length ? ("Uploading files… (0 of " + fileJobs.length + ")") : "Saving your details…");
+
+    // Upload files one at a time so the bar advances visibly.
+    var chain = Promise.resolve();
+    fileJobs.forEach(function (job, i) {
+      chain = chain.then(function () {
+        progress.set(done / totalSteps, "Uploading " + job.file.name + " (" + (i + 1) + " of " + fileJobs.length + ")…");
+        return sb.storage.from(BUCKET).upload(job.path, job.file, { upsert: false, contentType: job.file.type || undefined })
+          .then(function (r) { if (r.error) throw r.error; done++; progress.set(done / totalSteps); });
+      });
+    });
+
+    chain
       .then(function () {
-        statusEl.textContent = "Saving your brief…";
+        progress.set(done / totalSteps, "Saving your brief…");
         var brief = buildBrief(rec, filePaths, slug);
         var briefPath = slug + "/brief.md";
         return sb.storage.from(BUCKET).upload(briefPath, new Blob([brief], { type: "text/markdown" }), { upsert: true })
-          .then(function (r) { if (r.error) throw r.error; rec.files = filePaths; rec.brief_path = briefPath; });
+          .then(function (r) { if (r.error) throw r.error; rec.files = filePaths; rec.brief_path = briefPath; done++; progress.set(done / totalSteps); });
       })
       .then(function () {
-        return sb.from("intake_submissions").insert(rec).then(function (r) { if (r.error) throw r.error; });
+        progress.set(done / totalSteps, "Saving your details…");
+        return sb.from("intake_submissions").insert(rec).then(function (r) { if (r.error) throw r.error; done++; progress.set(1, "Done"); });
       })
       .then(function () {
+        progress.hide();
         form.style.display = "none";
         var steps = document.querySelector(".intake-steps"); if (steps) steps.style.display = "none";
         successEl.classList.add("show");
@@ -342,9 +372,11 @@ var BUCKET = "intake";
         successEl.focus();
       })
       .catch(function (err) {
+        progress.hide();
         submitBtn.disabled = false;
+        submitBtn.textContent = "Submit project intake";
         statusEl.classList.add("err");
-        statusEl.textContent = "Something went wrong uploading your submission: " +
+        statusEl.textContent = "Something went wrong: " +
           ((err && err.message) ? err.message : "please try again, or contact TVMG directly.");
       });
   });

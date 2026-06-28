@@ -711,7 +711,23 @@ small.hint { display: block; color: var(--text-muted); font-size: 0.82rem; margi
 /* invalid radio/checkbox groups */
 .field.invalid .check-pill, .field.invalid input[type="file"] { border-color: #C0392B; }
 
-#intake-status { min-height: 1.2em; }
+/* upload progress bar */
+.upload-progress { margin-top: 1rem; }
+.up-label { font-size: 0.88rem; font-weight: 600; color: var(--ink); margin-bottom: 0.5rem; }
+.up-track { height: 10px; border-radius: var(--radius-pill); background: #E3EAF5; overflow: hidden; }
+.up-fill {
+  height: 100%; width: 2%; border-radius: var(--radius-pill); background: var(--grad-brand);
+  transition: width 0.3s var(--ease); position: relative;
+}
+.up-fill::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.45), transparent);
+  background-size: 200% 100%; animation: up-shimmer 1.1s linear infinite;
+}
+@keyframes up-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+@media (prefers-reduced-motion: reduce) { .up-fill::after { animation: none; } }
+
+#intake-status, #demo-status { min-height: 1.2em; }
 #intake-status.err { color: #C0392B; }
 .intake-form .form-submit { margin-top: 0.5rem; }
 

@@ -151,6 +151,20 @@ var TABLE = "demo_requests";
     return content.join("\n");
   }
 
+  /* upload progress bar */
+  var progress = (function () {
+    var wrap = document.createElement("div"); wrap.className = "upload-progress"; wrap.hidden = true;
+    var label = document.createElement("div"); label.className = "up-label";
+    var track = document.createElement("div"); track.className = "up-track";
+    var fill = document.createElement("div"); fill.className = "up-fill";
+    track.appendChild(fill); wrap.appendChild(label); wrap.appendChild(track);
+    if (submitBtn && submitBtn.parentNode) submitBtn.parentNode.insertBefore(wrap, submitBtn.nextSibling);
+    return {
+      show: function () { wrap.hidden = false; }, hide: function () { wrap.hidden = true; },
+      set: function (frac, text) { fill.style.width = Math.max(2, Math.min(100, Math.round(frac * 100))) + "%"; if (text != null) label.textContent = text; }
+    };
+  })();
+
   /* submit */
   form.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -159,17 +173,13 @@ var TABLE = "demo_requests";
 
     var id = uuid();
     var slug = slugify(val("business_name")) + "-" + shortId();
-    submitBtn.disabled = true; statusEl.classList.remove("err"); statusEl.textContent = "Uploading…";
+    submitBtn.disabled = true; submitBtn.textContent = "Submitting…";
+    statusEl.classList.remove("err"); statusEl.textContent = ""; progress.show();
 
-    var jobs = [], filePaths = [];
-    Array.prototype.forEach.call(filesOf("content_files"), function (f) {
-      var p = slug + "/content/" + safeName(f.name); filePaths.push(p);
-      jobs.push(sb.storage.from(BUCKET).upload(p, f, { upsert: false, contentType: f.type || undefined }).then(function (r) { if (r.error) throw r.error; }));
-    });
-    Array.prototype.forEach.call(filesOf("logo_file"), function (f) {
-      var p = slug + "/branding/" + safeName(f.name); filePaths.push(p);
-      jobs.push(sb.storage.from(BUCKET).upload(p, f, { upsert: false, contentType: f.type || undefined }).then(function (r) { if (r.error) throw r.error; }));
-    });
+    var filePaths = [], fileJobs = [];
+    Array.prototype.forEach.call(filesOf("content_files"), function (f) { var p = slug + "/content/" + safeName(f.name); filePaths.push(p); fileJobs.push({ path: p, file: f }); });
+    Array.prototype.forEach.call(filesOf("logo_file"), function (f) { var p = slug + "/branding/" + safeName(f.name); filePaths.push(p); fileJobs.push({ path: p, file: f }); });
+    var totalSteps = fileJobs.length + 2, done = 0;
 
     var rec = {
       id: id, lead_slug: slug,
@@ -182,25 +192,37 @@ var TABLE = "demo_requests";
       brand_colours: val("brand_colours")
     };
 
-    // uploads -> brief -> single insert (anon has insert-only; no read-back/update needed)
-    Promise.all(jobs)
+    progress.set(0, fileJobs.length ? ("Uploading files… (0 of " + fileJobs.length + ")") : "Saving your details…");
+    var chain = Promise.resolve();
+    fileJobs.forEach(function (job, i) {
+      chain = chain.then(function () {
+        progress.set(done / totalSteps, "Uploading " + job.file.name + " (" + (i + 1) + " of " + fileJobs.length + ")…");
+        return sb.storage.from(BUCKET).upload(job.path, job.file, { upsert: false, contentType: job.file.type || undefined })
+          .then(function (r) { if (r.error) throw r.error; done++; progress.set(done / totalSteps); });
+      });
+    });
+
+    chain
       .then(function () {
-        statusEl.textContent = "Saving your brief…";
+        progress.set(done / totalSteps, "Saving your brief…");
         var brief = buildBrief(rec, filePaths, slug, id);
         return sb.storage.from(BUCKET).upload(slug + "/demo-brief.md", new Blob([brief], { type: "text/markdown" }), { upsert: true })
-          .then(function (r) { if (r.error) throw r.error; });
+          .then(function (r) { if (r.error) throw r.error; done++; progress.set(done / totalSteps); });
       })
       .then(function () {
+        progress.set(done / totalSteps, "Saving your details…");
         rec.files = filePaths; rec.brief_path = slug + "/demo-brief.md";
-        return sb.from(TABLE).insert(rec).then(function (r) { if (r.error) throw r.error; });
+        return sb.from(TABLE).insert(rec).then(function (r) { if (r.error) throw r.error; progress.set(1, "Done"); });
       })
       .then(function () {
+        progress.hide();
         form.style.display = "none";
         successEl.classList.add("show"); successEl.setAttribute("tabindex", "-1");
         successEl.scrollIntoView({ behavior: "smooth", block: "center" }); successEl.focus();
       })
       .catch(function (err) {
-        submitBtn.disabled = false; statusEl.classList.add("err");
+        progress.hide();
+        submitBtn.disabled = false; submitBtn.textContent = "Request my demo"; statusEl.classList.add("err");
         statusEl.textContent = "Something went wrong: " + ((err && err.message) ? err.message : "please try again, or contact TVMG directly.");
       });
   });
