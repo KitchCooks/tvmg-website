@@ -693,6 +693,8 @@ small.hint { display: block; color: var(--text-muted); font-size: 0.82rem; margi
 .file-list li { font-size: 0.85rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.45rem; }
 .file-list li::before { content: "📄"; }
 .file-list li.over { color: #C0392B; font-weight: 600; }
+.file-cap { margin: 0.6rem 0 0; font-size: 0.82rem; color: var(--text-muted); }
+.file-cap strong { color: var(--ink); }
 
 /* conditional blocks */
 .conditional[hidden] { display: none; }

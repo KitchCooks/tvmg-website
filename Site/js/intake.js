@@ -138,10 +138,11 @@ var BUCKET = "intake";
     setInvalid(document.getElementById("portal_group"), !portal);
     if (!portal) fail(document.getElementById("portal_group"));
 
-    // SECTION 3 content rule: at least source files OR pasted content
+    // SECTION 3 content rule: at least source files OR pasted content OR a large-file link
     var hasFiles = filesOf("source_files").length > 0;
     var hasPaste = !!val("content_pasted");
-    var contentGood = hasFiles || hasPaste;
+    var hasLink = !!val("large_links");
+    var contentGood = hasFiles || hasPaste || hasLink;
     setInvalid(document.getElementById("source_files"), !contentGood);
     if (!contentGood) fail(document.getElementById("source_files"));
 
@@ -222,7 +223,8 @@ var BUCKET = "intake";
     L.push("## Files");
     L.push("Storage bucket `" + BUCKET + "`, folder `" + slug + "/`:");
     if (filePaths.length) filePaths.forEach(function (p) { L.push("- " + p); });
-    else L.push("- _(no files uploaded — content pasted instead)_");
+    else L.push("- _(no files uploaded)_");
+    if (rec.large_file_links) L.push("- **Large-file link (client-provided):** " + rec.large_file_links);
     L.push("");
     L.push("## Sign-off");
     L.push("- Confirmed content provided: " + (rec.confirm_content ? "yes" : "no"));
@@ -273,7 +275,8 @@ var BUCKET = "intake";
       video_title: val("video_title"), length_tier: val("length_tier"),
       purpose: val("purpose"), purpose_other: val("purpose_other"),
       audience: val("audience"), learning_outcome: val("learning_outcome"),
-      content_pasted: val("content_pasted"), section_breakdown: val("section_breakdown"),
+      content_pasted: val("content_pasted"), large_file_links: val("large_links"),
+      section_breakdown: val("section_breakdown"),
       must_include: val("must_include"), avoid_text: val("avoid_text"),
       languages: checkedLangs(), language_other: val("language_other"),
       voice_pref: val("voice_pref"), accent_pref: val("accent_pref"), accent_other: val("accent_other"),

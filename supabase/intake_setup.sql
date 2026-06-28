@@ -31,6 +31,7 @@ create table if not exists public.intake_submissions (
 
   -- Section 3: content
   content_pasted   text,
+  large_file_links text,
   section_breakdown text,
   must_include     text,
   avoid_text       text,
@@ -63,6 +64,9 @@ create table if not exists public.intake_submissions (
   files            jsonb default '[]'::jsonb,      -- list of uploaded storage paths
   brief_path       text
 );
+
+-- Safe to re-run on an existing table (adds the column if it's missing).
+alter table public.intake_submissions add column if not exists large_file_links text;
 
 alter table public.intake_submissions enable row level security;
 
