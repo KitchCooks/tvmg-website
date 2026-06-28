@@ -33,18 +33,32 @@ var TABLE = "demo_requests";
     sel.addEventListener("change", apply); apply();
   });
 
-  /* file lists + size guard */
+  /* file lists: accumulate across multiple picks + remove + size guard */
   function wireFileList(inputId, listId) {
     var input = document.getElementById(inputId), list = document.getElementById(listId);
     if (!input || !list) return;
-    input.addEventListener("change", function () {
+    var store = [];
+    var key = function (f) { return f.name + "|" + f.size + "|" + f.lastModified; };
+    var sync = function () {
+      try { var dt = new DataTransfer(); store.forEach(function (f) { dt.items.add(f); }); input.files = dt.files; } catch (e) {}
+    };
+    var render = function () {
       list.innerHTML = "";
-      Array.prototype.forEach.call(input.files, function (f) {
+      store.forEach(function (f, i) {
         var li = document.createElement("li"), big = f.size > MAX_BYTES;
         li.className = big ? "over" : "";
-        li.textContent = f.name + " (" + (f.size / 1048576).toFixed(1) + " MB)" + (big ? " — too large, max 50 MB" : "");
-        list.appendChild(li);
+        var span = document.createElement("span");
+        span.textContent = f.name + " (" + (f.size / 1048576).toFixed(1) + " MB)" + (big ? " — too large, max 50 MB" : "");
+        var rm = document.createElement("button");
+        rm.type = "button"; rm.className = "file-remove"; rm.setAttribute("aria-label", "Remove " + f.name); rm.innerHTML = "&times;";
+        rm.addEventListener("click", function () { store.splice(i, 1); sync(); render(); });
+        li.appendChild(span); li.appendChild(rm); list.appendChild(li);
       });
+    };
+    input.addEventListener("change", function () {
+      var seen = {}; store.forEach(function (f) { seen[key(f)] = true; });
+      Array.prototype.forEach.call(input.files, function (f) { if (!seen[key(f)]) { store.push(f); seen[key(f)] = true; } });
+      sync(); render();
     });
   }
   wireFileList("content_files", "content_files_list");

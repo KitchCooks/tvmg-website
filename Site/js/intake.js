@@ -62,20 +62,51 @@ var BUCKET = "intake";
     grp.addEventListener("change", apply); apply();
   });
 
-  /* ---------- file pickers: list + size guard ---------- */
+  /* ---------- file pickers: ACCUMULATE across multiple picks + remove + size guard ----------
+     A native multi-file input replaces its selection each time you choose, so people think
+     they can only upload one batch. We keep our own list, append on each pick, let them
+     remove items, and sync it back onto the input so the rest of the code reads input.files. */
   function wireFileList(inputId, listId) {
     var input = document.getElementById(inputId);
     var list = document.getElementById(listId);
     if (!input || !list) return;
-    input.addEventListener("change", function () {
+
+    var sync = function () {
+      // rebuild input.files from `list` data via DataTransfer (supported in modern browsers)
+      try {
+        var dt = new DataTransfer();
+        store.forEach(function (f) { dt.items.add(f); });
+        input.files = dt.files;
+      } catch (e) { /* very old browser: input keeps its last native selection */ }
+    };
+    var store = [];
+    var key = function (f) { return f.name + "|" + f.size + "|" + f.lastModified; };
+
+    var render = function () {
       list.innerHTML = "";
-      Array.prototype.forEach.call(input.files, function (f) {
+      store.forEach(function (f, i) {
         var li = document.createElement("li");
         var tooBig = f.size > MAX_BYTES;
         li.className = tooBig ? "over" : "";
-        li.textContent = f.name + " (" + (f.size / 1048576).toFixed(1) + " MB)" + (tooBig ? " — too large, max 50 MB" : "");
+        var span = document.createElement("span");
+        span.textContent = f.name + " (" + (f.size / 1048576).toFixed(1) + " MB)" + (tooBig ? " — too large, max 50 MB" : "");
+        var rm = document.createElement("button");
+        rm.type = "button"; rm.className = "file-remove"; rm.setAttribute("aria-label", "Remove " + f.name);
+        rm.innerHTML = "&times;";
+        rm.addEventListener("click", function () { store.splice(i, 1); sync(); render(); });
+        li.appendChild(span); li.appendChild(rm);
         list.appendChild(li);
       });
+    };
+
+    input.addEventListener("change", function () {
+      var seen = {};
+      store.forEach(function (f) { seen[key(f)] = true; });
+      Array.prototype.forEach.call(input.files, function (f) {
+        if (!seen[key(f)]) { store.push(f); seen[key(f)] = true; }
+      });
+      sync();   // input.files now holds the full accumulated set
+      render();
     });
   }
   wireFileList("source_files", "source_files_list");

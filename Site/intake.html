@@ -19,8 +19,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="css/tokens.css?v=2" />
-  <link rel="stylesheet" href="css/styles.css?v=2" />
+  <link rel="stylesheet" href="css/tokens.css?v=3" />
+  <link rel="stylesheet" href="css/styles.css?v=3" />
 </head>
 <body>
   <a class="skip-link" href="#intake-form">Skip to form</a>
@@ -181,8 +181,8 @@
             <label for="source_files">Upload your source content <span class="req">*</span></label>
             <input type="file" id="source_files" name="source_files" multiple
                    accept=".pdf,.doc,.docx,.ppt,.pptx,.txt,.rtf,.pages,.key,.md,.csv,.xls,.xlsx,.zip,.png,.jpg,.jpeg,.gif,.webp,.heic,.svg,.mp4,.mov,.m4v,.webm,.avi,.mkv,.mp3,.wav,.m4a" />
-            <small class="hint">Documents, slides, policies, manuals, scripts, images, screenshots, even short video or audio clips — whatever covers the content. Up to 50&nbsp;MB per file; for a larger video, paste a share link (Drive, Dropbox, WeTransfer) in the box below.</small>
-            <span class="form-error">Please upload your source content, or paste your content below.</span>
+            <small class="hint">Documents, slides, policies, manuals, scripts, images, screenshots, even short video or audio clips — whatever covers the content. <strong>You can add several files</strong> (pick more and they’ll be added to the list, not replaced). Up to 50&nbsp;MB per file; for anything larger, paste a share link in the field below.</small>
+            <span class="form-error">Please add at least one file, paste your content, or add a large-file link below.</span>
             <ul class="file-list" id="source_files_list"></ul>
             <p class="file-cap"><strong>Maximum 50&nbsp;MB per file.</strong> Larger than that? Use the link field below.</p>
           </div>
@@ -409,7 +409,7 @@
 
   <!-- Supabase JS (Storage + Database). intake.js reads config + handles submit. -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="js/intake.js?v=2"></script>
+  <script src="js/intake.js?v=3"></script>
   <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body>
 </html>
