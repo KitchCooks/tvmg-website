@@ -206,7 +206,7 @@ var TABLE = "demo_requests";
       .then(function () {
         progress.set(done / totalSteps, "Saving your brief…");
         var brief = buildBrief(rec, filePaths, slug, id);
-        return sb.storage.from(BUCKET).upload(slug + "/demo-brief.md", new Blob([brief], { type: "text/markdown" }), { upsert: true })
+        return sb.storage.from(BUCKET).upload(slug + "/demo-brief.md", new Blob([brief], { type: "text/markdown" }), { upsert: false })
           .then(function (r) { if (r.error) throw new Error("SAVING BRIEF failed (Storage policy on 'demos'): " + r.error.message); done++; progress.set(done / totalSteps); });
       })
       .then(function () {

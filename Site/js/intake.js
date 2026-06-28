@@ -355,7 +355,7 @@ var BUCKET = "intake";
         progress.set(done / totalSteps, "Saving your brief…");
         var brief = buildBrief(rec, filePaths, slug);
         var briefPath = slug + "/brief.md";
-        return sb.storage.from(BUCKET).upload(briefPath, new Blob([brief], { type: "text/markdown" }), { upsert: true })
+        return sb.storage.from(BUCKET).upload(briefPath, new Blob([brief], { type: "text/markdown" }), { upsert: false })
           .then(function (r) { if (r.error) throw new Error("SAVING BRIEF failed (Storage policy on 'intake'): " + r.error.message); rec.files = filePaths; rec.brief_path = briefPath; done++; progress.set(done / totalSteps); });
       })
       .then(function () {
