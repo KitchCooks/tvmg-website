@@ -7,8 +7,8 @@
    3) Paste them below.  (The anon key is safe to ship: RLS lets the form
       INSERT/upload only, never read.)
    ========================================================================= */
-var SUPABASE_URL = "";        // TODO: e.g. "https://xxxx.supabase.co"
-var SUPABASE_ANON_KEY = "";   // TODO: anon public key
+var SUPABASE_URL = "https://vrdnubvpbyogpseyleti.supabase.co";
+var SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZyZG51YnZwYnlvZ3BzZXlsZXRpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI2MjE0MzAsImV4cCI6MjA5ODE5NzQzMH0.vT2ZzK0rVFYNMR_QdElin45bJFxqqQ2eO3sOx6RGYfI";
 var BUCKET = "intake";
 
 (function () {
