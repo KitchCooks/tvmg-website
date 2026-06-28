@@ -11,6 +11,10 @@ var SUPABASE_URL = "https://vrdnubvpbyogpseyleti.supabase.co";
 var SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZyZG51YnZwYnlvZ3BzZXlsZXRpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI2MjE0MzAsImV4cCI6MjA5ODE5NzQzMH0.vT2ZzK0rVFYNMR_QdElin45bJFxqqQ2eO3sOx6RGYfI";
 var BUCKET = "intake";
 
+/* Email ping on each submission. Get a free access key at https://web3forms.com
+   using hello@tvmg.co.za as the address, then paste it here. Safe to ship (public). */
+var NOTIFY_ACCESS_KEY = ""; // TODO: Web3Forms access key tied to hello@tvmg.co.za
+
 (function () {
   "use strict";
   var form = document.getElementById("intake-form");
@@ -264,6 +268,29 @@ var BUCKET = "intake";
     return L.join("\n");
   }
 
+  /* ---------- email notification (fire-and-forget) ---------- */
+  function notify(rec) {
+    if (!NOTIFY_ACCESS_KEY) return;
+    var body = {
+      access_key: NOTIFY_ACCESS_KEY,
+      subject: "New project intake — " + (rec.business_name || ""),
+      from_name: "TVMG intake form",
+      message: "New intake submission.\n\n" +
+        "Business: " + (rec.business_name || "") + "\n" +
+        "Contact: " + (rec.contact_name || "") + " | " + (rec.email || "") + " | " + (rec.phone || "") + "\n" +
+        "Package: " + (rec.package || "") + "\n" +
+        "Video: " + (rec.video_title || "") + " (" + (rec.length_tier || "") + ")\n" +
+        "Deadline: " + (rec.deadline || "") + "\n" +
+        "Supabase folder: " + (rec.client_slug || "") + " (files + brief.md in the 'intake' bucket)"
+    };
+    try {
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify(body)
+      }).catch(function () {});
+    } catch (e) {}
+  }
+
   /* ---------- upload progress bar ---------- */
   var progress = (function () {
     var wrap = document.createElement("div"); wrap.className = "upload-progress"; wrap.hidden = true;
@@ -346,7 +373,7 @@ var BUCKET = "intake";
       chain = chain.then(function () {
         progress.set(done / totalSteps, "Uploading " + job.file.name + " (" + (i + 1) + " of " + fileJobs.length + ")…");
         return sb.storage.from(BUCKET).upload(job.path, job.file, { upsert: false, contentType: job.file.type || undefined })
-          .then(function (r) { if (r.error) throw r.error; done++; progress.set(done / totalSteps); });
+          .then(function (r) { if (r.error) throw new Error("FILE UPLOAD failed (Storage policy on 'intake'): " + r.error.message); done++; progress.set(done / totalSteps); });
       });
     });
 
@@ -356,13 +383,14 @@ var BUCKET = "intake";
         var brief = buildBrief(rec, filePaths, slug);
         var briefPath = slug + "/brief.md";
         return sb.storage.from(BUCKET).upload(briefPath, new Blob([brief], { type: "text/markdown" }), { upsert: true })
-          .then(function (r) { if (r.error) throw r.error; rec.files = filePaths; rec.brief_path = briefPath; done++; progress.set(done / totalSteps); });
+          .then(function (r) { if (r.error) throw new Error("SAVING BRIEF failed (Storage policy on 'intake'): " + r.error.message); rec.files = filePaths; rec.brief_path = briefPath; done++; progress.set(done / totalSteps); });
       })
       .then(function () {
         progress.set(done / totalSteps, "Saving your details…");
-        return sb.from("intake_submissions").insert(rec).then(function (r) { if (r.error) throw r.error; done++; progress.set(1, "Done"); });
+        return sb.from("intake_submissions").insert(rec).then(function (r) { if (r.error) throw new Error("SAVING DETAILS failed (table policy on intake_submissions): " + r.error.message); done++; progress.set(1, "Done"); });
       })
       .then(function () {
+        notify(rec);
         progress.hide();
         form.style.display = "none";
         var steps = document.querySelector(".intake-steps"); if (steps) steps.style.display = "none";

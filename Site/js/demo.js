@@ -7,6 +7,8 @@ var SUPABASE_URL = "https://vrdnubvpbyogpseyleti.supabase.co";
 var SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZyZG51YnZwYnlvZ3BzZXlsZXRpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI2MjE0MzAsImV4cCI6MjA5ODE5NzQzMH0.vT2ZzK0rVFYNMR_QdElin45bJFxqqQ2eO3sOx6RGYfI";
 var BUCKET = "demos";
 var TABLE = "demo_requests";
+/* Email ping: same Web3Forms access key as the intake form (tied to hello@tvmg.co.za). */
+var NOTIFY_ACCESS_KEY = ""; // TODO: Web3Forms access key
 
 (function () {
   "use strict";
@@ -151,6 +153,28 @@ var TABLE = "demo_requests";
     return content.join("\n");
   }
 
+  /* email notification (fire-and-forget) */
+  function notify(rec) {
+    if (!NOTIFY_ACCESS_KEY) return;
+    var body = {
+      access_key: NOTIFY_ACCESS_KEY,
+      subject: "New DEMO request — " + (rec.business_name || ""),
+      from_name: "TVMG demo form",
+      message: "New demo request.\n\n" +
+        "Business: " + (rec.business_name || "") + "\n" +
+        "Contact: " + (rec.contact_name || "") + " | " + (rec.email || "") + " | " + (rec.phone || "") + "\n" +
+        "Demo type: " + (rec.demo_type || "") + "\n" +
+        "Topic: " + (rec.topic || "") + "\n" +
+        "Supabase folder: " + (rec.lead_slug || "") + " (files + demo-brief.md in the 'demos' bucket)"
+    };
+    try {
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify(body)
+      }).catch(function () {});
+    } catch (e) {}
+  }
+
   /* upload progress bar */
   var progress = (function () {
     var wrap = document.createElement("div"); wrap.className = "upload-progress"; wrap.hidden = true;
@@ -198,7 +222,7 @@ var TABLE = "demo_requests";
       chain = chain.then(function () {
         progress.set(done / totalSteps, "Uploading " + job.file.name + " (" + (i + 1) + " of " + fileJobs.length + ")…");
         return sb.storage.from(BUCKET).upload(job.path, job.file, { upsert: false, contentType: job.file.type || undefined })
-          .then(function (r) { if (r.error) throw r.error; done++; progress.set(done / totalSteps); });
+          .then(function (r) { if (r.error) throw new Error("FILE UPLOAD failed (Storage policy on 'demos'): " + r.error.message); done++; progress.set(done / totalSteps); });
       });
     });
 
@@ -207,14 +231,15 @@ var TABLE = "demo_requests";
         progress.set(done / totalSteps, "Saving your brief…");
         var brief = buildBrief(rec, filePaths, slug, id);
         return sb.storage.from(BUCKET).upload(slug + "/demo-brief.md", new Blob([brief], { type: "text/markdown" }), { upsert: true })
-          .then(function (r) { if (r.error) throw r.error; done++; progress.set(done / totalSteps); });
+          .then(function (r) { if (r.error) throw new Error("SAVING BRIEF failed (Storage policy on 'demos'): " + r.error.message); done++; progress.set(done / totalSteps); });
       })
       .then(function () {
         progress.set(done / totalSteps, "Saving your details…");
         rec.files = filePaths; rec.brief_path = slug + "/demo-brief.md";
-        return sb.from(TABLE).insert(rec).then(function (r) { if (r.error) throw r.error; progress.set(1, "Done"); });
+        return sb.from(TABLE).insert(rec).then(function (r) { if (r.error) throw new Error("SAVING DETAILS failed (table policy on demo_requests): " + r.error.message); progress.set(1, "Done"); });
       })
       .then(function () {
+        notify(rec);
         progress.hide();
         form.style.display = "none";
         successEl.classList.add("show"); successEl.setAttribute("tabindex", "-1");
