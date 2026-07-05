@@ -97,7 +97,11 @@ h3{font-size:var(--fs-h3)}
 .hero-meta .dot{width:5px;height:5px;border-radius:50%;background:var(--coral)}
 
 .hero-visual{position:relative;justify-self:center}
-.hero-screen{width:min(440px,86vw);aspect-ratio:16/10;background:linear-gradient(160deg,var(--navy-lift),#081f45);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);padding:14px;position:relative}
+.hero-screen{display:block;width:min(440px,86vw);aspect-ratio:16/10;background:linear-gradient(160deg,var(--navy-lift),#081f45);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);padding:14px;position:relative;cursor:pointer;transition:transform var(--dur-fast) var(--ease),border-color var(--dur-fast),box-shadow var(--dur-fast)}
+.hero-screen:hover{transform:translateY(-4px);border-color:var(--border-coral);box-shadow:0 40px 90px rgba(0,0,0,.5)}
+.hero-screen:hover .hero-play{transform:scale(1.08)}
+.hero-screen-cta{position:absolute;left:22px;bottom:20px;z-index:2;font-family:var(--font-head);font-weight:700;font-size:.82rem;letter-spacing:.04em;color:var(--ice);background:rgba(6,20,45,.72);border:1px solid var(--border-strong);padding:.4rem .95rem;border-radius:var(--radius-pill);display:inline-flex;align-items:center;gap:.4rem;backdrop-filter:blur(6px)}
+.hero-screen:hover .hero-screen-cta{border-color:var(--border-coral);color:var(--coral)}
 .hero-screen-bar{display:flex;gap:6px;margin-bottom:12px}
 .hero-screen-bar i{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.18)}
 .hero-screen-face{position:absolute;inset:38px 14px 14px;border-radius:14px;background:radial-gradient(120% 120% at 30% 20%,#0e2f63,#071a3c);display:flex;align-items:center;justify-content:center;overflow:hidden}
