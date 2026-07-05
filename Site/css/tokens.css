@@ -1,92 +1,90 @@
 /* =========================================================================
-   TVMG — Design Tokens
-   Single source of truth for colour, type, spacing and motion.
-   Values extracted verbatim from the brand pack:
-   ./Brand/TVMG_brand_guide.pdf  +  README_TVMG_brand_assets.txt
-   Do NOT introduce colours/fonts outside this file.
+   TVMG — Design Tokens  (Brand Refresh v1 · Kurzgesagt-clean direction)
+   Navy base · ONE coral signature · white + silver text · blue in-logo only.
+   Source of truth: Brand/TVMG_Brand_Refresh.md
    ========================================================================= */
 
 :root {
-  /* ---- Brand palette (exact hex from brand guide) ---- */
-  --tvmg-navy:        #061B3F; /* TVMG Navy   — primary dark / backgrounds */
-  --media-blue:       #0B63CE; /* Media Blue  — primary brand blue */
-  --signal-blue:      #1683FF; /* Signal Blue — bright accent / CTAs / highlights */
-  --ice-white:        #F7FAFF; /* Ice White   — light surface / page bg */
-  --ink:              #0E1726; /* Ink         — near-black text on light */
-  --silver:           #CBD5E1; /* Silver      — borders, muted text on dark */
+  /* ---- Brand palette (refresh) ---- */
+  --navy:        #071A3C; /* base / background            */
+  --navy-deep:   #03102A; /* vignette / deepest           */
+  --navy-lift:   #0C2A57; /* cards on navy (lifted ~7%)   */
+  --navy-lift-2: #123566; /* hover card                   */
+  --coral:       #FF6A4D; /* THE signature accent         */
+  --coral-lt:    #FF8A5B; /* hover / gradient end         */
+  --ice:         #F7FAFF; /* primary text on navy         */
+  --silver:      #9FB0CC; /* muted text / labels          */
+  --blue:        #1683FF; /* logo / occasional support tint only */
 
-  /* ---- Derived / functional tokens (built from the palette only) ---- */
-  --bg:               var(--ice-white);
-  --bg-dark:          var(--tvmg-navy);
-  --surface:          #FFFFFF;
-  --surface-dark:     #0A2350;          /* navy lifted ~6% for cards on dark */
-  --border:           #E3EAF5;          /* ice-white tinted hairline */
-  --border-dark:      rgba(203, 213, 225, 0.16);
+  /* ---- Legacy alias names (kept so styles/main.js keep working) ---- */
+  --tvmg-navy:   var(--navy);
+  --signal-blue: var(--coral);   /* remapped: the accent is coral now */
+  --media-blue:  var(--coral-lt);
+  --ice-white:   var(--ice);
 
-  --text:             var(--ink);
-  --text-muted:       #4A5A72;          /* ink lightened for body copy */
-  --text-on-dark:     var(--ice-white);
-  --text-on-dark-mut: #9DB2D4;          /* silver/blue muted on navy */
+  /* ---- Functional tokens ---- */
+  --bg:            var(--navy);
+  --bg-2:          #061634;        /* alternating section */
+  --surface:       var(--navy-lift);
+  --surface-2:     var(--navy-lift-2);
+  --border:        rgba(159, 176, 204, 0.16);
+  --border-strong: rgba(159, 176, 204, 0.30);
+  --border-coral:  rgba(255, 106, 77, 0.55);
 
-  --accent:           var(--signal-blue);
-  --accent-strong:    var(--media-blue);
+  --text:          var(--ice);
+  --text-muted:    var(--silver);
+  --text-on-dark:  var(--ice);
+  --text-on-dark-mut: var(--silver);
+  --accent:        var(--coral);
+  --accent-strong: var(--coral-lt);
 
   /* Gradients */
-  --grad-brand:       linear-gradient(135deg, var(--media-blue) 0%, var(--signal-blue) 100%);
-  --grad-navy:        linear-gradient(160deg, #07204A 0%, var(--tvmg-navy) 55%, #04132E 100%);
+  --grad-coral:  linear-gradient(135deg, var(--coral) 0%, var(--coral-lt) 100%);
+  --grad-navy:   radial-gradient(120% 120% at 50% 0%, #0B2551 0%, var(--navy) 55%, var(--navy-deep) 100%);
 
-  /* ---- Typography ----
-     Headlines: geometric ExtraBold sans (Montserrat) — per brand direction.
-     Body/UI:   Inter — per brand direction. */
-  --font-head: "Montserrat", "Sora", "Manrope", system-ui, sans-serif;
-  --font-body: "Inter", "Manrope", "Noto Sans", system-ui, -apple-system, sans-serif;
+  /* ---- Typography ---- */
+  --font-head: "Poppins", "Montserrat", "Sora", system-ui, sans-serif;
+  --font-body: "Inter", "Manrope", system-ui, -apple-system, sans-serif;
 
-  --fw-head:   800;   /* ExtraBold */
+  --fw-black:  800;
+  --fw-head:   700;
   --fw-bold:   700;
   --fw-med:    600;
   --fw-reg:    400;
 
-  /* Fluid type scale (mobile-first; clamps up for larger viewports) */
-  --fs-hero:   clamp(2.5rem, 7vw + 0.5rem, 5rem);
-  --fs-h2:     clamp(1.9rem, 4vw + 0.5rem, 3rem);
-  --fs-h3:     clamp(1.25rem, 1.4vw + 0.9rem, 1.6rem);
-  --fs-lead:   clamp(1.05rem, 1vw + 0.85rem, 1.3rem);
+  /* Fluid type scale */
+  --fs-hero:   clamp(2.6rem, 6.2vw + 0.5rem, 5.4rem);
+  --fs-h2:     clamp(2rem, 3.6vw + 0.6rem, 3.4rem);
+  --fs-h3:     clamp(1.25rem, 1.3vw + 0.95rem, 1.65rem);
+  --fs-lead:   clamp(1.08rem, 0.9vw + 0.9rem, 1.32rem);
   --fs-body:   1.0625rem;
   --fs-small:  0.875rem;
-  --fs-eyebrow:0.78rem;
+  --fs-eyebrow:0.8rem;
 
-  --lh-tight:  1.05;
-  --lh-snug:   1.25;
-  --lh-body:   1.65;
-  --tracking-wide: 0.18em;  /* tracked-out uppercase — "training/media systems feel" */
+  --lh-tight:  1.03;
+  --lh-snug:   1.18;
+  --lh-body:   1.68;
+  --tracking-wide: 0.16em;
 
-  /* ---- Spacing scale ---- */
-  --space-xs:  0.5rem;
-  --space-sm:  1rem;
-  --space-md:  1.75rem;
-  --space-lg:  3rem;
-  --space-xl:  5rem;
-  --space-2xl: 8rem;
+  /* ---- Spacing ---- */
+  --space-xs:  0.5rem;  --space-sm: 1rem;  --space-md: 1.75rem;
+  --space-lg:  3rem;    --space-xl: 5.5rem; --space-2xl: 8.5rem;
 
   --maxw:        1180px;
-  --maxw-narrow: 760px;
+  --maxw-narrow: 780px;
+  --maxw-wide:   1320px;
 
   /* ---- Radius / elevation ---- */
-  --radius-sm: 10px;
-  --radius:    16px;
-  --radius-lg: 24px;
-  --radius-pill: 999px;
+  --radius-sm: 12px;  --radius: 20px;  --radius-lg: 28px;  --radius-pill: 999px;
 
-  --shadow-sm:  0 2px 8px rgba(6, 27, 63, 0.06);
-  --shadow:     0 12px 32px rgba(6, 27, 63, 0.10);
-  --shadow-lg:  0 28px 64px rgba(6, 27, 63, 0.16);
-  --shadow-blue:0 14px 30px rgba(22, 131, 255, 0.30);
+  --shadow-sm:  0 2px 10px rgba(0,0,0,0.20);
+  --shadow:     0 16px 40px rgba(0,0,0,0.32);
+  --shadow-lg:  0 36px 80px rgba(0,0,0,0.45);
+  --shadow-coral: 0 16px 38px rgba(255, 106, 77, 0.34);
 
   /* ---- Motion ---- */
   --ease:      cubic-bezier(0.22, 1, 0.36, 1);
-  --dur:       0.6s;
-  --dur-fast:  0.25s;
+  --dur:       0.6s;   --dur-fast: 0.25s;
 
-  /* ---- Layout helpers ---- */
-  --header-h:  72px;
+  --header-h:  74px;
 }
