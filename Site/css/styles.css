@@ -142,11 +142,11 @@ h3{font-size:var(--fs-h3)}
 .stack-body p+p{margin-top:.6rem}
 .stack-math{font-size:.86rem!important;color:var(--silver);background:rgba(255,255,255,.03);border-left:2px solid var(--border-coral);padding:.6rem .8rem;border-radius:0 8px 8px 0}
 .stack-math b{color:var(--ice)}
-.stack-val{grid-column:2/-1;display:flex;flex-direction:column;justify-content:center;text-align:left;padding-top:.4rem;border-top:1px dashed var(--border)}
-@media(min-width:720px){.stack-val{grid-column:auto;text-align:right;border-top:0;padding-top:0;min-width:130px}}
-.stack-val span{font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--silver)}
-.stack-val b{font-family:var(--font-head);font-size:1.5rem;color:var(--ice);line-height:1.1}
-.stack-val i{font-style:normal;font-size:.76rem;color:var(--silver)}
+.stack-val{grid-column:2/-1;display:flex;flex-direction:column;justify-content:center;gap:.15rem;text-align:left;margin-top:.9rem;padding:.85rem 1.1rem;background:rgba(255,255,255,.05);border:1.5px solid var(--border-coral);border-radius:16px}
+@media(min-width:720px){.stack-val{grid-column:auto;text-align:right;align-items:flex-end;margin-top:0;min-width:180px}}
+.stack-val span{font-size:.84rem;font-weight:700;text-transform:uppercase;letter-spacing:.11em;color:var(--coral)}
+.stack-val b{font-family:var(--font-head);font-size:2.1rem;font-weight:800;color:var(--ice);line-height:1.05;letter-spacing:-0.01em}
+.stack-val i{font-style:normal;font-size:.88rem;color:var(--silver)}
 .stack-item--hero{border-color:var(--border-coral);background:linear-gradient(150deg,rgba(255,106,77,.10),var(--surface))}
 .stack-item--hero .stack-val b{color:var(--coral)}
 .stack-item--free{border-color:var(--border-coral)}
@@ -161,6 +161,7 @@ h3{font-size:var(--fs-h3)}
 .stack-clarifier b{color:var(--coral)}
 
 .value-summary{margin-top:2.6rem;background:var(--grad-navy);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;text-align:center}
+.value-summary--lead{margin-top:0;margin-bottom:clamp(2.6rem,5vw,3.8rem);border-color:var(--border-coral)}
 .vs-worth{padding:clamp(1.8rem,4vw,2.8rem) clamp(1.4rem,4vw,3rem) 1.4rem;opacity:.9}
 .vs-worth-label{font-family:var(--font-head);font-weight:700;font-size:.8rem;letter-spacing:.13em;text-transform:uppercase;color:var(--silver)}
 .vs-line{display:flex;flex-wrap:wrap;gap:.6rem 1.1rem;justify-content:center;align-items:center;color:var(--text-muted);font-size:1rem;margin-top:1rem}
