@@ -183,11 +183,15 @@
   var validate = function () {
     var ok = true;
     [
+      ["learner_volume", function (v) { return v.trim().length > 0; }],
       ["name", function (v) { return v.trim().length > 1; }],
       ["business", function (v) { return v.trim().length > 0; }],
       ["email", function (v) { return emailRe.test(v.trim()); }],
       ["phone", function (v) { return v.trim().length > 5; }],
-      ["message", function (v) { return v.trim().length > 2; }]
+      ["accreditation", function (v) { return v.trim().length > 0; }],
+      ["modules", function (v) { return v.trim().length > 0; }],
+      ["funding", function (v) { return v.trim().length > 0; }],
+      ["timeline", function (v) { return v.trim().length > 0; }]
     ].forEach(function (pair) {
       var input = form.elements[pair[0]];
       var wrap = input ? input.closest(".field") : null;
@@ -218,14 +222,19 @@
     var subject = "Website enquiry — " + (data.business || data.name || "TVMG");
     var bodyLines = [
       "Name: " + data.name,
-      "Business: " + data.business,
+      "Organisation: " + data.business,
       "Email: " + data.email,
       "Phone: " + data.phone,
-      "Video length: " + (data.length || "—"),
-      "Best time to call: " + (data.calltime || "—"),
       "",
-      "What they need:",
-      data.message,
+      "Learners enrolled (last 12 months): " + (data.learner_volume || "—"),
+      "Accreditation status: " + (data.accreditation || "—"),
+      "Modules / units: " + (data.modules || "—"),
+      "Funding source: " + (data.funding || "—"),
+      "Timeline: " + (data.timeline || "—"),
+      "Languages: " + (data.languages || "—"),
+      "",
+      "Anything else:",
+      (data.message || "—"),
       "",
       "(Terms & Conditions accepted at submission.)"
     ];
