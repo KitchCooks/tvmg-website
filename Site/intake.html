@@ -56,7 +56,7 @@
 
       <form class="enquiry-form intake-form" id="intake-form" novalidate enctype="multipart/form-data">
 
-        <!-- ============ SECTION 1 — BASICS ============ -->
+        <!-- ============ SECTION 1: BASICS ============ -->
         <fieldset class="intake-section">
           <legend><span class="sec-num">1</span> Client &amp; project basics</legend>
 
@@ -67,7 +67,7 @@
               <span class="form-error">Please enter your business name.</span>
             </div>
             <div class="field">
-              <label for="contact_name">Contact person — full name <span class="req">*</span></label>
+              <label for="contact_name">Contact person: full name <span class="req">*</span></label>
               <input type="text" id="contact_name" name="contact_name" autocomplete="name" required />
               <small class="hint">For delivery and revision queries.</small>
               <span class="form-error">Please enter the contact person.</span>
@@ -91,7 +91,7 @@
             <div class="field">
               <label for="quote_ref">Quote / invoice reference <span class="req">*</span></label>
               <input type="text" id="quote_ref" name="quote_ref" required />
-              <small class="hint">From your quote or invoice — so we can match it to your order.</small>
+              <small class="hint">From your quote or invoice, so we can match it to your order.</small>
               <span class="form-error">Please enter your quote or invoice reference.</span>
             </div>
             <div class="field">
@@ -110,7 +110,7 @@
           </div>
         </fieldset>
 
-        <!-- ============ SECTION 2 — VIDEO SCOPE ============ -->
+        <!-- ============ SECTION 2: VIDEO SCOPE ============ -->
         <fieldset class="intake-section">
           <legend><span class="sec-num">2</span> The video</legend>
 
@@ -163,12 +163,12 @@
 
           <div class="field">
             <label for="learning_outcome">What should someone know or be able to do after watching? <span class="req">*</span></label>
-            <textarea id="learning_outcome" name="learning_outcome" required placeholder="The learning outcome — keeps us aligned on what “done” looks like."></textarea>
+            <textarea id="learning_outcome" name="learning_outcome" required placeholder="The learning outcome, which keeps us aligned on what “done” looks like."></textarea>
             <span class="form-error">Please describe the learning outcome.</span>
           </div>
         </fieldset>
 
-        <!-- ============ SECTION 3 — CONTENT ============ -->
+        <!-- ============ SECTION 3: CONTENT ============ -->
         <fieldset class="intake-section intake-section--key">
           <legend><span class="sec-num">3</span> The content</legend>
           <p class="sec-callout">
@@ -181,7 +181,7 @@
             <label for="source_files">Upload your source content <span class="req">*</span></label>
             <input type="file" id="source_files" name="source_files" multiple
                    accept=".pdf,.doc,.docx,.ppt,.pptx,.txt,.rtf,.pages,.key,.md,.csv,.xls,.xlsx,.zip,.png,.jpg,.jpeg,.gif,.webp,.heic,.svg,.mp4,.mov,.m4v,.webm,.avi,.mkv,.mp3,.wav,.m4a" />
-            <small class="hint">Documents, slides, policies, manuals, scripts, images, screenshots, even short video or audio clips — whatever covers the content. <strong>You can add several files</strong> (pick more and they’ll be added to the list, not replaced). Up to 50&nbsp;MB per file; for anything larger, paste a share link in the field below.</small>
+            <small class="hint">Documents, slides, policies, manuals, scripts, images, screenshots, even short video or audio clips, whatever covers the content. <strong>You can add several files</strong> (pick more and they’ll be added to the list, not replaced). Up to 50&nbsp;MB per file; for anything larger, paste a share link in the field below.</small>
             <span class="form-error">Please add at least one file, paste your content, or add a large-file link below.</span>
             <ul class="file-list" id="source_files_list"></ul>
             <p class="file-cap"><strong>Maximum 50&nbsp;MB per file.</strong> Larger than that? Use the link field below.</p>
@@ -196,7 +196,7 @@
           <div class="field">
             <label for="content_pasted">Or paste your content / key points</label>
             <textarea id="content_pasted" name="content_pasted" placeholder="No documents? Paste your content or key points here."></textarea>
-            <small class="hint">Optional — use this if you don’t have documents to upload.</small>
+            <small class="hint">Optional: use this if you don’t have documents to upload.</small>
           </div>
 
           <div class="field">
@@ -210,7 +210,7 @@
           <div class="field">
             <label for="must_include">Anything that must be included word-for-word?</label>
             <textarea id="must_include" name="must_include" placeholder="Legal disclaimers, compliance wording, exact policy language."></textarea>
-            <small class="hint">Optional — but critical for compliance videos.</small>
+            <small class="hint">Optional, but critical for compliance videos.</small>
           </div>
 
           <div class="field">
@@ -219,7 +219,7 @@
           </div>
         </fieldset>
 
-        <!-- ============ SECTION 4 — VOICE & LANGUAGE ============ -->
+        <!-- ============ SECTION 4: VOICE & LANGUAGE ============ -->
         <fieldset class="intake-section">
           <legend><span class="sec-num">4</span> Voice &amp; language</legend>
 
@@ -234,7 +234,7 @@
           </div>
 
           <div class="field conditional" id="language_other_wrap" hidden>
-            <label for="language_other">Other language — please specify <span class="req">*</span></label>
+            <label for="language_other">Other language: please specify <span class="req">*</span></label>
             <input type="text" id="language_other" name="language_other" />
             <small class="hint"><strong>Note:</strong> for languages other than English/Afrikaans, you are responsible for having a fluent speaker review the final version before sign-off.</small>
             <span class="form-error">Please specify the language.</span>
@@ -264,7 +264,7 @@
           </div>
 
           <div class="field conditional" id="accent_other_wrap" hidden>
-            <label for="accent_other">Other accent — please specify <span class="req">*</span></label>
+            <label for="accent_other">Other accent: please specify <span class="req">*</span></label>
             <input type="text" id="accent_other" name="accent_other" />
             <small class="hint">Tailored to your liking, in an accent of your choice.</small>
             <span class="form-error">Please specify the accent.</span>
@@ -282,15 +282,15 @@
           </div>
         </fieldset>
 
-        <!-- ============ SECTION 5 — BRANDING & DESIGN ============ -->
+        <!-- ============ SECTION 5: BRANDING & DESIGN ============ -->
         <fieldset class="intake-section">
           <legend><span class="sec-num">5</span> Branding &amp; design</legend>
 
           <div class="field">
             <span class="group-label">Do you want it branded to your business? <span class="req">*</span></span>
             <div class="radio-group" id="branded_group" data-controls="branding_yes_wrap" data-show-on="Yes">
-              <label class="check-pill"><input type="radio" name="branded" value="Yes" required /> Yes — bespoke design (upcharge applies)</label>
-              <label class="check-pill"><input type="radio" name="branded" value="No" /> No — use TVMG house style</label>
+              <label class="check-pill"><input type="radio" name="branded" value="Yes" required /> Yes: bespoke design (upcharge applies)</label>
+              <label class="check-pill"><input type="radio" name="branded" value="No" /> No: use TVMG house style</label>
             </div>
             <span class="form-error">Please choose one.</span>
           </div>
@@ -317,12 +317,12 @@
             <label for="image_files">Images / photos / screenshots to include</label>
             <input type="file" id="image_files" name="image_files" multiple
                    accept=".png,.jpg,.jpeg,.gif,.webp,.heic,.svg,.pdf,.zip,.mp4,.mov,.m4v,.webm" />
-            <small class="hint">Optional — e.g. your premises, equipment, staff, product shots.</small>
+            <small class="hint">Optional: e.g. your premises, equipment, staff, product shots.</small>
             <ul class="file-list" id="image_files_list"></ul>
           </div>
         </fieldset>
 
-        <!-- ============ SECTION 6 — PORTAL ============ -->
+        <!-- ============ SECTION 6: PORTAL ============ -->
         <fieldset class="intake-section">
           <legend><span class="sec-num">6</span> Training portal</legend>
 
@@ -349,7 +349,7 @@
           </div>
         </fieldset>
 
-        <!-- ============ SECTION 7 — LOGISTICS & SIGN-OFF ============ -->
+        <!-- ============ SECTION 7: LOGISTICS & SIGN-OFF ============ -->
         <fieldset class="intake-section">
           <legend><span class="sec-num">7</span> Logistics &amp; sign-off</legend>
 
@@ -357,7 +357,7 @@
             <div class="field">
               <label for="deadline">Deadline / when do you need this by? <span class="req">*</span></label>
               <input type="date" id="deadline" name="deadline" required />
-              <small class="hint">Urgent timelines may carry a priority surcharge — we’ll confirm if so.</small>
+              <small class="hint">Urgent timelines may carry a priority surcharge, we’ll confirm if so.</small>
               <span class="form-error">Please give a deadline.</span>
             </div>
             <div class="field">
@@ -392,7 +392,7 @@
         <div class="check" aria-hidden="true">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
-        <h3>Thanks — we’ve received everything.</h3>
+        <h3>Thanks, we’ve received everything.</h3>
         <p>We’ll be in touch and start production. You’ll hear from us within one business day.</p>
       </div>
     </div>
