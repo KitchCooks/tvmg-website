@@ -344,14 +344,24 @@ h3{font-size:var(--fs-h3)}
 /* Demo band (above the fold) */
 .demo-band-sec{padding-top:0}
 .demo-band{position:relative;overflow:hidden;display:grid;gap:1.6rem;background:linear-gradient(160deg,rgba(255,106,77,.10),var(--surface) 60%);border:1.5px solid var(--border-coral);border-radius:var(--radius-lg);padding:clamp(1.8rem,4vw,3rem)}
-.db-glow{position:absolute;right:-10%;top:-40%;width:60%;height:180%;background:radial-gradient(ellipse at center,rgba(255,106,77,.22),transparent 70%);filter:blur(30px);pointer-events:none}
 .demo-band>*{position:relative;z-index:1}
+.demo-band>.db-glow{position:absolute;right:-10%;top:-40%;width:60%;height:180%;background:radial-gradient(ellipse at center,rgba(255,106,77,.22),transparent 70%);filter:blur(30px);pointer-events:none;z-index:0}
 .db-copy .eyebrow{color:var(--coral)}
 .demo-band h2{font-size:clamp(1.5rem,3.2vw,2.3rem);margin-top:.6rem;line-height:1.12}
 .db-note{color:var(--text-muted);margin-top:1rem;max-width:60ch}
 .db-cta{display:flex;flex-direction:column;align-items:flex-start;gap:.7rem}
 .db-sub{font-family:var(--font-head);font-weight:600;font-size:.85rem;letter-spacing:.02em;color:var(--silver)}
-@media(min-width:860px){.demo-band{grid-template-columns:1.4fr .6fr;align-items:center;gap:3rem}.db-cta{align-items:flex-start}}
+.db-right{display:flex;flex-direction:column;gap:1.6rem}
+@media(min-width:860px){.demo-band{grid-template-columns:.92fr 1.08fr;align-items:center;gap:3rem}}
+/* demo visual: any material -> ~30s demo */
+.db-visual{display:flex;align-items:center;justify-content:center;gap:1.1rem}
+.dbv-files{display:flex;flex-direction:column;gap:.55rem}
+.dbv-file{font-family:var(--font-head);font-weight:700;font-size:.82rem;letter-spacing:.04em;color:var(--silver);background:rgba(255,255,255,.05);border:1px solid var(--border-strong);border-radius:10px;padding:.5rem .9rem;text-align:center}
+.dbv-arrow{color:var(--coral);display:flex;flex-shrink:0}
+.dbv-card{position:relative;width:min(300px,44vw);aspect-ratio:16/10;border-radius:18px;background:linear-gradient(160deg,#0d2a5c,var(--navy-deep));border:2px solid var(--border-coral);box-shadow:var(--shadow-lg);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.dbv-play{width:64px;height:64px;border-radius:50%;background:var(--grad-coral);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-coral)}
+.dbv-cap{position:absolute;left:12px;bottom:12px;font-family:var(--font-head);font-weight:600;font-size:.74rem;color:var(--ice);background:rgba(3,16,42,.7);border:1px solid var(--border-strong);padding:.32rem .7rem;border-radius:var(--radius-pill)}
+@media(max-width:560px){.dbv-files{flex-direction:row;flex-wrap:wrap;justify-content:center}.db-visual{flex-wrap:wrap}}
 
 /* The five problems */
 .problems{margin-top:3rem;display:grid;gap:1rem}
