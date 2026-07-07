@@ -472,3 +472,9 @@ h3{font-size:var(--fs-h3)}
 /* Pricing extra note */
 .pc-extra{margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);font-size:.9rem;color:var(--text-muted)}
 .pc-extra b{color:var(--ice)}
+
+/* Hero explainer video (click to play inline) */
+.hero-video{cursor:pointer}
+.hero-video video{width:100%;height:100%;object-fit:cover;display:block;border-radius:inherit;background:#03102A}
+.hero-video.playing{cursor:default}
+.hero-video.playing .hero-screen-overlay,.hero-video.playing .hero-play,.hero-video.playing .hero-screen-cta{display:none}

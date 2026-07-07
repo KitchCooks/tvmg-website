@@ -31,8 +31,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="css/tokens.css?v=20260706b" />
-  <link rel="stylesheet" href="css/styles.css?v=20260706b" />
+  <link rel="stylesheet" href="css/tokens.css?v=20260706c" />
+  <link rel="stylesheet" href="css/styles.css?v=20260706c" />
 
   <script type="application/ld+json">
   {
@@ -107,13 +107,13 @@
         </div>
 
         <div class="hero-visual reveal-hero" data-h="3">
-          <!-- HERO EXPLAINER VIDEO SLOT: to be replaced by the 2-3 min Kurzgesagt walkthrough once rendered -->
-          <a class="hero-screen" href="#work" aria-label="Watch sample module videos">
-            <img src="assets/videos/hero_thumb.jpg" alt="" loading="eager" />
+          <!-- HERO EXPLAINER: 2-minute Kurzgesagt walkthrough of how the Digital Campus works -->
+          <figure class="hero-screen hero-video" data-src="assets/videos/hero_explainer.mp4" role="button" tabindex="0" aria-label="Watch: how the Digital Campus works (2 minutes)">
+            <img src="assets/videos/hero_explainer_poster.jpg" alt="" loading="eager" />
             <span class="hero-screen-overlay" aria-hidden="true"></span>
             <span class="hero-play" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-            <span class="hero-screen-cta">Watch samples</span>
-          </a>
+            <span class="hero-screen-cta">Watch: how it works · 2 min</span>
+          </figure>
           <span class="hero-chip hero-chip--1" aria-hidden="true">Deploys in your existing scope</span>
           <span class="hero-chip hero-chip--2" aria-hidden="true">Animated · Narrated · Quizzed</span>
         </div>
@@ -649,8 +649,25 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=20260706b"></script>
+  <script src="js/main.js?v=20260706c"></script>
   <script>
+    // Hero explainer: click to play the 2-minute walkthrough inline.
+    (function () {
+      var hero = document.querySelector(".hero-video");
+      if (!hero) return;
+      var playHero = function () {
+        if (hero.classList.contains("playing")) return;
+        var v = document.createElement("video");
+        v.setAttribute("controls", ""); v.setAttribute("playsinline", ""); v.setAttribute("preload", "metadata");
+        v.src = hero.getAttribute("data-src");
+        hero.innerHTML = ""; hero.appendChild(v);
+        hero.classList.add("playing");
+        v.play();
+      };
+      hero.addEventListener("click", playHero);
+      hero.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); playHero(); } });
+    })();
+
     // Video gallery: click a card to play its sample inline.
     document.querySelectorAll(".gcard").forEach(function (card) {
       card.addEventListener("click", function () {
