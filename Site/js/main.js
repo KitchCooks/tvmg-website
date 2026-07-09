@@ -16,11 +16,14 @@
      Leave it null to use the mailto fallback (opens the user's mail client
      with a pre-filled enquiry to ENQUIRY_EMAIL).
      --------------------------------------------------------------------- */
-  /* Leads are delivered by FormSubmit (no-account form-to-email). The email
-     must be activated once: the first submission triggers an "Activate Form"
-     email to ENQUIRY_EMAIL — click that link and all future leads arrive. */
+  /* Leads are delivered by FormSubmit (no-account form-to-email) to LEAD_EMAIL,
+     a Gmail inbox that reliably accepts FormSubmit's mail (the tvmg.co.za host
+     was silently rejecting it). Activate once: the first submission emails an
+     "Activate Form" link to LEAD_EMAIL — click it and all future leads arrive.
+     ENQUIRY_EMAIL is only the public address used by the mailto fallback. */
   var ENQUIRY_EMAIL = "hello@tvmg.co.za";
-  var FORM_ENDPOINT = "https://formsubmit.co/ajax/" + ENQUIRY_EMAIL;
+  var LEAD_EMAIL = "trainvisualmedia@gmail.com";
+  var FORM_ENDPOINT = "https://formsubmit.co/ajax/" + LEAD_EMAIL;
 
   var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
