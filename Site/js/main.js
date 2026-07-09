@@ -260,7 +260,7 @@
     data.terms_accepted = "yes";
     data.terms_accepted_at = new Date().toISOString(); /* records T&C acceptance time */
     /* FormSubmit config */
-    data._subject = "New Digital Campus enquiry — " + (data.business || data.name || "tvmg.co.za");
+    data._subject = "New Digital Campus enquiry: " + (data.business || data.name || "tvmg.co.za");
     data._template = "table";
     data._captcha = "false";
 

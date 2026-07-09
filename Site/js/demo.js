@@ -16,9 +16,12 @@ var TABLE = "demo_requests";
   var statusEl = document.getElementById("demo-status");
   var submitBtn = document.getElementById("demo-submit");
   var successEl = document.getElementById("demo-success");
-  var configured = SUPABASE_URL && SUPABASE_ANON_KEY;
-  var sb = (configured && window.supabase) ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
-  if (!configured) { var w = document.getElementById("demo-config-warning"); if (w) w.hidden = false; }
+
+  /* After FormSubmit posts and redirects back with ?sent=1, show the thank-you. */
+  if (/[?&]sent=1(&|$)/.test(location.search)) {
+    form.style.display = "none";
+    if (successEl) { successEl.classList.add("show"); successEl.setAttribute("tabindex", "-1"); successEl.focus && successEl.focus(); }
+  }
 
   var MAX_BYTES = 50 * 1024 * 1024;
   var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -166,64 +169,17 @@ var TABLE = "demo_requests";
   })();
 
   /* submit */
+  /* Submit via FormSubmit (native multipart POST, so files are emailed as
+     attachments). The form's action + hidden config live in demo.html. */
   form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    if (!validate()) return;
-    if (!sb) { statusEl.textContent = "This form isn't connected yet. Please contact TVMG directly."; statusEl.classList.add("err"); return; }
-
-    var id = uuid();
-    var slug = slugify(val("business_name")) + "-" + shortId();
+    if (!validate()) {
+      e.preventDefault();
+      var firstInvalid = form.querySelector(".invalid input, .invalid textarea, .invalid select");
+      if (firstInvalid && firstInvalid.focus) firstInvalid.focus();
+      return;
+    }
     submitBtn.disabled = true; submitBtn.textContent = "Submitting…";
-    statusEl.classList.remove("err"); statusEl.textContent = ""; progress.show();
-
-    var filePaths = [], fileJobs = [];
-    Array.prototype.forEach.call(filesOf("content_files"), function (f) { var p = slug + "/content/" + safeName(f.name); filePaths.push(p); fileJobs.push({ path: p, file: f }); });
-    Array.prototype.forEach.call(filesOf("logo_file"), function (f) { var p = slug + "/branding/" + safeName(f.name); filePaths.push(p); fileJobs.push({ path: p, file: f }); });
-    var totalSteps = fileJobs.length + 2, done = 0;
-
-    var rec = {
-      id: id, lead_slug: slug,
-      business_name: val("business_name"), contact_name: val("contact_name"), email: val("email"), phone: val("phone"),
-      demo_type: (form.querySelector('input[name="demo_type"]:checked') || {}).value || "",
-      topic: val("topic"), use_case: val("use_case"),
-      content_pasted: val("content_pasted"),
-      language: val("language"), language_other: val("language_other"),
-      voice_pref: val("voice_pref"), accent_pref: val("accent_pref"),
-      brand_colours: val("brand_colours")
-    };
-
-    progress.set(0, fileJobs.length ? ("Uploading files… (0 of " + fileJobs.length + ")") : "Saving your details…");
-    var chain = Promise.resolve();
-    fileJobs.forEach(function (job, i) {
-      chain = chain.then(function () {
-        progress.set(done / totalSteps, "Uploading " + job.file.name + " (" + (i + 1) + " of " + fileJobs.length + ")…");
-        return sb.storage.from(BUCKET).upload(job.path, job.file, { upsert: false, contentType: job.file.type || undefined })
-          .then(function (r) { if (r.error) throw new Error("FILE UPLOAD failed (Storage policy on 'demos'): " + r.error.message); done++; progress.set(done / totalSteps); });
-      });
-    });
-
-    chain
-      .then(function () {
-        progress.set(done / totalSteps, "Saving your brief…");
-        var brief = buildBrief(rec, filePaths, slug, id);
-        return sb.storage.from(BUCKET).upload(slug + "/demo-brief.md", new Blob([brief], { type: "text/markdown" }), { upsert: false })
-          .then(function (r) { if (r.error) throw new Error("SAVING BRIEF failed (Storage policy on 'demos'): " + r.error.message); done++; progress.set(done / totalSteps); });
-      })
-      .then(function () {
-        progress.set(done / totalSteps, "Saving your details…");
-        rec.files = filePaths; rec.brief_path = slug + "/demo-brief.md";
-        return sb.from(TABLE).insert(rec).then(function (r) { if (r.error) throw new Error("SAVING DETAILS failed (table policy on demo_requests): " + r.error.message); progress.set(1, "Done"); });
-      })
-      .then(function () {
-        progress.hide();
-        form.style.display = "none";
-        successEl.classList.add("show"); successEl.setAttribute("tabindex", "-1");
-        successEl.scrollIntoView({ behavior: "smooth", block: "center" }); successEl.focus();
-      })
-      .catch(function (err) {
-        progress.hide();
-        submitBtn.disabled = false; submitBtn.textContent = "Request my demo"; statusEl.classList.add("err");
-        statusEl.textContent = "Something went wrong: " + ((err && err.message) ? err.message : "please try again, or contact TVMG directly.");
-      });
+    if (statusEl) { statusEl.classList.remove("err"); statusEl.textContent = "Sending your request…"; }
+    /* not prevented → browser posts natively to FormSubmit */
   });
 })();

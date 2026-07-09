@@ -42,7 +42,14 @@
         <code>js/demo.js</code>, then redeploy. (Setup: <code>supabase/demo_setup.sql</code>.)
       </div>
 
-      <form class="enquiry-form intake-form" id="demo-form" novalidate enctype="multipart/form-data">
+      <form class="enquiry-form intake-form" id="demo-form" novalidate enctype="multipart/form-data"
+            action="https://formsubmit.co/hello@tvmg.co.za" method="POST">
+        <!-- FormSubmit config (no-account form-to-email; files sent as attachments) -->
+        <input type="hidden" name="_subject" value="New free-demo request via tvmg.co.za" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_next" value="https://tvmg.co.za/demo.html?sent=1" />
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
         <!-- ===== SECTION 1: WHO ===== -->
         <fieldset class="intake-section">
@@ -213,7 +220,7 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="js/demo.js?v=6"></script>
+  <script src="js/demo.js?v=20260709"></script>
   <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body>
 </html>

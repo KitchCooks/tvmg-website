@@ -54,7 +54,13 @@
         <code>js/intake.js</code>, then redeploy. (Setup steps: <code>supabase/intake_setup.sql</code>.)
       </div>
 
-      <form class="enquiry-form intake-form" id="intake-form" novalidate enctype="multipart/form-data">
+      <form class="enquiry-form intake-form" id="intake-form" novalidate enctype="multipart/form-data"
+            action="https://formsubmit.co/hello@tvmg.co.za" method="POST">
+        <!-- FormSubmit config (no-account form-to-email; files sent as attachments) -->
+        <input type="hidden" name="_subject" value="New project intake via tvmg.co.za" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_next" value="https://tvmg.co.za/intake.html?sent=1" />
 
         <!-- ============ SECTION 1: BASICS ============ -->
         <fieldset class="intake-section">
@@ -409,7 +415,7 @@
 
   <!-- Supabase JS (Storage + Database). intake.js reads config + handles submit. -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="js/intake.js?v=7"></script>
+  <script src="js/intake.js?v=20260709"></script>
   <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body>
 </html>

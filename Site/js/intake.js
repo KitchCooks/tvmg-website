@@ -19,14 +19,12 @@ var BUCKET = "intake";
   var statusEl = document.getElementById("intake-status");
   var submitBtn = document.getElementById("intake-submit");
   var successEl = document.getElementById("intake-success");
-  var configured = SUPABASE_URL && SUPABASE_ANON_KEY;
-  var sb = (configured && window.supabase)
-    ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
-    : null;
 
-  if (!configured) {
-    var warn = document.getElementById("intake-config-warning");
-    if (warn) warn.hidden = false;
+  /* After FormSubmit posts and redirects back with ?sent=1, show the thank-you. */
+  if (/[?&]sent=1(&|$)/.test(location.search)) {
+    form.style.display = "none";
+    var steps = document.querySelector(".intake-steps"); if (steps) steps.style.display = "none";
+    if (successEl) { successEl.classList.add("show"); successEl.setAttribute("tabindex", "-1"); successEl.focus && successEl.focus(); }
   }
 
   var MAX_BYTES = 50 * 1024 * 1024; // 50 MB per file (matches bucket limit)
@@ -283,101 +281,18 @@ var BUCKET = "intake";
   })();
 
   /* ---------- submit ---------- */
+  /* Submit via FormSubmit (native multipart POST, so files are emailed as
+     attachments). The form's action + hidden config live in intake.html. */
   form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    if (!validate()) return;
-    if (!sb) {
-      statusEl.textContent = "This form isn't connected to its backend yet. Please contact TVMG directly.";
-      statusEl.classList.add("err");
+    if (!validate()) {
+      e.preventDefault();
+      var firstInvalid = form.querySelector(".invalid input, .invalid textarea, .invalid select");
+      if (firstInvalid && firstInvalid.focus) firstInvalid.focus();
       return;
     }
-
-    var slug = slugify(val("business_name")) + "-" + shortId();
     submitBtn.disabled = true;
     submitBtn.textContent = "Submitting…";
-    statusEl.classList.remove("err");
-    statusEl.textContent = "";
-    progress.show();
-
-    var uploads = [
-      { id: "source_files", sub: "01-source-content" },
-      { id: "brand_files",  sub: "02-branding" },
-      { id: "image_files",  sub: "03-images-media" }
-    ];
-    var filePaths = [], fileJobs = [];
-    uploads.forEach(function (u) {
-      Array.prototype.forEach.call(filesOf(u.id), function (f) {
-        var path = slug + "/" + u.sub + "/" + safeName(f.name);
-        filePaths.push(path);
-        fileJobs.push({ path: path, file: f });
-      });
-    });
-    var totalSteps = fileJobs.length + 2;  // files + brief + db insert
-    var done = 0;
-
-    var rec = {
-      client_slug: slug,
-      business_name: val("business_name"), contact_name: val("contact_name"),
-      email: val("email"), phone: val("phone"), quote_ref: val("quote_ref"), package: val("package"),
-      video_title: val("video_title"), length_tier: val("length_tier"),
-      purpose: val("purpose"), purpose_other: val("purpose_other"),
-      audience: val("audience"), learning_outcome: val("learning_outcome"),
-      content_pasted: val("content_pasted"), large_file_links: val("large_links"),
-      section_breakdown: val("section_breakdown"),
-      must_include: val("must_include"), avoid_text: val("avoid_text"),
-      languages: checkedLangs(), language_other: val("language_other"),
-      voice_pref: val("voice_pref"), accent_pref: val("accent_pref"), accent_other: val("accent_other"),
-      tone: val("tone"),
-      branded: (form.querySelector('input[name="branded"]:checked') || {}).value || "",
-      brand_colours: val("brand_colours"), visual_prefs: val("visual_prefs"),
-      portal_purchased: (form.querySelector('input[name="portal_purchased"]:checked') || {}).value || "",
-      portal_seats: val("portal_seats") ? parseInt(val("portal_seats"), 10) : null,
-      portal_notes: val("portal_notes"),
-      deadline: val("deadline") || null, approver: val("approver"),
-      confirm_content: !!form.elements["confirm_content"].checked,
-      accept_terms: !!form.elements["accept_terms"].checked
-    };
-
-    progress.set(0, fileJobs.length ? ("Uploading files… (0 of " + fileJobs.length + ")") : "Saving your details…");
-
-    // Upload files one at a time so the bar advances visibly.
-    var chain = Promise.resolve();
-    fileJobs.forEach(function (job, i) {
-      chain = chain.then(function () {
-        progress.set(done / totalSteps, "Uploading " + job.file.name + " (" + (i + 1) + " of " + fileJobs.length + ")…");
-        return sb.storage.from(BUCKET).upload(job.path, job.file, { upsert: false, contentType: job.file.type || undefined })
-          .then(function (r) { if (r.error) throw new Error("FILE UPLOAD failed (Storage policy on 'intake'): " + r.error.message); done++; progress.set(done / totalSteps); });
-      });
-    });
-
-    chain
-      .then(function () {
-        progress.set(done / totalSteps, "Saving your brief…");
-        var brief = buildBrief(rec, filePaths, slug);
-        var briefPath = slug + "/brief.md";
-        return sb.storage.from(BUCKET).upload(briefPath, new Blob([brief], { type: "text/markdown" }), { upsert: false })
-          .then(function (r) { if (r.error) throw new Error("SAVING BRIEF failed (Storage policy on 'intake'): " + r.error.message); rec.files = filePaths; rec.brief_path = briefPath; done++; progress.set(done / totalSteps); });
-      })
-      .then(function () {
-        progress.set(done / totalSteps, "Saving your details…");
-        return sb.from("intake_submissions").insert(rec).then(function (r) { if (r.error) throw new Error("SAVING DETAILS failed (table policy on intake_submissions): " + r.error.message); done++; progress.set(1, "Done"); });
-      })
-      .then(function () {
-        progress.hide();
-        form.style.display = "none";
-        var steps = document.querySelector(".intake-steps"); if (steps) steps.style.display = "none";
-        successEl.classList.add("show");
-        successEl.setAttribute("tabindex", "-1");
-        successEl.scrollIntoView({ behavior: "smooth", block: "center" });
-        successEl.focus();
-      })
-      .catch(function (err) {
-        progress.hide();
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Submit project intake";
-        statusEl.classList.add("err");
-        statusEl.textContent = "Something went wrong: " +
-          ((err && err.message) ? err.message : "please try again, or contact TVMG directly.");
-      });
+    if (statusEl) { statusEl.classList.remove("err"); statusEl.textContent = "Sending your project intake…"; }
+    /* not prevented → browser posts natively to FormSubmit */
   });
 })();
