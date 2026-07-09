@@ -16,8 +16,11 @@
      Leave it null to use the mailto fallback (opens the user's mail client
      with a pre-filled enquiry to ENQUIRY_EMAIL).
      --------------------------------------------------------------------- */
-  var FORM_ENDPOINT = null; /* TODO: paste your form endpoint URL here */
-  var ENQUIRY_EMAIL = "hello@tvmg.co.za"; /* TODO: confirm real enquiry inbox */
+  /* Leads are delivered by FormSubmit (no-account form-to-email). The email
+     must be activated once: the first submission triggers an "Activate Form"
+     email to ENQUIRY_EMAIL — click that link and all future leads arrive. */
+  var ENQUIRY_EMAIL = "hello@tvmg.co.za";
+  var FORM_ENDPOINT = "https://formsubmit.co/ajax/" + ENQUIRY_EMAIL;
 
   var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -190,12 +193,12 @@
       ["phone", function (v) { return v.trim().length > 5; }],
       ["accreditation", function (v) { return v.trim().length > 0; }],
       ["modules", function (v) { return v.trim().length > 0; }],
-      ["funding", function (v) { return v.trim().length > 0; }],
-      ["timeline", function (v) { return v.trim().length > 0; }]
+      ["funding", function (v) { return v.trim().length > 0; }]
     ].forEach(function (pair) {
       var input = form.elements[pair[0]];
-      var wrap = input ? input.closest(".field") : null;
-      var valid = input && pair[1](input.value);
+      if (!input) return; /* field not on this form — skip, never block submit */
+      var wrap = input.closest(".field");
+      var valid = pair[1](input.value);
       markInvalid(wrap, !valid);
       if (!valid) ok = false;
     });
@@ -256,6 +259,10 @@
     fd.forEach(function (v, k) { data[k] = v; });
     data.terms_accepted = "yes";
     data.terms_accepted_at = new Date().toISOString(); /* records T&C acceptance time */
+    /* FormSubmit config */
+    data._subject = "New Digital Campus enquiry — " + (data.business || data.name || "tvmg.co.za");
+    data._template = "table";
+    data._captcha = "false";
 
     var submitBtn = form.querySelector(".form-submit");
     if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = "Sending…"; }
