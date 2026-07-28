@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Bridge page: Meta instant-form thank-you -> WhatsApp group. Not linked in site nav. -->
+  <meta name="robots" content="noindex, nofollow" />
+
+  <title>You're in — join the group · TVMG</title>
+  <meta name="description" content="Your webinar seat is saved. Join the WhatsApp group to get your Zoom link." />
+  <meta name="theme-color" content="#061B3F" />
+
+  <link rel="icon" href="assets/favicon/TVMG_favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/TVMG_favicon_32x32_transparent.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Self-contained on purpose: this single file can be uploaded anywhere on the domain. -->
+  <style>
+    :root{
+      --navy:#071A3C; --navy-deep:#03102A; --lift:#0C2A57; --coral:#FF6A4D; --coral-lt:#FF8A5B;
+      --ice:#F7FAFF; --silver:#9FB0CC; --wa:#25D366; --wa-dark:#1DA851;
+      --border:rgba(159,176,204,.16); --border-strong:rgba(159,176,204,.30);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Inter',system-ui,sans-serif;background:radial-gradient(120% 120% at 50% 0%,#0B2551 0%,var(--navy) 55%,var(--navy-deep) 100%);color:var(--ice);min-height:100vh;display:flex;flex-direction:column}
+    .wrap{width:100%;max-width:560px;margin:0 auto;padding:2.2rem 1.4rem 2.6rem;flex:1;display:flex;flex-direction:column;align-items:center;text-align:center}
+    .logo{height:36px;margin-bottom:2rem}
+    .check{width:74px;height:74px;border-radius:50%;background:linear-gradient(135deg,var(--coral-lt),var(--coral));display:grid;place-items:center;margin-bottom:1.3rem;box-shadow:0 14px 40px rgba(255,106,77,.35)}
+    h1{font-family:'Poppins',sans-serif;font-size:clamp(1.7rem,6.5vw,2.4rem);font-weight:800;letter-spacing:-.02em;line-height:1.12}
+    .sub{color:var(--silver);font-size:1.02rem;line-height:1.55;margin:.85rem 0 1.6rem;max-width:42ch}
+    .sub b{color:var(--ice)}
+
+    /* EDIT THE SESSION DETAILS HERE ↓ */
+    .when{display:flex;gap:.6rem;align-items:center;justify-content:center;background:var(--lift);border:1px solid var(--border-strong);border-radius:999px;padding:.6rem 1.3rem;font-family:'Poppins',sans-serif;font-weight:700;font-size:.95rem;margin-bottom:1.7rem}
+    .when .dot{width:9px;height:9px;border-radius:50%;background:var(--coral);animation:blink 1.6s ease infinite}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+
+    .wa-btn{display:flex;gap:.75rem;align-items:center;justify-content:center;width:100%;background:var(--wa);color:#fff;text-decoration:none;font-family:'Poppins',sans-serif;font-weight:800;font-size:1.15rem;padding:1.1rem 1.4rem;border-radius:16px;box-shadow:0 16px 44px rgba(37,211,102,.35);transition:transform .15s ease,background .15s ease}
+    .wa-btn:hover{transform:translateY(-2px);background:var(--wa-dark)}
+    .wa-btn svg{flex:0 0 26px}
+    .tiny{color:var(--silver);font-size:.82rem;margin-top:.8rem}
+
+    .steps{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.7rem;margin-top:2.3rem;width:100%}
+    .step{background:var(--lift);border:1px solid var(--border);border-radius:14px;padding:.95rem .6rem}
+    .step b{display:block;font-family:'Poppins',sans-serif;font-size:.86rem;color:var(--ice);margin-top:.45rem}
+    .step span{display:block;color:var(--silver);font-size:.74rem;margin-top:.25rem;line-height:1.35}
+    .step .n{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--coral-lt),var(--coral));color:#fff;font-family:'Poppins',sans-serif;font-weight:800;font-size:.85rem;display:grid;place-items:center;margin:0 auto}
+    footer{text-align:center;color:var(--silver);font-size:.78rem;padding:1.1rem;border-top:1px solid var(--border)}
+    footer a{color:var(--coral-lt);text-decoration:none;font-weight:600}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <img class="logo" src="assets/logo/TVMG_logo_mono_white_transparent.png" alt="TVMG" />
+
+    <div class="check" aria-hidden="true">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+
+    <h1>You're in. One step left.</h1>
+    <p class="sub">Your seat for Kamo's <b>QCTO Accreditation Roadmap</b> webinar is saved. Join the WhatsApp group now. That's where your <b>Zoom link</b>, reminders and updates land.</p>
+
+    <!-- EDIT: session date/time -->
+    <div class="when"><span class="dot"></span> Live on Zoom · Thursday · 19:00</div>
+
+    <a class="wa-btn" href="https://chat.whatsapp.com/Ew654vcoJ945pyn2s0bURr" rel="noopener">
+      <svg viewBox="0 0 24 24" width="26" height="26" fill="#fff" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.24-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg>
+      Join the WhatsApp group
+    </a>
+    <p class="tiny">Opens WhatsApp · free to join · leave anytime</p>
+
+    <div class="steps">
+      <div class="step"><span class="n">1</span><b>Join the group</b><span>Tap the button above</span></div>
+      <div class="step"><span class="n">2</span><b>Get your link</b><span>Zoom link + reminders land there</span></div>
+      <div class="step"><span class="n">3</span><b>Show up live</b><span>Bring your accreditation questions</span></div>
+    </div>
+  </main>
+
+  <footer>
+    &copy; <span id="y">2026</span> Train Visual Media Group · <a href="/">tvmg.co.za</a>
+  </footer>
+  <script>document.getElementById("y").textContent=new Date().getFullYear();</script>
+</body>
+</html>
