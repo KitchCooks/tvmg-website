@@ -20,6 +20,11 @@ deployment:
     - /bin/cp -R Site/intake.html "$DEPLOYPATH"
     - /bin/cp -R Site/demo.html "$DEPLOYPATH"
     - /bin/cp -R Site/webinar.html "$DEPLOYPATH"
+    - /bin/cp -R Site/digitization.html "$DEPLOYPATH"
+    # Boring Business School landing page: preview at /boring/ (and docroot-ready
+    # if boring.tvmg.co.za is ever pointed at this cPanel instead of the VPS).
+    - /bin/rm -rf "$DEPLOYPATH/boring"
+    - /bin/cp -R Site/boring "$DEPLOYPATH"
     - /bin/cp -R Site/css "$DEPLOYPATH"
     - /bin/cp -R Site/js "$DEPLOYPATH"
     - /bin/cp -R Site/assets "$DEPLOYPATH"

@@ -3,701 +3,126 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- ===================== SEO / META ===================== -->
-  <title>TVMG · The Digital Campus for QCTO-Accredited Providers</title>
-  <meta name="description" content="For QCTO-accredited providers serving 50+ learners: we turn your entire qualification into a full digital campus, done for you start to finish, so you save time, save money and scale without hiring. Deploys inside your existing accreditation. No re-accreditation, no mode change. Campuses from R65,000." />
-  <meta name="theme-color" content="#071A3C" />
-  <link rel="canonical" href="https://tvmg.co.za/" />
-
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="TVMG · Train Visual Media Group" />
-  <meta property="og:title" content="We turn your entire qualification into a full digital campus." />
-  <meta property="og:description" content="For QCTO-accredited providers serving 50+ learners. Done for you start to finish: animated, narrated, quizzed and tracked, deployed inside your existing accreditation. No re-accreditation, no mode change. Campuses from R65,000." />
-  <meta property="og:url" content="https://tvmg.co.za/" />
-  <meta property="og:image" content="https://tvmg.co.za/assets/og_image.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="We turn your entire qualification into a full digital campus." />
-  <meta name="twitter:description" content="For QCTO-accredited providers serving 50+ learners. Save time, save money, scale without hiring. Deploys inside your existing accreditation." />
-  <meta name="twitter:image" content="https://tvmg.co.za/assets/og_image.png" />
+  <title>TVMG · Train Visual Media Group — We Build Training Businesses</title>
+  <meta name="description" content="TVMG builds training businesses: The Boring Business School teaches South Africans to start local service businesses, and our Digital Campus digitization service turns QCTO qualifications into full online campuses." />
+  <meta name="theme-color" content="#061B3F" />
 
   <link rel="icon" href="assets/favicon/TVMG_favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/TVMG_favicon_32x32_transparent.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/TVMG_favicon_16x16_transparent.png" />
   <link rel="apple-touch-icon" href="assets/favicon/TVMG_app_icon_180x180_navy.png" />
 
-  <!-- Fonts: Poppins (headlines) + Inter (body), per brand refresh -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="css/tokens.css?v=20260707" />
-  <link rel="stylesheet" href="css/styles.css?v=20260707" />
+  <link rel="stylesheet" href="css/tokens.css?v=20260808" />
+  <link rel="stylesheet" href="css/styles.css?v=20260808" />
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "TVMG · Train Visual Media Group",
-    "description": "The Digital Campus: done-for-you automated, animated online training for QCTO-accredited South African providers, deployed inside their existing accreditation.",
-    "url": "https://tvmg.co.za",
-    "areaServed": "ZA",
-    "slogan": "We turn your entire qualification into a full digital campus."
-  }
-  </script>
+  <style>
+    /* ---- Hub page (scoped) ---- */
+    .hub-hero{background:var(--grad-navy);padding:4.6rem 0 3.6rem;text-align:center;position:relative;overflow:hidden}
+    .hub-hero img.logo{height:44px;margin-bottom:1.9rem}
+    .hub-hero h1{font-size:clamp(2.2rem,5vw + .5rem,3.9rem);line-height:1.07;letter-spacing:-.02em}
+    .hub-hero h1 .hl{color:transparent;background:var(--grad-coral);-webkit-background-clip:text;background-clip:text}
+    .hub-hero p{color:var(--silver);max-width:56ch;margin:1.1rem auto 0;font-size:var(--fs-lead)}
+    .hub-paths{padding:3.6rem 0 4.2rem}
+    .hub-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+    @media(max-width:860px){.hub-grid{grid-template-columns:1fr}}
+    .hub-card{display:flex;flex-direction:column;border-radius:var(--radius-lg);padding:2.1rem 2rem 1.9rem;border:1px solid var(--border);position:relative;overflow:hidden;transition:transform .18s ease,box-shadow .18s ease;text-decoration:none}
+    .hub-card:hover{transform:translateY(-5px);box-shadow:0 26px 60px rgba(3,16,42,.5)}
+    .hub-card .kick{font-family:var(--font-head);font-weight:800;font-size:.78rem;letter-spacing:.14em;margin-bottom:1rem}
+    .hub-card h2{font-size:clamp(1.5rem,2vw + .8rem,2.1rem);line-height:1.12;letter-spacing:-.015em}
+    .hub-card p.desc{margin:.85rem 0 1.4rem;font-size:.99rem;line-height:1.6;flex:1}
+    .hub-card .cta{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--font-head);font-weight:700;font-size:1rem;padding:.85rem 1.4rem;border-radius:999px;width:max-content}
+    .hub-card ul{list-style:none;margin:0 0 1.5rem;padding:0;display:grid;gap:.45rem}
+    .hub-card ul li{font-size:.9rem;display:flex;gap:.5rem;align-items:baseline}
+    .hub-card ul li::before{content:"✓";font-weight:800}
+    /* BBS card: charcoal + gold */
+    .card-bbs{background:linear-gradient(160deg,#1B222B 0%,#12171D 60%,#0A0D11 100%);border-color:rgba(245,197,66,.35)}
+    .card-bbs .kick{color:#F5C542}
+    .card-bbs h2{color:#F4EFE6}
+    .card-bbs h2 .g{color:#F5C542}
+    .card-bbs p.desc{color:#9AA3AD}
+    .card-bbs ul li{color:#F4EFE6}
+    .card-bbs ul li::before{color:#2FBF71}
+    .card-bbs .cta{background:linear-gradient(135deg,#FFD866,#F0B62F);color:#1E242B}
+    .card-bbs .price{color:#F5C542;font-family:var(--font-head);font-weight:800}
+    /* Campus card: navy + coral */
+    .card-dc{background:var(--surface);border-color:var(--border-coral)}
+    .card-dc .kick{color:var(--coral-lt)}
+    .card-dc h2{color:var(--ice)}
+    .card-dc h2 .hl{color:transparent;background:var(--grad-coral);-webkit-background-clip:text;background-clip:text}
+    .card-dc p.desc{color:var(--silver)}
+    .card-dc ul li{color:var(--ice)}
+    .card-dc ul li::before{color:var(--coral)}
+    .card-dc .cta{background:var(--grad-coral);color:#fff}
+    .hub-strip{background:var(--bg-2);border-block:1px solid var(--border);padding:1.6rem 0;text-align:center}
+    .hub-strip p{color:var(--silver);font-size:.98rem}
+    .hub-strip a{color:var(--coral-lt);font-weight:700;text-decoration:none}
+    .hub-strip a:hover{text-decoration:underline}
+  </style>
 </head>
 <body>
-  <a class="skip-link" href="#enquiry">Skip to enquiry form</a>
-
-  <!-- ===================== HEADER ===================== -->
-  <header class="site-header" id="top">
+  <!-- ============ HERO ============ -->
+  <header class="hub-hero">
     <div class="container">
-      <a class="brand-link" href="#top" aria-label="TVMG home">
-        <img class="logo-light" src="assets/logo/TVMG_logo_mono_white_transparent.png" alt="TVMG · Train Visual Media Group" />
-        <img class="logo-dark" src="assets/logo/TVMG_logo_mono_white_transparent.png" alt="" aria-hidden="true" />
-      </a>
-
-      <nav class="nav" aria-label="Primary">
-        <a href="#problems">The 5 problems</a>
-        <a href="#solve">How we solve it</a>
-        <a href="#work">Samples</a>
-        <a href="#pricing">Pricing</a>
-        <a class="btn btn--primary" href="#enquiry">Get a free demo</a>
-      </nav>
-
-      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
-        <span></span><span></span><span></span>
-      </button>
+      <img class="logo" src="assets/logo/TVMG_logo_mono_white_transparent.png" alt="TVMG · Train Visual Media Group" />
+      <h1>We build <span class="hl">training businesses.</span></h1>
+      <p>Two ways in: learn to start your own business at our school, or bring your accredited qualification and we'll digitize your entire campus.</p>
     </div>
   </header>
 
-  <div class="mobile-menu" id="mobile-menu">
-    <a href="#problems">The 5 problems</a>
-    <a href="#solve">How we solve every pain</a>
-    <a href="#compliance">Is this allowed?</a>
-    <a href="#work">Samples</a>
-    <a href="#guarantee">The guarantee</a>
-    <a href="#pricing">Pricing</a>
-    <a class="btn btn--primary" href="#enquiry">Get a free demo</a>
-  </div>
+  <!-- ============ TWO PATHS ============ -->
+  <main class="hub-paths">
+    <div class="container">
+      <div class="hub-grid">
 
-  <main>
-    <!-- ===================== HERO ===================== -->
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-bg" aria-hidden="true"><span class="glow glow--1"></span><span class="glow glow--2"></span></div>
-      <div class="container hero-inner">
-        <div class="hero-copy">
-          <p class="pill pill--coral reveal-hero" data-h="0">For QCTO-accredited providers serving 50+ learners</p>
-          <h1 id="hero-title" class="reveal-hero" data-h="1">We turn your entire qualification into a <span class="hl">full digital campus.</span></h1>
-
-          <p class="lead reveal-hero" data-h="2">Done for you, start to finish, so you <strong>save time, save money and scale without hiring</strong>. It deploys inside the QCTO accreditation you already hold. <strong>No re-accreditation. No mode change.</strong></p>
-
-          <div class="hero-cta reveal-hero" data-h="3">
-            <a class="btn btn--primary btn--lg btn--pulse" href="#enquiry">Get your free demo
-              <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </a>
-            <a class="btn btn--ghost btn--lg" href="#solve">See how it works</a>
-          </div>
-
-          <div class="hero-meta reveal-hero" data-h="4">
-            <span class="hero-meta-item">Campuses <b>from R65,000</b></span>
-            <span class="dot" aria-hidden="true"></span>
-            <span class="hero-meta-item">Live in <b>weeks</b></span>
-          </div>
-        </div>
-
-        <div class="hero-visual reveal-hero" data-h="3">
-          <!-- HERO EXPLAINER: 2-minute Kurzgesagt walkthrough of how the Digital Campus works -->
-          <figure class="hero-screen hero-video" data-src="assets/videos/hero_explainer.mp4" role="button" tabindex="0" aria-label="Watch: how the Digital Campus works (2 minutes)">
-            <img src="assets/videos/hero_explainer_poster.jpg" alt="" loading="eager" />
-            <span class="hero-screen-overlay" aria-hidden="true"></span>
-            <span class="hero-play" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-            <span class="hero-screen-cta">Watch: how it works · 2 min</span>
-          </figure>
-          <span class="hero-chip hero-chip--1" aria-hidden="true">Deploys in your existing scope</span>
-          <span class="hero-chip hero-chip--2" aria-hidden="true">Animated · Narrated · Quizzed</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== DONE-FOR-YOU + COMPLIANCE STRIP ===================== -->
-    <section class="section dfy-sec" id="dfy" aria-labelledby="dfy-title">
-      <div class="container">
-        <div class="section-head center reveal">
-          <p class="eyebrow">Done for you, from start to finish</p>
-          <h2 id="dfy-title">You hand us your learner guides. We do everything else.</h2>
-          <p class="lead" style="margin-top:1rem">Scripts written from your accredited material, professionally animated and narrated modules, formative quizzes, your own branded campus, learner onboarding, and monthly learner-progress reports you can use in your own funder submissions. Plus the compliance paperwork for your accreditation file. Your facilitators keep running contact sessions and practicals. They just never present the same theory twice.</p>
-        </div>
-
-        <ol class="pipeline reveal">
-          <li><span class="pl-n">1</span><b>Script</b><i>Written from your own accredited material, returned for your sign-off</i></li>
-          <li><span class="pl-n">2</span><b>Visualise</b><i>Professionally animated and narrated, on your brand</i></li>
-          <li><span class="pl-n">3</span><b>Quiz</b><i>Formative quiz bank per module, auto-marked</i></li>
-          <li><span class="pl-n">4</span><b>Platform</b><i>Your own branded campus, fully configured for you</i></li>
-          <li><span class="pl-n">5</span><b>Onboard</b><i>Every learner enrolled, credentials issued, welcomed</i></li>
-          <li><span class="pl-n">6</span><b>Report</b><i>Monthly progress reports you can use for your funders</i></li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- ===================== THE DEMO OFFER (above the fold) ===================== -->
-    <section class="section section--alt demo-band-sec" aria-labelledby="demo-title">
-      <div class="container">
-        <div class="demo-band reveal">
-          <span class="db-glow" aria-hidden="true"></span>
-          <div class="db-visual" aria-hidden="true">
-            <div class="dbv-files">
-              <span class="dbv-file">PPTX</span>
-              <span class="dbv-file">PDF</span>
-              <span class="dbv-file">DOCX</span>
-              <span class="dbv-file">Notes</span>
-            </div>
-            <span class="dbv-arrow"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-            <div class="dbv-card">
-              <span class="dbv-play"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-              <span class="dbv-cap">Your module · 0:30</span>
-            </div>
-          </div>
-          <div class="db-right">
-            <div class="db-copy">
-              <p class="eyebrow">See it on your own content, free</p>
-              <h2 id="demo-title">Send us your material.<br><span class="hl">Get demos back, free.</span></h2>
-              <p class="db-note">Any of it: slide decks, PDFs, manuals, even rough notes. We turn it into polished, narrated, animated clips, around 30 seconds each. Request <strong>as many as you like, until you're happy</strong>. No cost, no obligation.</p>
-            </div>
-            <div class="db-cta">
-              <a class="btn btn--primary btn--lg" href="demo.html">Send your material
-                <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </a>
-              <span class="db-sub">unlimited demos · your own content · until you're happy</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== THE FIVE PROBLEMS ===================== -->
-    <section class="section" id="problems" aria-labelledby="prob-title">
-      <div class="container">
-        <div class="section-head center reveal">
-          <p class="eyebrow">If your learners already exist, every pain is a delivery pain</p>
-          <h2 id="prob-title">The five problems we solve.</h2>
-          <p class="lead" style="margin-top:1rem">You already have learners and funding. What you don't have is a way to deliver the theory without a facilitator repeating it, cohort after cohort, site after site. That is the whole job, and it is all we do.</p>
-        </div>
-
-        <div class="problems reveal">
-          <article class="prob">
-            <span class="prob-n">01</span>
-            <span class="prob-tag">Production</span>
-            <h3>&ldquo;Our material isn't digital, and we can't make it digital.&rdquo;</h3>
-            <p>We produce everything from the material you already own: scripts, animation, narration, branding.</p>
-          </article>
-          <article class="prob">
-            <span class="prob-n">02</span>
-            <span class="prob-tag">Delivery</span>
-            <h3>&ldquo;Theory only happens where our facilitator physically is, again and again.&rdquo;</h3>
-            <p>Your campus presents theory perfectly, 24/7, to any cohort size. Your facilitators never repeat it.</p>
-          </article>
-          <article class="prob">
-            <span class="prob-n">03</span>
-            <span class="prob-tag">Admin</span>
-            <h3>&ldquo;Enrolment, marking and tracking devour our office.&rdquo;</h3>
-            <p>Quizzes mark themselves, progress tracks itself, and we run the machine. You never touch it.</p>
-          </article>
-          <article class="prob">
-            <span class="prob-n">04</span>
-            <span class="prob-tag">Evidence</span>
-            <h3>&ldquo;Funders, moderators and auditors demand proof we struggle to produce.&rdquo;</h3>
-            <p>The evidence trail generates itself: funder-ready, moderation-ready, POPIA-clean.</p>
-          </article>
-          <article class="prob">
-            <span class="prob-n">05</span>
-            <span class="prob-tag">Compliance fear</span>
-            <h3>&ldquo;Won't going digital mean re-accreditation and QCTO trouble?&rdquo;</h3>
-            <p>No. It deploys inside your existing scope, and we draft the accreditation paperwork for your file.</p>
-          </article>
-          <article class="prob prob--cta">
-            <h3>The facilitator is flipped, not fired.</h3>
-            <p>We remove the waste inside your facilitators' time, not the facilitators. Contact time goes to practicals, coaching and POE support: the work you actually pay them for.</p>
-            <a class="btn btn--ghost" href="#solve">See how we solve every pain</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== HOW WE SOLVE EVERY PAIN (the 32-item map) ===================== -->
-    <section class="section section--alt" id="solve" aria-labelledby="solve-title">
-      <div class="container">
-        <div class="section-head center reveal">
-          <p class="pill pill--coral" style="margin:0 auto">Nothing left on your desk</p>
-          <h2 id="solve-title" style="margin-top:1rem">How we solve every pain, end to end.</h2>
-          <p class="lead" style="margin-top:1rem">Thirty-two pains a QCTO provider actually feels, and how the Digital Campus answers each one. Grouped into the five stages we handle for you, from raw content to the progress evidence you report on.</p>
-        </div>
-
-        <!-- STAGE 1 -->
-        <div class="pmap reveal">
-          <div class="pmap-head">
-            <h3><span class="pmap-stage">Stage 1</span> Content &amp; production</h3>
-            <div class="pmap-worth"><span>Agency e-learning runs</span><b>R80k–R150k</b><i>per course · market rate, get quotes &amp; check</i></div>
-          </div>
-          <ul class="pmap-list">
-            <li><span class="pm-pain">&ldquo;Our material is Word docs and PowerPoints built for a room.&rdquo;</span><span class="pm-sol">Full content audit and restructure into digital modules, aligned to your QCTO curriculum document.</span></li>
-            <li><span class="pm-pain">&ldquo;We're subject experts, not writers.&rdquo;</span><span class="pm-sol">We write every narration script from your own accredited material.</span></li>
-            <li><span class="pm-pain">&ldquo;We can't lose control of accredited content.&rdquo;</span><span class="pm-sol">Every script returns for your sign-off before production. Your moderator approves, or you don't pay the balance.</span></li>
-            <li><span class="pm-pain">&ldquo;Filming is expensive and we have no studio.&rdquo;</span><span class="pm-sol">Fully animated, professionally narrated modules. No crew, no venue, ever.</span></li>
-            <li><span class="pm-pain">&ldquo;Voiceover artists charge per minute.&rdquo;</span><span class="pm-sol">Studio-grade narration, one consistent voice across your whole catalogue.</span></li>
-            <li><span class="pm-pain">&ldquo;E-learning is boring and learners switch off.&rdquo;</span><span class="pm-sol">Sound design, music, pacing and visual engagement built into every module.</span></li>
-            <li><span class="pm-pain">&ldquo;Generic content won't feel like ours.&rdquo;</span><span class="pm-sol">Your branding, colours and photos woven through every video.</span></li>
-            <li><span class="pm-pain">&ldquo;When the curriculum changes we'd reshoot everything.&rdquo;</span><span class="pm-sol">Animation means updates are edits, not productions. Revised in days.</span></li>
-            <li><span class="pm-pain">&ldquo;Our learners aren't all English-first.&rdquo;</span><span class="pm-sol">Additional language versions available per module, scoped with you and quoted as line items.</span></li>
+        <a class="hub-card card-bbs" href="https://boring.tvmg.co.za">
+          <span class="kick">THE BORING BUSINESS SCHOOL</span>
+          <h2>Boring businesses breed <span class="g">millionaires.</span></h2>
+          <p class="desc">Everyone chases sexy startups. Meanwhile boring service businesses quietly build real wealth. Learn to start one in South Africa with the money already in your pocket.</p>
+          <ul>
+            <li>The Boring Business Masterclass · ±5 hours, phone-first</li>
+            <li>The deposit model: start with almost no capital</li>
+            <li>QCTO-aligned New Venture Creation outcomes</li>
+            <li><span class="price">R649 once-off</span>, certificate included</li>
           </ul>
-        </div>
+          <span class="cta">Enter the school →</span>
+        </a>
 
-        <!-- STAGE 2 -->
-        <div class="pmap reveal" data-delay="1">
-          <div class="pmap-head">
-            <h3><span class="pmap-stage">Stage 2</span> Assessment &amp; learner materials</h3>
-            <div class="pmap-worth"><span>Formative + workbooks</span><b>Included</b><i>mapped to your curriculum</i></div>
-          </div>
-          <ul class="pmap-list">
-            <li><span class="pm-pain">&ldquo;No engagement evidence before formal assessment.&rdquo;</span><span class="pm-sol">Formative quiz bank per module, mapped to your curriculum.</span></li>
-            <li><span class="pm-pain">&ldquo;Marking and recording scores eats admin hours.&rdquo;</span><span class="pm-sol">Auto-marked quizzes, every score recorded against the learner.</span></li>
-            <li><span class="pm-pain">&ldquo;Mismatched learner packs look terrible at moderation.&rdquo;</span><span class="pm-sol">Digital workbooks regenerated from your guides, matching the videos exactly.</span></li>
-            <li><span class="pm-pain">&ldquo;Who handles summative assessment?&rdquo;</span><span class="pm-sol">You do. Formative is ours; summative and the EISA stay with your assessors and accredited centres, exactly where QCTO law puts them.</span></li>
+        <a class="hub-card card-dc" href="digitization.html">
+          <span class="kick">DIGITIZATION SERVICE</span>
+          <h2>Your qualification, as a <span class="hl">full digital campus.</span></h2>
+          <p class="desc">For QCTO-accredited providers with 50+ learners: we turn your learner guides into a complete animated video campus, done for you start to finish.</p>
+          <ul>
+            <li>Studio-quality animated lessons from your material</li>
+            <li>Deploys inside your existing accreditation</li>
+            <li>Save facilitator time, scale without hiring</li>
+            <li>Campuses from R65,000</li>
           </ul>
-        </div>
+          <span class="cta">Explore the service →</span>
+        </a>
 
-        <!-- STAGE 3 -->
-        <div class="pmap reveal">
-          <div class="pmap-head">
-            <h3><span class="pmap-stage">Stage 3</span> Campus &amp; access</h3>
-            <div class="pmap-worth"><span>Your own branded campus</span><b>Configured for you</b><i>24/7, any device</i></div>
-          </div>
-          <ul class="pmap-list">
-            <li><span class="pm-pain">&ldquo;We don't have a platform and tech overwhelms us.&rdquo;</span><span class="pm-sol">Your own branded online campus, fully set up and configured for you.</span></li>
-            <li><span class="pm-pain">&ldquo;Venues, scheduling and travel cap how many we train.&rdquo;</span><span class="pm-sol">24/7 access on any device, anywhere in the country.</span></li>
-            <li><span class="pm-pain">&ldquo;Creating logins for every cohort is admin hell.&rdquo;</span><span class="pm-sol">We onboard every learner: bulk enrolment, credentials issued, welcome email sent.</span></li>
-            <li><span class="pm-pain">&ldquo;Our learners aren't tech-savvy.&rdquo;</span><span class="pm-sol">Learner onboarding video: how to log in, watch, and take quizzes.</span></li>
-            <li><span class="pm-pain">&ldquo;A rival or ex-facilitator could steal our content.&rdquo;</span><span class="pm-sol">Watermarked video, downloads disabled. Leaked content carries identity. Piracy-deterrent.</span></li>
-            <li><span class="pm-pain">&ldquo;Chasing EFTs from paying students.&rdquo;</span><span class="pm-sol">Optional online payment: the learner pays, money lands in your account, enrolment triggers automatically.</span></li>
-            <li><span class="pm-pain">&ldquo;We only discover disengagement at dropout.&rdquo;</span><span class="pm-sol">Per-learner progress tracking across every module and quiz.</span></li>
-            <li><span class="pm-pain">&ldquo;Absent learners force re-teaching.&rdquo;</span><span class="pm-sol">Missed a session? The learner catches up on the campus. No re-teaching, ever.</span></li>
-          </ul>
-        </div>
-
-        <!-- STAGE 4 -->
-        <div class="pmap reveal" data-delay="1">
-          <div class="pmap-head">
-            <h3><span class="pmap-stage">Stage 4</span> Reporting &amp; compliance</h3>
-            <div class="pmap-worth"><span>Progress evidence</span><b>Automated</b><i>the paperwork drafted for your file</i></div>
-          </div>
-          <ul class="pmap-list">
-            <li><span class="pm-pain">&ldquo;Funder reports and tranche evidence take days.&rdquo;</span><span class="pm-sol">Monthly learner-progress reports: enrolments, progress, scores and completions, formatted and delivered for you to use in your own funder submissions.</span></li>
-            <li><span class="pm-pain">&ldquo;Audit files demand proof of delivery.&rdquo;</span><span class="pm-sol">Time-stamped completion and assessment evidence per learner.</span></li>
-            <li><span class="pm-pain">&ldquo;We must upload learner data to QCTO/SETA systems.&rdquo;</span><span class="pm-sol">Data exported clean and structured for your submissions. We feed your compliance machinery, never replace it.</span></li>
-            <li><span class="pm-pain">&ldquo;Learner information is a POPIA liability.&rdquo;</span><span class="pm-sol">Isolated per-client data environment with a proper data-processing agreement.</span></li>
-            <li class="pm-star"><span class="pm-pain">&ldquo;Won't going digital mean re-accreditation?&rdquo;</span><span class="pm-sol">No. The campus deploys as digital learning material inside your existing scope, and we draft the Learning Material Matrix entry for your accreditation file.</span></li>
-          </ul>
-        </div>
-
-        <!-- STAGE 5 -->
-        <div class="pmap pmap--mrr reveal">
-          <div class="pmap-head">
-            <h3><span class="pmap-stage">Stage 5</span> Ongoing, the Managed Campus Plan</h3>
-            <div class="pmap-worth"><span>vs a part-time admin hire at</span><b>R15k–25k/mo</b><i>from R1,950/month</i></div>
-          </div>
-          <ul class="pmap-list">
-            <li><span class="pm-pain">&ldquo;We don't have an IT person.&rdquo;</span><span class="pm-sol">Full platform administration. You never touch the machinery.</span></li>
-            <li><span class="pm-pain">&ldquo;Curriculum revisions will make content stale.&rdquo;</span><span class="pm-sol">Content updates included within a monthly cap.</span></li>
-            <li><span class="pm-pain">&ldquo;Every new cohort is an admin spike.&rdquo;</span><span class="pm-sol">Cohort onboarding handled per intake.</span></li>
-            <li><span class="pm-pain">&ldquo;Who do we call when something's wrong?&rdquo;</span><span class="pm-sol">Priority provider-level support, plus admin training and a written guide for your staff.</span></li>
-            <li><span class="pm-pain">&ldquo;Learners expect something at the end.&rdquo;</span><span class="pm-sol">Branded course-completion certificates generated per learner.</span></li>
-          </ul>
-        </div>
-
-        <!-- BONUS -->
-        <div class="pmap pmap--bonus reveal" data-delay="1">
-          <div class="pmap-head">
-            <h3><span class="pmap-stage">Bonus</span> Win the next contract</h3>
-            <div class="pmap-worth"><span>Filmed promo alone runs</span><b>R20k–R50k</b><i>market rate, get quotes &amp; check</i></div>
-          </div>
-          <ul class="pmap-list">
-            <li><span class="pm-pain">&ldquo;We still need to fill seats and win tenders.&rdquo;</span><span class="pm-sol">A 60 to 90 second course promo video, plus a &lsquo;blended digital delivery&rsquo; capability statement for your tender packs.</span></li>
-          </ul>
-        </div>
       </div>
-    </section>
-
-    <!-- ===================== THE COMPLIANCE ADVANTAGE (mechanism) ===================== -->
-    <section class="section" id="compliance" aria-labelledby="comp-title">
-      <div class="container">
-        <div class="compliance-wrap reveal">
-          <div class="compliance-main">
-            <p class="eyebrow">The part most providers don't know</p>
-            <h2 id="comp-title">You don't need new accreditation to go digital.</h2>
-            <p>Your current accreditation already makes room for this. The QCTO's own framework lets accredited providers deploy digital learning material within their existing delivery mode, and our campus is engineered to live exactly there. We even draft the Learning Material Matrix entry for your file, so the deployment is documented correctly.</p>
-            <p>Your facilitators keep running contact sessions and practicals. The campus handles the theory, the quizzes and the evidence. And when you're ready for full online delivery, your campus becomes the core of your e-learning evidence pack, which we prepare too.</p>
-            <p class="compliance-fine">We design to align with the QCTO's e-learning standards. The QCTO accredits providers, not products, so we never claim to be a &lsquo;QCTO-approved product&rsquo;. Delivery-mode compliance remains yours; we document the deployment basis in your file.</p>
-          </div>
-          <aside class="compliance-side">
-            <h3>What stays physical, always</h3>
-            <p class="cs-note">We say this unprompted, because knowing it is the difference between a specialist and a vendor.</p>
-            <ul class="ticks ticks--x">
-              <li>Practical skills modules (real or simulated environments)</li>
-              <li>Workplace experience (approved workplaces)</li>
-              <li>Summative assessment and the EISA (your assessors and accredited centres)</li>
-              <li>Contact sessions your mode or MoA requires</li>
-            </ul>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== SAMPLES (the medium is the proof) ===================== -->
-    <section class="section section--alt work" id="work" aria-labelledby="work-title">
-      <div class="container">
-        <div class="section-head center reveal">
-          <p class="eyebrow">The medium is the proof</p>
-          <h2 id="work-title">This is what your learners will actually see.</h2>
-          <p class="lead" style="margin-top:1rem">Real compliance-shaped modules, in different creative treatments and different South African voices. The same production line that turns your dusty PowerPoint into content learners finish.</p>
-        </div>
-
-        <div class="gallery reveal" id="gallery">
-          <figure class="gcard" data-src="assets/videos/ohs_induction.mp4">
-            <div class="gcard-thumb">
-              <img src="assets/videos/ohs_induction.jpg" alt="Health and Safety Induction (animated host explainer sample)" loading="lazy" />
-              <span class="gplay"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-            </div>
-            <figcaption>
-              <span class="gtag">Animated · Host explainer</span>
-              <b>Health &amp; Safety Induction</b>
-              <i>Occupational health &amp; safety</i>
-            </figcaption>
-          </figure>
-
-          <figure class="gcard" data-src="assets/videos/financial_literacy.mp4">
-            <div class="gcard-thumb">
-              <img src="assets/videos/financial_literacy.jpg" alt="Financial Literacy for Small Business (kinetic typography sample)" loading="lazy" />
-              <span class="gplay"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-            </div>
-            <figcaption>
-              <span class="gtag">Animated · Kinetic type</span>
-              <b>Financial Literacy</b>
-              <i>Small-business skills</i>
-            </figcaption>
-          </figure>
-
-          <figure class="gcard" data-src="assets/videos/warehouse.mp4">
-            <div class="gcard-thumb">
-              <img src="assets/videos/warehouse.jpg" alt="Warehouse and Stock Handling (real-footage b-roll sample)" loading="lazy" />
-              <span class="gplay"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-            </div>
-            <figcaption>
-              <span class="gtag">Real footage · B-roll</span>
-              <b>Warehouse &amp; Stock Handling</b>
-              <i>Logistics &amp; storage</i>
-            </figcaption>
-          </figure>
-        </div>
-
-        <p class="work-foot reveal">Want a taste of your own content in this style? <a href="demo.html">Send us any of your material and get unlimited free demos back.</a></p>
-      </div>
-    </section>
-
-    <!-- ===================== THE GUARANTEE ===================== -->
-    <section class="section" id="guarantee" aria-labelledby="guar-title">
-      <div class="container">
-        <div class="guarantee guarantee--hero reveal">
-          <div class="guarantee-head">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V5l-8-3z"/><polyline points="9 12 11 14 15 10"/></svg>
-            <h2 id="guar-title">The guarantee</h2>
-          </div>
-          <p class="guar-line">&ldquo;Your moderator or assessor signs off the script, <span class="hl">or you don't pay the balance.</span>&rdquo;</p>
-          <p class="guar-note">Before we produce a single module, we send you the script, written from your own accredited material, for your moderator or assessor to approve. Nothing goes into production until they sign off that script. That is our definition of done, and your risk reversal. And you never commit blind: we make <strong>unlimited free demos until you're happy</strong> first. We never author subject matter, and we never claim to run accreditation.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== PRICING ===================== -->
-    <section class="section section--alt" id="pricing" aria-labelledby="price-title">
-      <div class="container">
-        <div class="section-head center reveal">
-          <p class="eyebrow">Value first, price last</p>
-          <h2 id="price-title">Campuses from <span class="hl">R65,000.</span></h2>
-          <p class="lead" style="margin-top:1rem">Every theory session costs you a facilitator, a venue, travel and a day, and it recurs forever. A campus is a one-off build. After it, presenting theory to ten learners or two hundred costs you the same: effectively nothing.</p>
-        </div>
-
-        <div class="price-grid">
-          <article class="price-card reveal">
-            <p class="pc-kicker">A short-course campus</p>
-            <h3>Your modules, your branded campus</h3>
-            <p class="pc-big">from R65,000</p>
-            <p class="pc-sub">Your modules animated, narrated and quizzed, plus your fully configured branded campus, learner onboarding, admin training, promo video, capability statement, and the Matrix entry drafted for your accreditation file.</p>
-            <ul class="ticks">
-              <li>Larger, year-long qualifications are phased over quarters and quoted per qualification</li>
-              <li>Additional languages are line items, scoped per cohort, never bundled away</li>
-              <li>Reads against a year of facilitation (R80k–R200k per cohort) and agency e-learning quotes</li>
-            </ul>
-          </article>
-
-          <article class="price-card price-card--mrr reveal" data-delay="1">
-            <p class="pc-kicker">Keep it running</p>
-            <h3>The Managed Campus Plan</h3>
-            <div class="pc-tiers">
-              <div class="pc-tier"><span>Essentials</span><b>R1,950</b><i>/month</i></div>
-              <div class="pc-tier"><span>Full</span><b>R3,950</b><i>/month</i></div>
-            </div>
-            <p class="pc-sub">Full platform admin, monthly progress reports you can use for your funders, cohort onboarding, content updates, branded certificates and priority support. Cheaper than a part-time admin hire, and it never phones in sick.</p>
-            <p class="pc-extra">Not accredited for blended yet? The <b>E-Learning Readiness Pack</b> (R15,000 to R25,000, absorbed into a campus) assembles your mode-declaration evidence file.</p>
-          </article>
-        </div>
-
-        <div class="price-foot reveal">
-          <p class="pf-scarcity"><strong>Founding-client rate:</strong> our first five provider clients lock in founding pricing (with case-study rights). The standard rate applies after that.</p>
-          <p class="pf-demo">Not sure it'll work on your content? <a href="demo.html">Send us your material and get unlimited free demos</a>, then we talk numbers.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== SECONDARY: COMPLIANCE VIDEO SPRINT ===================== -->
-    <section class="section" id="sprint" aria-labelledby="sprint-title">
-      <div class="container">
-        <div class="sprint">
-          <div class="reveal">
-            <p class="eyebrow">Not ready for a full campus?</p>
-            <h2 id="sprint-title">Start with a single video: the Compliance Video Sprint</h2>
-            <p class="lead" style="margin-top:1rem">A low-commitment way in: turn one induction deck, SOP or policy PDF into a professional narrated or animated training video. Many providers start here, see the quality, then build the full campus. Delivered in days.</p>
-            <ul class="ticks" style="margin-top:1.5rem">
-              <li>Narrated explainer or fully animated</li>
-              <li>Captions included; additional languages scoped on request</li>
-              <li>Three revision rounds and a 7-day satisfaction guarantee</li>
-              <li>Optional hosted learner portal</li>
-            </ul>
-            <a class="btn btn--ghost btn--lg" href="#enquiry" style="margin-top:1.75rem">Enquire about a single video</a>
-          </div>
-          <div class="sprint-visual reveal" data-delay="1" aria-hidden="true">
-            <div class="doc-to-video">
-              <span class="dtv-doc"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><small>Your docs</small></span>
-              <span class="dtv-arrow"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-              <span class="dtv-vid"><svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><small>Training video</small></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== ENQUIRY / QUALIFYING FORM ===================== -->
-    <section class="section section--alt enquiry" id="enquiry" aria-labelledby="enquiry-title">
-      <div class="container">
-        <div class="form-wrap">
-          <aside class="form-aside reveal">
-            <p class="pill pill--coral">Book a call / free demo</p>
-            <h2 id="enquiry-title">Let's see if your campus is a fit.</h2>
-            <p class="lead">A few quick questions so we come to the call ready, with your volumes, funding and accreditation already understood. Then we show you exactly what your campus looks like, on your own content, free.</p>
-            <ul class="ticks" style="margin-top:1.5rem">
-              <li>Unlimited free demos from any of your material, until you're happy</li>
-              <li>Deploys inside your existing scope: no re-accreditation, no mode change</li>
-              <li>Your moderator signs off every script, or you don't pay the balance</li>
-            </ul>
-            <p class="form-scarcity">We onboard a limited number of providers at a time. Founding-client pricing is capped at our first five clients.</p>
-          </aside>
-
-          <div class="reveal" data-delay="1">
-            <form class="enquiry-form" action="" method="POST" novalidate>
-              <!-- HARD QUALIFIER FIRST -->
-              <div class="field field--qualifier">
-                <label for="learner_volume">How many learners did you enrol in the last 12 months? <span class="req" aria-hidden="true">*</span></label>
-                <select id="learner_volume" name="learner_volume" required>
-                  <option value="">Choose one…</option>
-                  <option value="under-50">Under 50</option>
-                  <option value="50-200">50 to 200</option>
-                  <option value="200-500">200 to 500</option>
-                  <option value="500-plus">500+</option>
-                  <option value="new-funded">New provider with a signed funded contract</option>
-                </select>
-                <span class="field-hint">The Digital Campus is built for established providers with active learner flow. It solves delivery, not learner acquisition.</span>
-                <span class="form-error">Please choose a range.</span>
-              </div>
-
-              <div class="field-row">
-                <div class="field">
-                  <label for="name">Name <span class="req" aria-hidden="true">*</span></label>
-                  <input type="text" id="name" name="name" autocomplete="name" required />
-                  <span class="form-error">Please enter your name.</span>
-                </div>
-                <div class="field">
-                  <label for="business">Organisation <span class="req" aria-hidden="true">*</span></label>
-                  <input type="text" id="business" name="business" autocomplete="organization" required />
-                  <span class="form-error">Please enter your organisation.</span>
-                </div>
-              </div>
-
-              <div class="field-row">
-                <div class="field">
-                  <label for="email">Email <span class="req" aria-hidden="true">*</span></label>
-                  <input type="email" id="email" name="email" autocomplete="email" required />
-                  <span class="form-error">Please enter a valid email address.</span>
-                </div>
-                <div class="field">
-                  <label for="phone">Phone <span class="req" aria-hidden="true">*</span></label>
-                  <input type="tel" id="phone" name="phone" autocomplete="tel" required />
-                  <span class="form-error">Please enter a contact number.</span>
-                </div>
-              </div>
-
-              <div class="field-row">
-                <div class="field">
-                  <label for="accreditation">Accreditation status <span class="req" aria-hidden="true">*</span></label>
-                  <select id="accreditation" name="accreditation" required>
-                    <option value="">Choose one…</option>
-                    <option value="qcto-accredited">QCTO-accredited provider</option>
-                    <option value="seta-transitioning">SETA-accredited / transitioning to QCTO</option>
-                    <option value="in-application">Accreditation in application</option>
-                    <option value="not-yet">Not yet accredited</option>
-                  </select>
-                  <span class="form-error">Please choose your status.</span>
-                </div>
-                <div class="field">
-                  <label for="delivery_mode">Delivery mode on your accreditation</label>
-                  <select id="delivery_mode" name="delivery_mode">
-                    <option value="">Choose one…</option>
-                    <option value="face-to-face">Face to face / contact</option>
-                    <option value="blended">Blended</option>
-                    <option value="online">Online</option>
-                    <option value="unsure">Not sure</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="field-row">
-                <div class="field">
-                  <label for="funding">How are your learners funded? <span class="req" aria-hidden="true">*</span></label>
-                  <select id="funding" name="funding" required>
-                    <option value="">Choose one…</option>
-                    <option value="seta-funded">SETA-funded projects</option>
-                    <option value="employer-learnerships">Employer-funded learnerships (B-BBEE / 12H)</option>
-                    <option value="commercial">Commercial / self-funded short courses</option>
-                    <option value="mixed">A mix of the above</option>
-                  </select>
-                  <span class="form-error">Please choose one.</span>
-                </div>
-                <div class="field">
-                  <label for="modules">Roughly how many modules / units? <span class="req" aria-hidden="true">*</span></label>
-                  <select id="modules" name="modules" required>
-                    <option value="">Choose one…</option>
-                    <option value="1-5">1 to 5</option>
-                    <option value="6-15">6 to 15</option>
-                    <option value="16-30">16 to 30</option>
-                    <option value="30-plus">30+</option>
-                    <option value="unsure">Not sure yet</option>
-                  </select>
-                  <span class="form-error">Please choose a range.</span>
-                </div>
-              </div>
-
-              <div class="field">
-                <label for="message">Anything else we should know?</label>
-                <textarea id="message" name="message" placeholder="Which qualification? Legacy or occupational? Which languages per cohort? Who signs off your content? Anything else…"></textarea>
-              </div>
-
-              <input type="hidden" id="source" name="source" value="digital-campus-enquiry" />
-
-              <div class="checkbox">
-                <input type="checkbox" id="terms" name="terms" required />
-                <label for="terms">I agree to the <a href="/terms.html" target="_blank" rel="noopener">Terms &amp; Conditions</a>. <span class="form-error">Please accept the Terms &amp; Conditions to continue.</span></label>
-              </div>
-
-              <button type="submit" class="btn btn--primary btn--lg form-submit">Book my call &amp; free demo</button>
-
-              <p class="form-trust">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V5l-8-3z"/><polyline points="9 12 11 14 15 10"/></svg>
-                Unlimited free demos prove it on your own content, before you commit to anything.
-              </p>
-            </form>
-
-            <div class="form-success" id="form-success" role="status" aria-live="polite">
-              <div class="check" aria-hidden="true">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
-              <h3>Thanks, we'll be in touch shortly.</h3>
-              <p>Your enquiry is on its way. We'll get back to you, usually within one business day, to line up your call and your free demo.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    </div>
   </main>
 
-  <!-- ===================== FOOTER ===================== -->
+  <!-- ============ MENTORSHIP STRIP ============ -->
+  <div class="hub-strip">
+    <div class="container">
+      <p>Training business but no QCTO accreditation yet? Ask about the <strong>Accreditation Mentorship</strong> · <a href="digitization.html#enquiry">enquire here</a></p>
+    </div>
+  </div>
+
   <footer class="site-footer">
     <div class="container">
-      <div class="footer-top">
-        <div>
-          <img class="footer-logo" src="assets/logo/TVMG_logo_mono_white_transparent.png" alt="TVMG · Train Visual Media Group" />
-          <p class="footer-tag">We turn your entire qualification into a full digital campus.</p>
-        </div>
-
-        <div class="footer-col">
-          <h4>Explore</h4>
-          <ul>
-            <li><a href="#problems">The 5 problems</a></li>
-            <li><a href="#solve">How we solve every pain</a></li>
-            <li><a href="#compliance">Is this allowed?</a></li>
-            <li><a href="#work">Samples</a></li>
-            <li><a href="#pricing">Pricing</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4>Get in touch</h4>
-          <ul>
-            <li><a href="mailto:hello@tvmg.co.za"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg> hello@tvmg.co.za</a></li>
-            <li><a href="https://wa.me/27677065321?text=Hi%20TVMG%2C%20I%27m%20a%20QCTO-accredited%20provider%20and%20would%20like%20a%20free%20demo." target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> WhatsApp 067 706 5321</a></li>
-            <li><a href="demo.html">Send your material (free demos)</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
+      <div class="footer-bottom" style="margin-top:0;border-top:0">
         <span>&copy; <span id="year">2026</span> Train Visual Media Group. All rights reserved.</span>
-        <a href="/terms.html" rel="noopener">Terms &amp; Conditions</a>
+        <span><a href="terms.html">Terms</a> · <a href="digitization.html">Digitization</a> · <a href="https://boring.tvmg.co.za">Boring Business School</a></span>
       </div>
     </div>
   </footer>
 
-  <script src="js/main.js?v=20260709b"></script>
-  <script>
-    // Hero explainer: click to play the 2-minute walkthrough inline.
-    (function () {
-      var hero = document.querySelector(".hero-video");
-      if (!hero) return;
-      var playHero = function () {
-        if (hero.classList.contains("playing")) return;
-        var v = document.createElement("video");
-        v.setAttribute("controls", ""); v.setAttribute("playsinline", ""); v.setAttribute("preload", "metadata");
-        v.src = hero.getAttribute("data-src");
-        hero.innerHTML = ""; hero.appendChild(v);
-        hero.classList.add("playing");
-        v.play();
-      };
-      hero.addEventListener("click", playHero);
-      hero.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); playHero(); } });
-    })();
-
-    // Video gallery: click a card to play its sample inline.
-    document.querySelectorAll(".gcard").forEach(function (card) {
-      card.addEventListener("click", function () {
-        if (card.classList.contains("playing")) return;
-        var src = card.getAttribute("data-src");
-        var v = document.createElement("video");
-        v.setAttribute("controls", ""); v.setAttribute("playsinline", ""); v.setAttribute("preload", "metadata");
-        v.src = src;
-        var thumb = card.querySelector(".gcard-thumb");
-        thumb.innerHTML = ""; thumb.appendChild(v);
-        card.classList.add("playing");
-        v.play();
-      });
-    });
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body>
 </html>

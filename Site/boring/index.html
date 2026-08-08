@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Boring Business School · Boring Businesses Breed Millionaires</title>
+  <meta name="description" content="Learn to start a boring local service business in South Africa with the money already in your pocket. The Boring Business Masterclass: ±5 hours, phone-first, R649 once-off. Powered by TVMG." />
+  <meta name="theme-color" content="#12171D" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://tvmg.co.za/assets/favicon/TVMG_favicon_32x32_transparent.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    :root{
+      --ink:#12171D; --ink2:#0A0D11; --card:#1E242B; --card2:#2A323C; --line:rgba(154,163,173,.18);
+      --gold:#F5C542; --gold2:#FFD866; --grn:#2FBF71; --cream:#F4EFE6; --mut:#9AA3AD;
+      --grad-gold:linear-gradient(135deg,#FFD866,#F0B62F);
+      --head:'Poppins',sans-serif; --body:'Inter',system-ui,sans-serif;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--body);background:var(--ink);color:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased}
+    .wrap{width:min(1120px,92%);margin:0 auto}
+    h1,h2,h3{font-family:var(--head);letter-spacing:-.015em;line-height:1.1}
+    a{color:var(--gold)}
+    section{padding:4.2rem 0}
+    .center{text-align:center}
+    .kick{display:inline-block;font-family:var(--head);font-weight:800;font-size:.76rem;letter-spacing:.16em;color:var(--gold);margin-bottom:.9rem}
+    .sub{color:var(--mut);max-width:60ch;font-size:1.05rem}
+    .center .sub{margin-inline:auto}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;font-family:var(--head);font-weight:800;font-size:1.05rem;padding:1rem 1.9rem;border-radius:999px;text-decoration:none;transition:transform .15s ease,filter .15s ease;border:0;cursor:pointer}
+    .btn-gold{background:var(--grad-gold);color:#1E242B;box-shadow:0 16px 44px rgba(245,197,66,.28)}
+    .btn-gold:hover{transform:translateY(-2px);filter:brightness(1.05)}
+    .btn-ghost{background:transparent;color:var(--cream);border:2px solid var(--line)}
+    .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+
+    /* ---------- HERO ---------- */
+    .hero{background:radial-gradient(120% 130% at 50% 0%,#1B222B 0%,#12171D 55%,#0A0D11 100%);padding:4rem 0 4.6rem;text-align:center;position:relative;overflow:hidden}
+    .brandbar{display:flex;justify-content:center;align-items:center;gap:.6rem;margin-bottom:2.6rem;flex-wrap:wrap}
+    .brandbar .name{font-family:var(--head);font-weight:900;letter-spacing:.06em;font-size:1.02rem}
+    .brandbar .name b{color:var(--gold)}
+    .brandbar .pow{font-size:.72rem;color:var(--mut);letter-spacing:.12em;border:1px solid var(--line);border-radius:999px;padding:.3rem .8rem}
+    .stamp{font-family:var(--head);font-weight:900;font-size:clamp(2.4rem,7.5vw,5.2rem);line-height:1.04;text-transform:uppercase}
+    .stamp span{display:block;opacity:0;transform:scale(1.6);animation:stamp .5s cubic-bezier(.2,1.6,.4,1) forwards}
+    .stamp span:nth-child(1){animation-delay:.15s}
+    .stamp span:nth-child(2){animation-delay:.5s}
+    .stamp span:nth-child(3){animation-delay:.85s}
+    .stamp span:nth-child(4){animation-delay:1.2s;color:var(--gold)}
+    @keyframes stamp{to{opacity:1;transform:scale(1)}}
+    @media(prefers-reduced-motion:reduce){.stamp span{animation:none;opacity:1;transform:none}}
+    .hero .sub{margin:1.5rem auto 2.1rem;font-size:1.12rem;max-width:46ch}
+    .hero .sub b{color:var(--cream)}
+    .hero-ctas{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap}
+    .hero-note{margin-top:1rem;color:var(--mut);font-size:.88rem}
+    .hero-note b{color:var(--gold)}
+    .roach{position:absolute;bottom:14px;left:-80px;width:64px;opacity:.85;animation:crawl 14s linear infinite}
+    @keyframes crawl{0%{left:-80px}100%{left:105%}}
+    @media(prefers-reduced-motion:reduce){.roach{display:none}}
+
+    /* ---------- PROOF / STORY ---------- */
+    .proof{background:var(--ink2);border-block:1px solid var(--line)}
+    .proof .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:2.6rem;align-items:center}
+    @media(max-width:860px){.proof .grid{grid-template-columns:1fr}}
+    .proof h2{font-size:clamp(1.7rem,3vw,2.5rem);margin-bottom:1rem}
+    .proof h2 .g{color:var(--gold)}
+    .proof p{color:var(--mut);margin-bottom:.9rem}
+    .proof p b{color:var(--cream)}
+    .statcard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:1.8rem;display:grid;gap:1.1rem}
+    .stat{display:flex;gap:1rem;align-items:center}
+    .stat .n{font-family:var(--head);font-weight:900;font-size:1.7rem;color:var(--gold);min-width:5.2rem}
+    .stat .l{color:var(--mut);font-size:.92rem;line-height:1.4}
+
+    /* ---------- OUTCOMES ---------- */
+    .outcomes .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:2.3rem}
+    @media(max-width:860px){.outcomes .cards{grid-template-columns:1fr}}
+    .ocard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:1.7rem;transition:transform .15s ease,border-color .15s ease}
+    .ocard:hover{transform:translateY(-4px);border-color:rgba(245,197,66,.5)}
+    .ocard .ic{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-size:1.4rem;margin-bottom:1rem}
+    .ocard h3{font-size:1.15rem;margin-bottom:.5rem}
+    .ocard p{color:var(--mut);font-size:.94rem}
+
+    /* ---------- DEPOSIT MODEL ---------- */
+    .model{background:var(--ink2);border-block:1px solid var(--line)}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:2.3rem;counter-reset:s}
+    @media(max-width:860px){.steps{grid-template-columns:1fr}}
+    .step{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:1.9rem 1.6rem 1.6rem;position:relative}
+    .step .num{position:absolute;top:-18px;left:1.4rem;background:var(--grad-gold);color:#1E242B;font-family:var(--head);font-weight:900;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-size:1.05rem}
+    .step h3{margin:.5rem 0 .5rem;font-size:1.12rem}
+    .step p{color:var(--mut);font-size:.94rem}
+    .step p b{color:var(--grn)}
+
+    /* ---------- MODULES ---------- */
+    .mods .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2.3rem}
+    @media(max-width:1020px){.mods .grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:560px){.mods .grid{grid-template-columns:1fr}}
+    .mod{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1.4rem;transition:border-color .15s ease}
+    .mod:hover{border-color:rgba(245,197,66,.5)}
+    .mod .mn{font-family:var(--head);font-weight:800;font-size:.72rem;letter-spacing:.12em;color:var(--grn)}
+    .mod h3{font-size:1.02rem;margin:.45rem 0 .4rem;line-height:1.25}
+    .mod p{color:var(--mut);font-size:.85rem;line-height:1.5}
+
+    /* ---------- INCLUDED ---------- */
+    .inc .grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:2.2rem}
+    @media(max-width:760px){.inc .grid{grid-template-columns:1fr}}
+    .inc .row{display:flex;gap:.85rem;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1.05rem 1.2rem}
+    .inc .tick{flex:0 0 26px;height:26px;border-radius:50%;background:var(--grn);display:grid;place-items:center;color:#fff;font-weight:800;font-size:.85rem;margin-top:2px}
+    .inc .row p{font-size:.95rem}
+    .inc .row p span{display:block;color:var(--mut);font-size:.84rem;margin-top:.15rem}
+
+    /* ---------- TESTIMONIALS ---------- */
+    .testi{background:var(--ink2);border-block:1px solid var(--line)}
+    .testi .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:2.3rem}
+    @media(max-width:860px){.testi .cards{grid-template-columns:1fr}}
+    .tcard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:1.7rem;display:flex;flex-direction:column}
+    .tcard .stars{color:var(--gold);letter-spacing:.2em;margin-bottom:.8rem}
+    .tcard blockquote{font-size:.97rem;color:var(--cream);flex:1}
+    .tcard .who{margin-top:1.1rem;display:flex;align-items:center;gap:.75rem}
+    .tcard .av{width:42px;height:42px;border-radius:50%;background:var(--card2);display:grid;place-items:center;font-family:var(--head);font-weight:800;color:var(--gold)}
+    .tcard .who span{font-size:.85rem;color:var(--mut)}
+    .tcard .who b{display:block;color:var(--cream);font-size:.92rem}
+
+    /* ---------- PRICING ---------- */
+    .price-sec .card{max-width:640px;margin:2.4rem auto 0;background:linear-gradient(160deg,#1E242B,#161B21);border:2px solid rgba(245,197,66,.55);border-radius:24px;padding:2.6rem 2.2rem;text-align:center;box-shadow:0 34px 90px rgba(0,0,0,.5)}
+    .price-sec .amount{font-family:var(--head);font-weight:900;font-size:clamp(3.4rem,8vw,5rem);color:var(--gold);line-height:1}
+    .price-sec .once{font-family:var(--head);font-weight:700;color:var(--cream);margin:.4rem 0 1.6rem}
+    .price-sec ul{list-style:none;text-align:left;max-width:420px;margin:0 auto 1.9rem;display:grid;gap:.55rem}
+    .price-sec ul li{display:flex;gap:.6rem;font-size:.96rem}
+    .price-sec ul li::before{content:"✓";color:var(--grn);font-weight:800}
+    .paybtns{display:grid;gap:.7rem;max-width:420px;margin:0 auto}
+    .eft{margin-top:1.2rem;font-size:.88rem;color:var(--mut)}
+    .eft b{color:var(--cream)}
+    .align-chip{display:inline-block;background:rgba(47,191,113,.12);border:1px solid rgba(47,191,113,.45);color:var(--grn);font-family:var(--head);font-weight:700;font-size:.8rem;padding:.45rem 1rem;border-radius:999px;margin-bottom:1.2rem}
+
+    /* ---------- REFUND ---------- */
+    .refund{background:var(--ink2);border-block:1px solid var(--line)}
+    .refund .grid{display:grid;grid-template-columns:1fr 1fr;gap:2.4rem;align-items:start}
+    @media(max-width:860px){.refund .grid{grid-template-columns:1fr}}
+    .refund h2{font-size:clamp(1.6rem,3vw,2.3rem);margin-bottom:1rem}
+    .refund p{color:var(--mut);margin-bottom:.9rem}
+    .refund p b{color:var(--cream)}
+    form.rf{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:1.7rem;display:grid;gap:.9rem}
+    form.rf label{font-family:var(--head);font-weight:700;font-size:.82rem}
+    form.rf input,form.rf textarea{width:100%;background:var(--ink);border:1px solid var(--line);border-radius:10px;color:var(--cream);padding:.8rem .95rem;font-size:.95rem;font-family:var(--body)}
+    form.rf input:focus,form.rf textarea:focus{outline:none;border-color:var(--gold)}
+    form.rf small{color:var(--mut);font-size:.78rem}
+
+    /* ---------- FAQ + FOOTER ---------- */
+    .faq details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1rem 1.25rem;margin-bottom:.65rem}
+    .faq summary{cursor:pointer;font-family:var(--head);font-weight:700;font-size:.98rem;list-style:none;display:flex;justify-content:space-between;gap:1rem}
+    .faq summary::after{content:"+";color:var(--gold);font-weight:800}
+    .faq details[open] summary::after{content:"–"}
+    .faq details p{color:var(--mut);margin-top:.7rem;font-size:.93rem}
+    .final{background:radial-gradient(120% 130% at 50% 100%,#1B222B 0%,#12171D 55%,#0A0D11 100%);text-align:center}
+    .final h2{font-size:clamp(1.8rem,4vw,3rem)}
+    .final h2 .g{color:var(--gold)}
+    footer{border-top:1px solid var(--line);padding:1.6rem 0 2rem;background:var(--ink2)}
+    footer .fine{color:#6B7580;font-size:.78rem;line-height:1.6;max-width:70ch;margin:0 auto 1rem;text-align:center}
+    footer .row{display:flex;justify-content:center;gap:1.4rem;flex-wrap:wrap;color:var(--mut);font-size:.85rem}
+    footer a{color:var(--mut);text-decoration:none}
+    footer a:hover{color:var(--gold)}
+  </style>
+</head>
+<body>
+
+  <!-- ================= HERO ================= -->
+  <header class="hero">
+    <div class="wrap">
+      <div class="brandbar">
+        <span class="name">BORING <b>BUSINESS</b> SCHOOL</span>
+        <span class="pow">POWERED BY TVMG</span>
+      </div>
+      <h1 class="stamp" aria-label="Boring businesses breed millionaires">
+        <span>Boring</span><span>businesses</span><span>breed</span><span>millionaires</span>
+      </h1>
+      <p class="sub">Everyone is chasing sexy startups. Meanwhile, boring service businesses quietly build real wealth. Learn to start one in South Africa <b>with the money already in your pocket.</b></p>
+      <div class="hero-ctas">
+        <a class="btn btn-gold" href="#pricing">Take the Masterclass · R649 →</a>
+        <a class="btn btn-ghost" href="#modules">See what's inside</a>
+      </div>
+      <p class="hero-note">±5 hours · watch on your phone · <b>7-day money-back guarantee</b></p>
+      <svg class="roach" viewBox="0 0 140 60" aria-hidden="true"><ellipse cx="60" cy="30" rx="34" ry="20" fill="#6B4A2F"/><ellipse cx="60" cy="24" rx="30" ry="12" fill="#7E5A3B"/><circle cx="90" cy="26" r="10" fill="#5A3D26"/><path d="M 96 20 Q 112 4 124 8 M 96 28 Q 116 24 126 32" stroke="#5A3D26" stroke-width="3.5" fill="none" stroke-linecap="round"/><path d="M 38 46 L 30 58 M 52 48 L 48 59 M 66 48 L 68 59 M 80 46 L 86 58" stroke="#5A3D26" stroke-width="3.5" stroke-linecap="round"/></svg>
+    </div>
+  </header>
+
+  <!-- ================= PROOF ================= -->
+  <section class="proof">
+    <div class="wrap grid">
+      <div>
+        <span class="kick">A TRUE STORY</span>
+        <h2>Nobody claps for the pest control guy. <span class="g">Until they see his life.</span></h2>
+        <p><b>Ndumulelo</b> trained in person with our founder. He took the boring business model, picked pest control, and built a business that now supports him and his whole family. He is on his way to financial independence.</p>
+        <p>No funding. No connections. Client deposits funded the jobs, a checklist ran the work, and once-off customers became monthly contracts.</p>
+        <p><b>This masterclass is that exact model</b>, recorded, so you can learn it without flying to meet us.</p>
+      </div>
+      <div class="statcard">
+        <div class="stat"><span class="n">R0</span><span class="l">of your own capital needed to start: the client's deposit funds each job</span></div>
+        <div class="stat"><span class="n">50%</span><span class="l">typical deposit on quoted work, paid before you spend a cent</span></div>
+        <div class="stat"><span class="n">12</span><span class="l">monthly contracts can carry a one-person route profitably</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= OUTCOMES ================= -->
+  <section class="outcomes">
+    <div class="wrap center">
+      <span class="kick">WHO THIS MAKES YOU</span>
+      <h2 style="font-size:clamp(1.7rem,3.4vw,2.5rem)">One course. Three ways to win.</h2>
+      <div class="cards">
+        <div class="ocard"><div class="ic" style="background:rgba(245,197,66,.15)">👑</div><h3>The Owner</h3><p>Start and run your own boring service business, from first quote to monthly contracts to your first worker.</p></div>
+        <div class="ocard"><div class="ic" style="background:rgba(47,191,113,.15)">🔧</div><h3>The Independent</h3><p>Work for yourself, doing the jobs, keeping the money, controlling your own hours and your own price.</p></div>
+        <div class="ocard"><div class="ic" style="background:rgba(22,131,255,.15)">📈</div><h3>The Promotable</h3><p>Understand quoting, systems and clients better than anyone at your current company. Become impossible to ignore.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= DEPOSIT MODEL ================= -->
+  <section class="model">
+    <div class="wrap center">
+      <span class="kick">THE CORE MECHANIC</span>
+      <h2 style="font-size:clamp(1.7rem,3.4vw,2.5rem)">"I need capital first" is a myth.</h2>
+      <p class="sub" style="margin-top:.8rem">Service businesses run on the deposit model. The masterclass drills it until it's second nature.</p>
+      <div class="steps">
+        <div class="step"><span class="num">1</span><h3>Quote the job</h3><p>Price against the client's alternative cost, not your effort. We give you the exact quoting method and template.</p></div>
+        <div class="step"><span class="num">2</span><h3>Take the deposit</h3><p>A 50% deposit <b>funds your materials and labour</b> before you spend a cent. We give you the words to ask for it.</p></div>
+        <div class="step"><span class="num">3</span><h3>Deliver with a checklist</h3><p>Job cards and photo proof make the work consistent, and consistent work turns into <b>monthly contracts</b>.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MODULES ================= -->
+  <section class="mods" id="modules">
+    <div class="wrap center">
+      <span class="kick">THE BORING BUSINESS MASTERCLASS</span>
+      <h2 style="font-size:clamp(1.7rem,3.4vw,2.5rem)">8 modules. ±5 hours. Zero fluff.</h2>
+      <p class="sub" style="margin-top:.8rem">Animated, phone-first lessons in plain South African English. Every lesson ends with something you can do the same day.</p>
+      <div class="grid">
+        <div class="mod"><span class="mn">MODULE 1</span><h3>The Boring Billionaire Thesis</h3><p>Why boring beats sexy: recurring revenue, no competition for attention, real cashflow.</p></div>
+        <div class="mod"><span class="mn">MODULE 2</span><h3>Choosing Your Boring Business</h3><p>The five filters, scored against 10+ South African examples in your own area.</p></div>
+        <div class="mod"><span class="mn">MODULE 3</span><h3>The Deposit Model</h3><p>Start with no capital: quoting so the deposit covers your costs, with real Rand numbers.</p></div>
+        <div class="mod"><span class="mn">MODULE 4</span><h3>Pricing &amp; Quoting Like a Pro</h3><p>Anchoring, per-job vs contract pricing, and when to walk away. Quote template included.</p></div>
+        <div class="mod"><span class="mn">MODULE 5</span><h3>Your First 10 Customers</h3><p>Word-for-word walk-in scripts, WhatsApp outreach, R500 ad basics and the audit close.</p></div>
+        <div class="mod"><span class="mn">MODULE 6</span><h3>The McDonald's System</h3><p>Job cards, photo proof and quality rules, so the business doesn't depend on you.</p></div>
+        <div class="mod"><span class="mn">MODULE 7</span><h3>Money &amp; Admin Without Tears</h3><p>Simple bookkeeping, CIPC registration, SARS basics and getting paid on time.</p></div>
+        <div class="mod"><span class="mn">MODULE 8</span><h3>Hiring, Scaling &amp; What's Next</h3><p>Your first worker, route two, and the contract flywheel from jobs to retainers.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= INCLUDED ================= -->
+  <section class="inc">
+    <div class="wrap center">
+      <span class="kick">EVERYTHING YOU GET</span>
+      <h2 style="font-size:clamp(1.7rem,3.4vw,2.5rem)">Built for a phone. Built for action.</h2>
+      <div class="grid">
+        <div class="row"><span class="tick">✓</span><p>37 animated lessons, 6 to 9 minutes each<span>Kurzgesagt-style visuals, blunt Hormozi-style teaching</span></p></div>
+        <div class="row"><span class="tick">✓</span><p>Quiz after every lesson<span>so it sticks, not just plays</span></p></div>
+        <div class="row"><span class="tick">✓</span><p>Real templates included<span>quote template, job cards, income sheet, walk-in script cards</span></p></div>
+        <div class="row"><span class="tick">✓</span><p>Certificate of completion<span>with the New Venture Creation alignment stated on it</span></p></div>
+        <div class="row"><span class="tick">✓</span><p>QCTO-aligned content<span>mapped to New Venture Creation outcomes (SAQA 49648 / 66249, NQF 2 &amp; 4)</span></p></div>
+        <div class="row"><span class="tick">✓</span><p>Low-data, mobile-first campus<span>watch anywhere, resume where you stopped</span></p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TESTIMONIALS (swap placeholders with real quotes) ================= -->
+  <section class="testi">
+    <div class="wrap center">
+      <span class="kick">FROM REAL PEOPLE</span>
+      <h2 style="font-size:clamp(1.7rem,3.4vw,2.5rem)">What students say</h2>
+      <div class="cards">
+        <!-- TESTIMONIAL PLACEHOLDER 1: replace quote + name + location with a real user -->
+        <div class="tcard"><div class="stars">★★★★★</div><blockquote>"[Real testimonial coming. This card is a placeholder and must be replaced with a genuine student quote before launch.]"</blockquote><div class="who"><span class="av">?</span><span><b>[Name]</b>[Business or area]</span></div></div>
+        <!-- TESTIMONIAL PLACEHOLDER 2 -->
+        <div class="tcard"><div class="stars">★★★★★</div><blockquote>"[Real testimonial coming. This card is a placeholder and must be replaced with a genuine student quote before launch.]"</blockquote><div class="who"><span class="av">?</span><span><b>[Name]</b>[Business or area]</span></div></div>
+        <!-- TESTIMONIAL PLACEHOLDER 3 -->
+        <div class="tcard"><div class="stars">★★★★★</div><blockquote>"[Real testimonial coming. This card is a placeholder and must be replaced with a genuine student quote before launch.]"</blockquote><div class="who"><span class="av">?</span><span><b>[Name]</b>[Business or area]</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PRICING ================= -->
+  <section class="price-sec" id="pricing">
+    <div class="wrap center">
+      <span class="kick">JOIN THE SCHOOL</span>
+      <h2 style="font-size:clamp(1.7rem,3.4vw,2.5rem)">One price. Everything included.</h2>
+      <div class="card">
+        <span class="align-chip">100% QCTO ALIGNED · NVC OUTCOMES</span>
+        <div class="amount">R649</div>
+        <p class="once">once-off · full masterclass · lifetime access</p>
+        <ul>
+          <li>All 8 modules, 37 animated lessons</li>
+          <li>Every template: quotes, job cards, income sheet, scripts</li>
+          <li>Certificate of completion</li>
+          <li>7-day no-questions-asked money-back guarantee</li>
+        </ul>
+        <div class="paybtns">
+          <!-- PAYMENT PLACEHOLDER: replace href with live Yoco checkout link when payments go live -->
+          <a class="btn btn-gold" href="#" data-yoco="YOCO_CHECKOUT_LINK_PLACEHOLDER">Pay online · instant access</a>
+          <a class="btn btn-ghost" href="#eft">Pay by EFT instead</a>
+        </div>
+        <p class="eft" id="eft"><b>EFT route:</b> pay to [BANK DETAILS], use your email address as reference, then WhatsApp your proof of payment to [WHATSAPP NUMBER]. We whitelist your email and you're in, usually within a few hours.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= REFUND ================= -->
+  <section class="refund" id="refund">
+    <div class="wrap grid">
+      <div>
+        <span class="kick">ZERO RISK</span>
+        <h2>7 days. No questions. <br>Money back.</h2>
+        <p>Take the masterclass. If it's not for you, tell us within <b>7 days of purchase</b> and we refund you in full. No forms asking why, no retention phone calls, no hard feelings.</p>
+        <p>Fill in the form and your refund gets processed back to your original payment method. That's the whole policy.</p>
+      </div>
+      <form class="rf" action="https://formsubmit.co/trainvisualmedia@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="BBS refund request (7-day guarantee)" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_next" value="https://boring.tvmg.co.za/?refund=sent#refund" />
+        <input type="text" name="_honey" style="display:none" tabindex="-1" aria-hidden="true" />
+        <input type="hidden" name="form" value="bbs-refund-request" />
+        <div><label for="rf_name">Full name</label><input id="rf_name" type="text" name="name" required /></div>
+        <div><label for="rf_email">Email you bought with</label><input id="rf_email" type="email" name="email" required /></div>
+        <div><label for="rf_ref">Payment reference (Yoco receipt no. or EFT reference)</label><input id="rf_ref" type="text" name="payment_reference" required /></div>
+        <div><label for="rf_msg">Anything you want to tell us (optional, really)</label><textarea id="rf_msg" name="message" rows="3"></textarea></div>
+        <button class="btn btn-gold" type="submit">Request my refund</button>
+        <small>Requests within 7 days of purchase are refunded in full, no questions asked.</small>
+      </form>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section class="faq">
+    <div class="wrap" style="max-width:760px">
+      <h2 class="center" style="font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:1.8rem">Quick questions</h2>
+      <details><summary>Is this an accredited qualification?</summary><p>No. The masterclass is aligned to the outcomes of the New Venture Creation qualifications (SAQA 49648 / 66249, NQF Levels 2 and 4) as they transition under the QCTO framework, but it is not accredited and does not confer credits, a formal qualification, or a statement of results. You get real skills and a certificate of completion.</p></details>
+      <details><summary>I only have my phone and limited data. Will it work?</summary><p>Yes. The whole campus is built phone-first: lessons auto-fit your screen, run light on data, and remember exactly where you stopped.</p></details>
+      <details><summary>What if I buy it and it's not for me?</summary><p>Seven days, full refund, no questions asked. The request form is right on this page.</p></details>
+      <details><summary>How fast do I get access?</summary><p>Pay online and access is instant. Pay by EFT and we whitelist your email as soon as your proof of payment lands, usually within a few hours.</p></details>
+      <details><summary>Do I need money to start a business after the course?</summary><p>The whole course is built around the deposit model: your client's deposit funds the job before you spend a cent. You'll see the exact numbers, in Rands, in Module 3.</p></details>
+    </div>
+  </section>
+
+  <!-- ================= FINAL CTA ================= -->
+  <section class="final">
+    <div class="wrap">
+      <h2>The sexy business impresses strangers.<br><span class="g">The boring business feeds your family.</span></h2>
+      <p class="sub" style="margin:1.2rem auto 2rem">R649. Once. Everything included. Backed by a 7-day guarantee.</p>
+      <a class="btn btn-gold" href="#pricing">Take the Masterclass →</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p class="fine">Boring Business School is a non-accredited professional development programme aligned to New Venture Creation qualification outcomes (SAQA 49648/66249). Results depend on your effort. Trades shown may require registration or licensing in South Africa. Always verify legal requirements before performing regulated work.</p>
+      <div class="row">
+        <span>&copy; <span id="y">2026</span> Boring Business School · powered by <a href="https://tvmg.co.za">TVMG</a></span>
+        <a href="#refund">Refunds</a>
+        <a href="https://tvmg.co.za/terms.html">Terms</a>
+        <a href="https://academy.tvmg.co.za">Student login</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+    // Refund form success state
+    if (new URLSearchParams(location.search).get("refund") === "sent") {
+      const f = document.querySelector("form.rf");
+      f.innerHTML = '<h3 style="font-family:var(--head)">Refund request received ✓</h3><p style="color:var(--mut);margin-top:.6rem">We\'ll process it back to your payment method and confirm by email.</p>';
+    }
+    // Yoco placeholder guard: until the live link is wired, route online payments to EFT instructions
+    document.querySelectorAll("[data-yoco]").forEach(a => {
+      if (a.dataset.yoco === "YOCO_CHECKOUT_LINK_PLACEHOLDER") {
+        a.addEventListener("click", e => { e.preventDefault(); location.hash = "eft"; });
+      } else { a.href = a.dataset.yoco; }
+    });
+  </script>
+</body>
+</html>
