@@ -32,7 +32,15 @@ mkdir -p video
 curl -fsSL "$BASE/video/bbs-explainer.mp4"        -o video/bbs-explainer.mp4
 curl -fsSL "$BASE/video/bbs-explainer-poster.jpg" -o video/bbs-explainer-poster.jpg
 
-# 5. Reload the web server if it caches (Caddy usually does not need this)
+# 5. Favicon set (the tab currently shows a generic globe because no icon is set)
+mkdir -p icon
+curl -fsSL "$BASE/favicon.ico"      -o favicon.ico
+curl -fsSL "$BASE/site.webmanifest" -o site.webmanifest
+for f in icon-16 icon-32 icon-48 icon-192 icon-512 apple-touch-icon; do
+  curl -fsSL "$BASE/icon/${f}.png" -o "icon/${f}.png"
+done
+
+# 6. Reload the web server if it caches (Caddy usually does not need this)
 ```
 
 ## Do NOT change the backend
@@ -63,6 +71,8 @@ Never put it in the repo. The repo is public.
   your paper/green palette. These are explicitly labelled as illustrative
   examples, not testimonials, with a disclosure line beneath the carousel.
 - Added a Sekou-narrated explainer video under the hero.
+- Added a favicon set (gold wheelie bin on charcoal). The icon links are
+  root-relative, which is correct for boring.tvmg.co.za serving at its root.
 - Fixed the certificate mock: its heading and name were cream on a light
   background and unreadable.
 - Restored the accreditation FAQ entry, reworded to lead with what the buyer
