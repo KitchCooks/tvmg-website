@@ -41,9 +41,7 @@ p.lead{font-size:17.5px;color:var(--ink)}
 .box{background:#fff;border:1.5px solid #E3DACB;border-radius:16px;padding:26px;box-shadow:0 4px 0 #E3DACB;margin-top:20px}
 .box h2{color:var(--ink)}
 .small{font-size:14px}
-form{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
-input{flex:1;min-width:220px;padding:13px 16px;border:1.5px solid #C9BFA9;border-radius:12px;font-size:15px;font-family:Inter}
-#msg{margin-top:12px;font-size:14.5px;font-weight:600;display:none}
+.box .btn{margin-top:16px}
 ul{margin:10px 0 0 20px;color:var(--muted);font-size:15.5px}
 li{margin-bottom:6px}
 a{color:#B07E00}
@@ -75,7 +73,8 @@ footer a{color:var(--yellow);font-weight:600;text-decoration:none}
       <li>Search your mail for <b>Boring Business School</b>.</li>
       <li>Paid by EFT? Access is granted manually once we see your proof of payment, usually within a few hours.</li>
     </ul>
-    <p class="small" style="margin-top:12px">Still stuck? Email <b>hello@tvmg.co.za</b> from the address you paid with and we will get you in.</p>
+    <a class="btn btn-y" href="mailto:hello@tvmg.co.za?subject=I%20paid%20but%20cannot%20get%20in&amp;body=Hi%20TVMG%2C%0A%0AI%20paid%20for%20the%20workshop%20but%20have%20not%20received%20my%20login.%0A%0AName%3A%0AEmail%20I%20paid%20with%3A%0ADate%20of%20payment%3A%0A%0AThanks.">Email us about access</a>
+    <p class="small" style="margin-top:14px">Send it from the address you paid with and we will get you in.</p>
   </div>
 
   <div class="box">
@@ -86,19 +85,16 @@ footer a{color:var(--yellow);font-weight:600;text-decoration:none}
 
   <div class="box">
     <h2>Request a refund</h2>
-    <p>Enter the email address you paid with. We check your purchase and your completion automatically, then process the refund.</p>
-    <form onsubmit="return doRefund(event)">
-      <input type="email" id="refundemail" placeholder="Email address you paid with" required>
-      <button class="btn btn-y btn-sm" type="submit">Request refund</button>
-    </form>
-    <div id="msg"></div>
-    <p class="small" style="margin-top:14px">Prefer a human? Email <b>hello@tvmg.co.za</b> from the same address and we will handle it for you.</p>
+    <p>Email us from the address you paid with. Tap the button and it opens a message already addressed and written, just hit send.</p>
+    <a class="btn btn-y" href="mailto:hello@tvmg.co.za?subject=Refund%20request%20(30-day%20guarantee)&amp;body=Hi%20TVMG%2C%0A%0AI%20would%20like%20to%20request%20a%20refund%20under%20the%2030-day%20guarantee.%0A%0AName%3A%0AEmail%20I%20paid%20with%3A%0ADate%20of%20payment%3A%0A%0AThanks.">Email a refund request</a>
+    <p class="small" style="margin-top:14px">Send it from the address you paid with so we can find your purchase. We reply on business days, normally within one working day, and the refund reflects 5 to 7 working days after we process it. Not working? Mail <b>hello@tvmg.co.za</b> yourself.</p>
   </div>
 
   <div class="box">
     <h2>Anything else</h2>
-    <p>Questions about the lessons, your certificate, or the business model itself: email <b>hello@tvmg.co.za</b>. We answer on business days, normally within one working day.</p>
-    <p class="small" style="margin-top:12px">The Boring Business School is a TVMG company · <a href="https://tvmg.co.za">tvmg.co.za</a></p>
+    <p>Questions about the lessons, your certificate, or the business model itself, we are one email away.</p>
+    <a class="btn btn-y" style="margin-top:14px" href="mailto:hello@tvmg.co.za?subject=Boring%20Business%20School%20support">Email support</a>
+    <p class="small" style="margin-top:14px">The Boring Business School is a TVMG company · <a href="https://tvmg.co.za">tvmg.co.za</a></p>
   </div>
 </div></section>
 
@@ -112,39 +108,5 @@ footer a{color:var(--yellow);font-weight:600;text-decoration:none}
   <p style="margin-top:12px;color:var(--inkmut)">© The Boring Business School · a TVMG company · hello@tvmg.co.za</p>
 </div></footer>
 
-<script>
-var REFUND_INBOX = "trainvisualmedia@gmail.com";
-async function doRefund(ev){
-  ev.preventDefault();
-  var email=document.getElementById('refundemail').value.trim();
-  var m=document.getElementById('msg');
-  m.style.display='block';m.style.color='#6B6455';m.textContent='Checking...';
-  /* The real refund runs server side at /api/refund-request, which refunds via
-     Yoco and revokes access. Only if that endpoint is absent do we fall back to
-     emailing a human, so the buyer is never left with a dead button. */
-  try{
-    var r=await fetch('/api/refund-request',{method:'POST',
-      headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email})});
-    if(r.ok){
-      var d=await r.json().catch(function(){return {}});
-      if(d.ok){m.style.color='#1FA95C';m.textContent=d.message||'Refund processed. It will reflect in 5 to 7 working days.';
-               document.getElementById('refundemail').value='';return false}
-      m.style.color='#E4574C';m.textContent=d.message||'Request could not be processed. Email hello@tvmg.co.za and we will sort it out.';return false;
-    }
-  }catch(e){}
-  try{
-    var f=await fetch('https://formsubmit.co/ajax/'+REFUND_INBOX,{
-      method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
-      body:JSON.stringify({_subject:'BBS refund request (30-day guarantee)',email:email,form:'bbs-refund'})});
-    if(!f.ok) throw new Error();
-    m.style.color='#1FA95C';m.textContent='Refund request received. We process it and confirm by email.';
-    document.getElementById('refundemail').value='';
-  }catch(e2){
-    m.style.color='#E4574C';
-    m.innerHTML='Could not send. Email <b>hello@tvmg.co.za</b> with the address you paid with and we will sort it out.';
-  }
-  return false;
-}
-</script>
 </body>
 </html>
