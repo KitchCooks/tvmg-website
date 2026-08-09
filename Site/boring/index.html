@@ -72,6 +72,10 @@ nav{position:sticky;top:0;z-index:50;background:rgba(16,18,22,.92);backdrop-filt
 .hero{background:var(--ink);color:var(--paper);overflow:hidden;position:relative}
 .hero-in{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;padding:64px 20px 40px;max-width:1080px;margin:0 auto}
 .kicker{display:inline-block;background:rgba(255,201,60,.14);color:var(--yellow);border:1px solid rgba(255,201,60,.4);border-radius:999px;padding:6px 14px;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-bottom:18px}
+.kickrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:18px}
+.kickrow .kicker{margin-bottom:0}
+.k-qcto{background:rgba(47,191,113,.14);color:#4FD98D;border-color:rgba(47,191,113,.45)}
+@media(max-width:420px){.kicker{font-size:11px;padding:5px 11px;letter-spacing:.08em}}
 h1{font-size:clamp(34px,5.6vw,58px);line-height:1.05;font-weight:700}
 h1 em{font-style:normal;color:var(--yellow)}
 .sub{margin:18px 0 26px;font-size:clamp(16px,2vw,19px);color:#CFC9BC;max-width:34em}
@@ -199,7 +203,10 @@ footer{background:var(--ink);color:var(--inkmut);padding:40px 0;font-size:12.5px
 
 <header class="hero"><div class="hero-in">
   <div>
-    <span class="kicker">Boring business breeds billionaires</span>
+    <div class="kickrow">
+      <span class="kicker">Boring business breeds billionaires</span>
+      <span class="kicker k-qcto">QCTO-aligned outcomes</span>
+    </div>
     <h1>Everyone's chasing sexy startups. <em>Boring pays.</em></h1>
     <p class="sub">The <b>Boring Business Billionaire Blueprint Workshop</b>: how to start a South African service business (bins, gutters, grease traps, pressure washing) with the money already in your pocket. No capital. No degree. A route, a checklist, and a plan.</p>
     <div class="price-tag"><span class="r">R649</span><span class="once">once-off · lifetime access</span></div>
@@ -248,29 +255,6 @@ footer{background:var(--ink);color:var(--inkmut);padding:40px 0;font-size:12.5px
   </div>
   <div class="under"><a class="btn btn-y" href="#pricing">Get access, R649</a></div>
 </div></section>
-
-<section><div class="wrap">
-  <span class="tag">The problem</span>
-  <h2>Sexy is a tax. You've been paying it.</h2>
-  <p class="lead">Clothing brands, crypto groups and "content": glamorous business makes you fight thousands of people for attention before you earn a cent. Boring business skips the queue.</p>
-  <div class="cards">
-    <div class="card"><div class="ico">📣</div><h3>Sexy begs for attention</h3><p>Ads, followers, algorithms. When Mrs Naidoo's geyser bursts, she is not scrolling, she is searching for whoever answers first.</p></div>
-    <div class="card"><div class="ico">🥊</div><h3>Sexy fights crowds</h3><p>40,000 people want to own a brand. Almost nobody wants to wash wheelie bins. Fewer hands fighting for the money means fatter margins for the hands that show up.</p></div>
-    <div class="card"><div class="ico">🎡</div><h3>Sexy restarts daily</h3><p>A hoodie sells once. A bin route bills the same 100 houses every month. R80 x 100 = R8,000 a month, whether you advertise or not.</p></div>
-  </div>
-</div></section>
-
-<section class="dark"><div class="wrap">
-  <span class="tag">The Blueprint</span>
-  <h2>One workshop. Three ways to win.</h2>
-  <p class="lead">The Boring Business Billionaire Blueprint Workshop teaches the full machine. Pick the door that fits your life:</p>
-  <div class="cards">
-    <div class="card"><div class="ico">👑</div><h3>The Owner</h3><p>Build routes, checklists and a team. Start part-time with R500 to R5,000 and the deposit model funding the work.</p></div>
-    <div class="card"><div class="ico">🛻</div><h3>The Solo Operator</h3><p>One trailer, one skill, zero bosses. Out-earn salaries with premium prices and a lean one-person machine.</p></div>
-    <div class="card"><div class="ico">⭐</div><h3>The Golden Employee</h3><p>Become the person every service company fights to keep. Job cards, quoting and quality in your pocket, promotion ladder unlocked.</p></div>
-  </div>
-</div></section>
-
 
 <section class="tint"><div class="wrap">
   <span class="tag">Who it is for</span>
@@ -369,6 +353,29 @@ footer{background:var(--ink);color:var(--inkmut);padding:40px 0;font-size:12.5px
   <div class="cdots" id="cdots" aria-hidden="true"></div>
   <p class="disclose">Illustrative learner profiles showing how the skills taught in the workshop can be applied. These are examples, not actual student testimonials. Individual results vary.</p>
 </div></section>
+
+<section><div class="wrap">
+  <span class="tag">The problem</span>
+  <h2>Sexy is a tax. You've been paying it.</h2>
+  <p class="lead">Clothing brands, crypto groups and "content": glamorous business makes you fight thousands of people for attention before you earn a cent. Boring business skips the queue.</p>
+  <div class="cards">
+    <div class="card"><div class="ico">📣</div><h3>Sexy begs for attention</h3><p>Ads, followers, algorithms. When Mrs Naidoo's geyser bursts, she is not scrolling, she is searching for whoever answers first.</p></div>
+    <div class="card"><div class="ico">🥊</div><h3>Sexy fights crowds</h3><p>40,000 people want to own a brand. Almost nobody wants to wash wheelie bins. Fewer hands fighting for the money means fatter margins for the hands that show up.</p></div>
+    <div class="card"><div class="ico">🎡</div><h3>Sexy restarts daily</h3><p>A hoodie sells once. A bin route bills the same 100 houses every month. R80 x 100 = R8,000 a month, whether you advertise or not.</p></div>
+  </div>
+</div></section>
+
+<section class="dark"><div class="wrap">
+  <span class="tag">The Blueprint</span>
+  <h2>One workshop. Three ways to win.</h2>
+  <p class="lead">The Boring Business Billionaire Blueprint Workshop teaches the full machine. Pick the door that fits your life:</p>
+  <div class="cards">
+    <div class="card"><div class="ico">👑</div><h3>The Owner</h3><p>Build routes, checklists and a team. Start part-time with R500 to R5,000 and the deposit model funding the work.</p></div>
+    <div class="card"><div class="ico">🛻</div><h3>The Solo Operator</h3><p>One trailer, one skill, zero bosses. Out-earn salaries with premium prices and a lean one-person machine.</p></div>
+    <div class="card"><div class="ico">⭐</div><h3>The Golden Employee</h3><p>Become the person every service company fights to keep. Job cards, quoting and quality in your pocket, promotion ladder unlocked.</p></div>
+  </div>
+</div></section>
+
 
 <section><div class="wrap">
   <span class="tag">What's inside</span>
