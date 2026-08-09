@@ -420,10 +420,18 @@ async function startCheckout(){
   err.style.display='none';
   var b=document.getElementById('paybtn');b.disabled=true;b.textContent='Preparing secure checkout...';
   try{
-    var r=await fetch('api/checkout.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:name,email:email})});
-    var d=await r.json().catch(function(){return {}});
-    if(r.ok&&d.redirectUrl){location.href=d.redirectUrl;return}
-    throw new Error(d.error||'unavailable');
+    /* Works on either host: the VPS serves /api/checkout, Afrihost serves
+       api/checkout.php. Try both, use whichever answers. */
+    var endpoints=['/api/checkout','api/checkout.php'],lastErr='unavailable';
+    for(var i=0;i<endpoints.length;i++){
+      try{
+        var r=await fetch(endpoints[i],{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:name,email:email})});
+        var d=await r.json().catch(function(){return {}});
+        if(r.ok&&d.redirectUrl){location.href=d.redirectUrl;return}
+        if(d.error)lastErr=d.error;
+      }catch(_){}
+    }
+    throw new Error(lastErr);
   }catch(e){
     /* Checkout unavailable (no PHP, not configured, or provider down):
        hand the buyer the EFT route rather than a dead button. */
