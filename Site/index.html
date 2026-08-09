@@ -56,6 +56,13 @@
     .card-dc ul li{color:var(--ice)}
     .card-dc ul li::before{color:var(--coral)}
     .card-dc .cta{background:var(--grad-coral);color:#fff}
+    .hub-video{padding:0 0 3.6rem}
+    .hub-video .inner{max-width:860px;margin:0 auto;text-align:center}
+    .hub-video h2{font-size:clamp(1.5rem,2.6vw,2.1rem);letter-spacing:-.015em}
+    .hub-video p{color:var(--silver);margin:.7rem auto 1.5rem;max-width:52ch;font-size:1rem}
+    .hub-video .frame{border-radius:16px;overflow:hidden;border:1px solid var(--border-strong);box-shadow:0 20px 54px rgba(3,16,42,.55);background:#000}
+    .hub-video video{display:block;width:100%;height:auto}
+    .hub-video .kick{display:inline-block;font-family:var(--font-head);font-weight:800;font-size:.76rem;letter-spacing:.14em;color:#F5C542;margin-bottom:.8rem}
     .hub-strip{background:var(--bg-2);border-block:1px solid var(--border);padding:1.6rem 0;text-align:center}
     .hub-strip p{color:var(--silver);font-size:.98rem}
     .hub-strip a{color:var(--coral-lt);font-weight:700;text-decoration:none}
@@ -106,6 +113,23 @@
       </div>
     </div>
   </main>
+
+  <!-- ============ BBS EXPLAINER VIDEO ============ -->
+  <section class="hub-video">
+    <div class="container">
+      <div class="inner">
+        <span class="kick">THE BORING BUSINESS SCHOOL</span>
+        <h2>How it works, in ninety seconds.</h2>
+        <p>Boring service businesses, the deposit model, and what is actually inside the workshop.</p>
+        <div class="frame">
+          <video controls preload="none" playsinline poster="https://boring.tvmg.co.za/video/bbs-explainer-poster.jpg">
+            <source src="https://boring.tvmg.co.za/video/bbs-explainer.mp4" type="video/mp4">
+            Your browser cannot play this video.
+          </video>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ============ MENTORSHIP STRIP ============ -->
   <div class="hub-strip">
