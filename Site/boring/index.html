@@ -396,7 +396,7 @@ footer{background:var(--ink);color:var(--inkmut);padding:40px 0;font-size:12.5px
 <section class="dark"><div class="wrap" style="text-align:center">
   <span class="tag">Certificate</span>
   <h2>Finish it. Frame it.</h2>
-  <p class="lead" style="margin:0 auto">Complete every lesson and pass every quiz (80%) to earn your certificate, with your name, verified completion, NQF-level alignment disclosure, and a unique verification code.</p>
+  <p class="lead" style="margin:0 auto">Complete every lesson and pass every quiz (60%) to earn your certificate, with your name, verified completion, NQF-level alignment disclosure, and a unique verification code.</p>
   <div class="certbox">
     <div class="seal">✓</div>
     <div class="small" style="letter-spacing:.16em;text-transform:uppercase">The Boring Business School</div>
@@ -438,11 +438,8 @@ footer{background:var(--ink);color:var(--inkmut);padding:40px 0;font-size:12.5px
   <div class="refund">
     <p><b>Do the work. If it was not worth it, we pay you back.</b> Complete the course and request a refund within <b>30 days</b> of payment, and we process it. No questions, nothing to justify. Access is removed when the refund is issued. After 30 days, all sales are final. Refunds are returned to your original payment method, which takes 5 to 7 working days to reflect.</p>
     <p class="small" style="margin-top:12px">The guarantee is for people who actually did the work: refunds apply once you have completed the course inside the 30-day window. Lessons unlock in order and cannot be skipped.</p>
-    <form onsubmit="return doRefund(event)">
-      <input type="email" id="refundemail" placeholder="Email address you paid with" required>
-      <button class="btn btn-y btn-sm" type="submit">Request automatic refund</button>
-    </form>
-    <div id="refundmsg"></div>
+    <p class="small" style="margin-top:14px">Already a student? Request your refund from inside the academy, or email <b>hello@tvmg.co.za</b> from the address you paid with and we will process it for you.</p>
+    <p style="margin-top:14px"><a class="btn btn-y btn-sm" href="https://academy.tvmg.co.za">Log in to the academy</a></p>
   </div>
 </div></section>
 
@@ -454,7 +451,7 @@ footer{background:var(--ink);color:var(--inkmut);padding:40px 0;font-size:12.5px
     <details><summary>How much data does it use? Can I watch on my phone?</summary><p>Built phone-first. Lessons are lightweight animated players (a few MB each), not heavy video streams, designed for South African data reality. Everything fits your screen without scrolling.</p></details>
     <details><summary>How long do I have access?</summary><p>Forever. Pay once, keep it, including future updates to this workshop.</p></details>
     <details><summary>Do I need money to start a business after the course?</summary><p>Module 3 teaches the deposit model: your client's 50% deposit funds materials and labour before you spend a cent. Most featured businesses start with R500 to R5,000 of equipment, and some with none.</p></details>
-    <details><summary>What if I want a refund?</summary><p>Complete the course, then use the refund form above within 30 days of payment. We process it without asking you to justify anything. The completion condition is there so the guarantee protects people who did the work rather than people sampling a lesson. After 30 days, sales are final.</p></details>
+    <details><summary>What if I want a refund?</summary><p>Complete the course, then log in to the academy and use the refund button on your dashboard within 30 days of payment. We process it without asking you to justify anything. The completion condition is there so the guarantee protects people who did the work rather than people sampling a lesson. After 30 days, sales are final.</p></details>
     <details><summary>When do I get access after paying?</summary><p>Card payments: instantly. Your login appears on the confirmation screen. EFT: within a few hours of sending proof of payment.</p></details>
   </div>
 </div></section>
@@ -534,39 +531,6 @@ async function startCheckout(){
     document.getElementById('pricing').scrollIntoView({behavior:'smooth'});
     b.disabled=false;b.textContent='Continue to secure payment, R649';
   }
-}
-async function doRefund(ev){
-  ev.preventDefault();
-  var email=document.getElementById('refundemail').value.trim();
-  var m=document.getElementById('refundmsg');
-  m.style.display='block';m.style.color='#6B6455';m.textContent='Checking...';
-  /* The real refund runs server side at /api/refund-request, which actually
-     refunds via Yoco and revokes access. Only if there is no such server (a
-     static host) do we fall back to emailing the request through. Never let
-     the fallback shadow the live endpoint. */
-  try{
-    var r=await fetch('/api/refund-request',{method:'POST',
-      headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email})});
-    if(r.ok){
-      var d=await r.json().catch(function(){return {}});
-      if(d.ok){m.style.color='#1FA95C';m.textContent=d.message||'Refund processed. It will reflect in 5 to 7 working days.';
-               document.getElementById('refundemail').value='';return false}
-      m.style.color='#E4574C';m.textContent=d.message||'Request could not be processed.';return false;
-    }
-  }catch(e){}
-  /* no refund server here: send it to a human instead of failing silently */
-  try{
-    var f=await fetch('https://formsubmit.co/ajax/'+REFUND_INBOX,{
-      method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
-      body:JSON.stringify({_subject:'BBS refund request (30-day guarantee)',email:email,form:'bbs-refund'})});
-    if(!f.ok) throw new Error();
-    m.style.color='#1FA95C';m.textContent='Refund request received. We process it and confirm by email.';
-    document.getElementById('refundemail').value='';
-  }catch(e2){
-    m.style.color='#E4574C';
-    m.innerHTML='Could not send. Email <b>hello@tvmg.co.za</b> with the address you paid with and we will sort it out.';
-  }
-  return false;
 }
 /* Learner profiles carousel */
 (function(){
