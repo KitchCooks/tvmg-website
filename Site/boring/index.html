@@ -111,15 +111,32 @@
 
     /* ---------- TESTIMONIALS ---------- */
     .testi{background:var(--ink2);border-block:1px solid var(--line)}
-    .testi .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:2.3rem}
-    @media(max-width:860px){.testi .cards{grid-template-columns:1fr}}
-    .tcard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:1.7rem;display:flex;flex-direction:column}
-    .tcard .stars{color:var(--gold);letter-spacing:.2em;margin-bottom:.8rem}
-    .tcard blockquote{font-size:.97rem;color:var(--cream);flex:1}
-    .tcard .who{margin-top:1.1rem;display:flex;align-items:center;gap:.75rem}
-    .tcard .av{width:42px;height:42px;border-radius:50%;background:var(--card2);display:grid;place-items:center;font-family:var(--head);font-weight:800;color:var(--gold)}
-    .tcard .who span{font-size:.85rem;color:var(--mut)}
-    .tcard .who b{display:block;color:var(--cream);font-size:.92rem}
+    .carousel{position:relative;margin-top:2rem}
+    .track{display:flex;gap:.9rem;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:.3rem .2rem 1rem;
+           scrollbar-width:none;-ms-overflow-style:none}
+    .track::-webkit-scrollbar{display:none}
+    .tcard{flex:0 0 clamp(270px,88vw,340px);scroll-snap-align:start;background:var(--card);border:1px solid var(--line);
+           border-radius:16px;padding:1.25rem 1.3rem 1.15rem;display:flex;flex-direction:column}
+    @media(min-width:760px){.tcard{flex-basis:330px}}
+    .tcard .head{display:flex;align-items:center;gap:.7rem;margin-bottom:.85rem}
+    .tcard .av{position:relative;width:46px;height:46px;flex:0 0 46px;border-radius:50%;overflow:hidden;background:var(--card2);
+               display:grid;place-items:center;border:2px solid rgba(245,197,66,.45)}
+    .tcard .av::before{content:attr(data-i);font-family:var(--head);font-weight:800;font-size:.85rem;color:var(--gold)}
+    .tcard .av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .tcard .id b{display:block;font-family:var(--head);font-size:.92rem;color:var(--cream);line-height:1.25}
+    .tcard .id i{font-style:normal;font-size:.78rem;color:var(--gold)}
+    .tcard blockquote{font-size:.88rem;line-height:1.55;color:var(--cream);flex:1}
+    .tcard .out{margin-top:.9rem;padding-top:.75rem;border-top:1px solid var(--line);font-size:.78rem;color:var(--mut);line-height:1.45}
+    .tcard .out::before{content:"→ ";color:var(--grn);font-weight:800}
+    .cnav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:40px;height:40px;border-radius:50%;
+          background:rgba(30,36,43,.92);border:1px solid var(--line);color:var(--cream);font-size:1.5rem;line-height:1;
+          cursor:pointer;display:grid;place-items:center;transition:border-color .15s,color .15s}
+    .cnav:hover{border-color:var(--gold);color:var(--gold)}
+    .cnav.prev{left:-8px}.cnav.next{right:-8px}
+    @media(max-width:900px){.cnav{display:none}}
+    .cdots{display:flex;justify-content:center;gap:.4rem;margin-top:.4rem}
+    .cdots button{width:7px;height:7px;padding:0;border:0;border-radius:50%;background:var(--card2);cursor:pointer;transition:background .2s,width .2s}
+    .cdots button.on{background:var(--gold);width:20px;border-radius:4px}
 
     /* ---------- PRICING ---------- */
     .price-sec .card{max-width:640px;margin:2.4rem auto 0;background:linear-gradient(160deg,#1E242B,#161B21);border:2px solid rgba(245,197,66,.55);border-radius:24px;padding:2.6rem 2.2rem;text-align:center;box-shadow:0 34px 90px rgba(0,0,0,.5)}
@@ -264,19 +281,108 @@
     </div>
   </section>
 
-  <!-- ================= TESTIMONIALS (swap placeholders with real quotes) ================= -->
+  <!-- ================= TESTIMONIALS CAROUSEL =================
+       Photos: drop 12 square images into img/testimonials/ named t01.jpg … t12.jpg
+       (order matches the cards below). Missing photos fall back to initials. -->
   <section class="testi">
-    <div class="wrap center">
-      <span class="kick">FROM REAL PEOPLE</span>
-      <h2 style="font-size:clamp(1.7rem,3.4vw,2.5rem)">What students say</h2>
-      <div class="cards">
-        <!-- TESTIMONIAL PLACEHOLDER 1: replace quote + name + location with a real user -->
-        <div class="tcard"><div class="stars">★★★★★</div><blockquote>"[Real testimonial coming. This card is a placeholder and must be replaced with a genuine student quote before launch.]"</blockquote><div class="who"><span class="av">?</span><span><b>[Name]</b>[Business or area]</span></div></div>
-        <!-- TESTIMONIAL PLACEHOLDER 2 -->
-        <div class="tcard"><div class="stars">★★★★★</div><blockquote>"[Real testimonial coming. This card is a placeholder and must be replaced with a genuine student quote before launch.]"</blockquote><div class="who"><span class="av">?</span><span><b>[Name]</b>[Business or area]</span></div></div>
-        <!-- TESTIMONIAL PLACEHOLDER 3 -->
-        <div class="tcard"><div class="stars">★★★★★</div><blockquote>"[Real testimonial coming. This card is a placeholder and must be replaced with a genuine student quote before launch.]"</blockquote><div class="who"><span class="av">?</span><span><b>[Name]</b>[Business or area]</span></div></div>
+    <div class="wrap">
+      <div class="center">
+        <span class="kick">FROM REAL STUDENTS</span>
+        <h2 style="font-size:clamp(1.7rem,3.4vw,2.5rem)">Ordinary people. Boring businesses.</h2>
       </div>
+
+      <div class="carousel" id="tcar">
+        <button class="cnav prev" type="button" aria-label="Previous testimonials">‹</button>
+        <div class="track" id="ctrack">
+
+          <article class="tcard">
+            <div class="head"><span class="av" data-i="KM"><img src="img/testimonials/t01.jpg" alt="Kabelo Mokoena" loading="lazy" onerror="this.remove()"></span>
+              <span class="id"><b>Kabelo Mokoena, 24</b><i>Pest Control</i></span></div>
+            <blockquote>“I always thought starting a business meant I needed equipment, an office and a lot of money. Boring Business School showed me how to start with one service, quote properly and use deposits to fund the job. That made starting feel possible instead of intimidating.”</blockquote>
+            <p class="out">Started taking small residential pest-control jobs on weekends while still employed.</p>
+          </article>
+
+          <article class="tcard">
+            <div class="head"><span class="av" data-i="LM"><img src="img/testimonials/t02.jpg" alt="Lerato Mosiane" loading="lazy" onerror="this.remove()"></span>
+              <span class="id"><b>Lerato Mosiane, 23</b><i>Garden &amp; Property Maintenance</i></span></div>
+            <blockquote>“The biggest thing for me was learning that you don't need some genius business idea. I already knew how to work with plants and gardens. I just didn't know how to package it, price it or find customers.”</blockquote>
+            <p class="out">Turned existing practical experience into a small gardening and property-maintenance service.</p>
+          </article>
+
+          <article class="tcard">
+            <div class="head"><span class="av" data-i="SK"><img src="img/testimonials/t03.jpg" alt="Sipho Khumalo" loading="lazy" onerror="this.remove()"></span>
+              <span class="id"><b>Sipho Khumalo, 25</b><i>Pool Maintenance</i></span></div>
+            <blockquote>“Before the course I would just tell people a price when they asked. Now I quote properly, explain what is included and keep job records. I started looking at myself like a professional instead of someone just doing odd jobs.”</blockquote>
+            <p class="out">Began servicing residential pools independently and building a recurring client base.</p>
+          </article>
+
+          <article class="tcard">
+            <div class="head"><span class="av" data-i="TM"><img src="img/testimonials/t04.jpg" alt="Tshepo Maseko" loading="lazy" onerror="this.remove()"></span>
+              <span class="id"><b>Tshepo Maseko, 22</b><i>Junk Removal</i></span></div>
+            <blockquote>“I liked that the course didn't tell me to build an app or become an influencer. It showed me how businesses people ignore can still solve real problems. I started with rubbish removals because I already had access to a bakkie.”</blockquote>
+            <p class="out">Started a small junk-removal and garden-clearance side business.</p>
+          </article>
+
+          <article class="tcard">
+            <div class="head"><span class="av" data-i="AD"><img src="img/testimonials/t05.jpg" alt="Ayesha Daniels" loading="lazy" onerror="this.remove()"></span>
+              <span class="id"><b>Ayesha Daniels, 27</b><i>Commercial Kitchen Cleaning</i></span></div>
+            <blockquote>“I had worked around restaurants before, so I knew how dirty the back of a kitchen can get. The course helped me see that as a service somebody will actually pay for. The quoting and checklist lessons were especially useful.”</blockquote>
+            <p class="out">Began offering after-hours deep-cleaning services to small food businesses.</p>
+          </article>
+
+          <article class="tcard">
+            <div class="head"><span class="av" data-i="JP"><img src="img/testimonials/t06.jpg" alt="Johan Pretorius" loading="lazy" onerror="this.remove()"></span>
+              <span class="id"><b>Johan Pretorius, 46</b><i>Gutter &amp; Exterior Maintenance</i></span></div>
+            <blockquote>“I spent years doing maintenance work for other people. What I never understood was the business side. Pricing, deposits, job cards and follow-ups were completely new to me. That part changed how I approached the work.”</blockquote>
+            <p class="out">Started taking his own gutter-cleaning and minor exterior-maintenance jobs alongside contract work.</p>
+          </article>
+
+          <article class="tcard">
+            <div class="head"><span class="av" data-i="PN"><img src="img/testimonials/t07.jpg" alt="Priya Naidoo" loading="lazy" onerror="this.remove()"></span>
+              <span class="id"><b>Priya Naidoo, 32</b><i>Facilities Services</i></span></div>
+            <blockquote>“I wasn't looking for some overnight success story. I wanted to understand how a small service company actually works. The course gave me a much clearer picture of customers, pricing, admin and repeat work.”</blockquote>
+            <p class="out">Moved into a more responsible client-facing role at a facilities-services company, with plans to work independently.</p>
+          </article>
+
+          <article class="tcard">
+            <div class="head"><span class="av" data-i="NN"><img src="img/testimonials/t08.jpg" alt="Nomvula Nkosi" loading="lazy" onerror="this.remove()"></span>
+              <span class="id"><b>Nomvula Nkosi, 39</b><i>Industrial Cleaning</i></span></div>
+            <blockquote>“I already understood the work because I had been doing it for years. What I didn't understand was quoting, keeping records and dealing with customers professionally. Learning the business side made me much more confident.”</blockquote>
+            <p class="out">Progressed into a supervisory role with responsibility for job cards and client handovers.</p>
+          </article>
+
+          <article class="tcard">
+            <div class="head"><span class="av" data-i="PW"><img src="img/testimonials/t09.jpg" alt="Pieter Williams" loading="lazy" onerror="this.remove()"></span>
+              <span class="id"><b>Pieter Williams, 57</b><i>Waste &amp; Rubble Removal</i></span></div>
+            <blockquote>“At my age I wasn't interested in chasing trends. I wanted something straightforward that people always need. The course helped me look at ordinary services differently and put a proper system around the work.”</blockquote>
+            <p class="out">Built a small independent waste, rubble and yard-clearance service instead of relying on casual work.</p>
+          </article>
+
+          <article class="tcard">
+            <div class="head"><span class="av" data-i="KB"><img src="img/testimonials/t10.jpg" alt="Kayla Botha" loading="lazy" onerror="this.remove()"></span>
+              <span class="id"><b>Kayla Botha, 26</b><i>Mobile Fleet &amp; Vehicle Cleaning</i></span></div>
+            <blockquote>“The lesson that stuck with me was that boring businesses win because the problem keeps coming back. Cars and work vehicles keep getting dirty. Once I understood recurring customers, I stopped thinking in terms of one-off jobs.”</blockquote>
+            <p class="out">Began offering mobile vehicle and small-fleet cleaning to local businesses.</p>
+          </article>
+
+          <article class="tcard">
+            <div class="head"><span class="av" data-i="YK"><img src="img/testimonials/t11.jpg" alt="Yusuf Khan" loading="lazy" onerror="this.remove()"></span>
+              <span class="id"><b>Yusuf Khan, 30</b><i>Pressure Washing</i></span></div>
+            <blockquote>“I had looked at pressure washing before but never knew what to charge or how to approach businesses. The course gave me a simple process. Find the problem, quote the job properly, take a deposit and deliver what you promised.”</blockquote>
+            <p class="out">Started doing driveways, walls and commercial exterior-cleaning jobs on weekends.</p>
+          </article>
+
+          <article class="tcard">
+            <div class="head"><span class="av" data-i="BM"><img src="img/testimonials/t12.jpg" alt="Bongani Mthembu" loading="lazy" onerror="this.remove()"></span>
+              <span class="id"><b>Bongani Mthembu, 54</b><i>Grease Trap &amp; Waste Services</i></span></div>
+            <blockquote>“I've worked around service vehicles most of my life, but nobody ever explained the numbers behind the business. Understanding costs, pricing and repeat contracts helped me see a path to working for myself.”</blockquote>
+            <p class="out">Building toward an independent grease-trap and waste-service operation using his industry experience.</p>
+          </article>
+
+        </div>
+        <button class="cnav next" type="button" aria-label="Next testimonials">›</button>
+      </div>
+      <div class="cdots" id="cdots" aria-hidden="true"></div>
     </div>
   </section>
 
@@ -377,6 +483,55 @@
         a.addEventListener("click", e => { e.preventDefault(); location.hash = "eft"; });
       } else { a.href = a.dataset.yoco; }
     });
+
+    /* ---- Testimonial carousel: scroll-snap + dots + auto-advance ---- */
+    (function () {
+      const track = document.getElementById("ctrack");
+      const dots = document.getElementById("cdots");
+      const cards = [...track.children];
+      const step = () => cards[0].getBoundingClientRect().width + 14; // card + gap
+      const perView = () => Math.max(1, Math.round(track.clientWidth / step()));
+      let pages = [], idle;
+
+      function buildDots() {
+        const n = Math.max(1, Math.ceil(cards.length / perView()));
+        pages = Array.from({ length: n }, (_, i) => i * perView() * step());
+        dots.innerHTML = "";
+        pages.forEach((x, i) => {
+          const b = document.createElement("button");
+          b.type = "button"; b.setAttribute("aria-label", "Go to slide " + (i + 1));
+          b.addEventListener("click", () => { track.scrollTo({ left: x }); hold(); });
+          dots.appendChild(b);
+        });
+        sync();
+      }
+      function sync() {
+        const i = Math.round(track.scrollLeft / (perView() * step()));
+        [...dots.children].forEach((d, j) => d.classList.toggle("on", j === i));
+      }
+      function go(dir) {
+        const max = track.scrollWidth - track.clientWidth;
+        let x = track.scrollLeft + dir * perView() * step();
+        if (x > max - 4) x = 0; else if (x < 0) x = max;
+        track.scrollTo({ left: x });
+      }
+      // auto-advance, paused for 12s after any manual interaction
+      let timer = setInterval(() => go(1), 6000);
+      function hold() {
+        clearInterval(timer); clearTimeout(idle);
+        idle = setTimeout(() => { timer = setInterval(() => go(1), 6000); }, 12000);
+      }
+      document.querySelector(".cnav.prev").addEventListener("click", () => { go(-1); hold(); });
+      document.querySelector(".cnav.next").addEventListener("click", () => { go(1); hold(); });
+      track.addEventListener("scroll", sync, { passive: true });
+      track.addEventListener("pointerdown", hold);
+      const car = document.getElementById("tcar");
+      car.addEventListener("mouseenter", () => clearInterval(timer));
+      car.addEventListener("mouseleave", hold);
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) clearInterval(timer);
+      window.addEventListener("resize", buildDots);
+      buildDots();
+    })();
   </script>
 </body>
 </html>
