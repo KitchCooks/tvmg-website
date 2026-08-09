@@ -109,7 +109,7 @@
     .inc .row p{font-size:.95rem}
     .inc .row p span{display:block;color:var(--mut);font-size:.84rem;margin-top:.15rem}
 
-    /* ---------- TESTIMONIALS ---------- */
+    /* ---------- LEARNER PROFILES ---------- */
     .testi{background:var(--ink2);border-block:1px solid var(--line)}
     .carousel{position:relative;margin-top:2rem}
     .track{display:flex;gap:.9rem;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:.3rem .2rem 1rem;
@@ -124,10 +124,12 @@
     .tcard .av::before{content:attr(data-i);font-family:var(--head);font-weight:800;font-size:.85rem;color:var(--gold)}
     .tcard .av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
     .tcard .id b{display:block;font-family:var(--head);font-size:.92rem;color:var(--cream);line-height:1.25}
-    .tcard .id i{font-style:normal;font-size:.78rem;color:var(--gold)}
-    .tcard blockquote{font-size:.88rem;line-height:1.55;color:var(--cream);flex:1}
-    .tcard .out{margin-top:.9rem;padding-top:.75rem;border-top:1px solid var(--line);font-size:.78rem;color:var(--mut);line-height:1.45}
-    .tcard .out::before{content:"→ ";color:var(--grn);font-weight:800}
+    .tcard .id i{font-style:normal;font-size:.72rem;color:var(--gold);letter-spacing:.06em;text-transform:uppercase}
+    .tcard .role{font-family:var(--head);font-weight:700;font-size:.88rem;color:var(--cream);margin-bottom:.5rem;line-height:1.3}
+    .tcard .body{font-size:.85rem;line-height:1.55;color:var(--mut);flex:1}
+    .tcard .path{margin-top:.9rem;padding-top:.75rem;border-top:1px solid var(--line);font-size:.75rem;color:var(--cream);line-height:1.45}
+    .tcard .path span{display:block;font-family:var(--head);font-weight:800;font-size:.62rem;letter-spacing:.14em;color:var(--grn);margin-bottom:.2rem}
+    .disclose{margin-top:.9rem;text-align:center;font-size:.76rem;color:var(--mut);line-height:1.5;max-width:64ch;margin-inline:auto}
     .cnav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:40px;height:40px;border-radius:50%;
           background:rgba(30,36,43,.92);border:1px solid var(--line);color:var(--cream);font-size:1.5rem;line-height:1;
           cursor:pointer;display:grid;place-items:center;transition:border-color .15s,color .15s}
@@ -281,108 +283,122 @@
     </div>
   </section>
 
-  <!-- ================= TESTIMONIALS CAROUSEL =================
-       Photos: drop 12 square images into img/testimonials/ named t01.jpg … t12.jpg
-       (order matches the cards below). Missing photos fall back to initials. -->
-  <section class="testi">
+  <!-- ================= LEARNER PROFILES CAROUSEL =================
+       Illustrative scenarios, NOT testimonials. Wording and the disclosure line
+       below the carousel must stay intact unless replaced by genuine reviews. -->
+  <section class="testi" id="profiles">
     <div class="wrap">
       <div class="center">
-        <span class="kick">FROM REAL STUDENTS</span>
-        <h2 style="font-size:clamp(1.7rem,3.4vw,2.5rem)">Ordinary people. Boring businesses.</h2>
+        <span class="kick">MEET YOUR POSSIBLE NEXT CHAPTER</span>
+        <h2 style="font-size:clamp(1.7rem,3.4vw,2.5rem)">You don't need to invent the next Uber.</h2>
+        <p class="sub" style="margin:.9rem auto 0">Maybe you already know how to clean, maintain pools, work in gardens, drive a bakkie, use tools or deal with customers. Boring Business School teaches the business mechanics behind ordinary services.</p>
       </div>
 
       <div class="carousel" id="tcar">
-        <button class="cnav prev" type="button" aria-label="Previous testimonials">‹</button>
+        <button class="cnav prev" type="button" aria-label="Previous profiles">‹</button>
         <div class="track" id="ctrack">
 
           <article class="tcard">
-            <div class="head"><span class="av" data-i="KM"><img src="img/testimonials/t01.jpg" alt="Kabelo Mokoena" loading="lazy" onerror="this.remove()"></span>
-              <span class="id"><b>Kabelo Mokoena, 24</b><i>Pest Control</i></span></div>
-            <blockquote>“I always thought starting a business meant I needed equipment, an office and a lot of money. Boring Business School showed me how to start with one service, quote properly and use deposits to fund the job. That made starting feel possible instead of intimidating.”</blockquote>
-            <p class="out">Started taking small residential pest-control jobs on weekends while still employed.</p>
+            <div class="head"><span class="av" data-i="K"><img src="img/testimonials/t01.jpg" alt="Illustrative learner profile" loading="lazy" onerror="this.remove()"></span>
+              <span class="id"><b>Kabelo, 24</b><i>Pest Control</i></span></div>
+            <p class="role">Starts while employed</p>
+            <p class="body">Learns how to price residential pest-control jobs, quote professionally and use customer deposits, so he never funds a job out of his own pocket.</p>
+            <p class="path"><span>BBS PATH</span>Side hustle → recurring customers → independent service business</p>
           </article>
 
           <article class="tcard">
-            <div class="head"><span class="av" data-i="LM"><img src="img/testimonials/t02.jpg" alt="Lerato Mosiane" loading="lazy" onerror="this.remove()"></span>
-              <span class="id"><b>Lerato Mosiane, 23</b><i>Garden &amp; Property Maintenance</i></span></div>
-            <blockquote>“The biggest thing for me was learning that you don't need some genius business idea. I already knew how to work with plants and gardens. I just didn't know how to package it, price it or find customers.”</blockquote>
-            <p class="out">Turned existing practical experience into a small gardening and property-maintenance service.</p>
+            <div class="head"><span class="av" data-i="L"><img src="img/testimonials/t02.jpg" alt="Illustrative learner profile" loading="lazy" onerror="this.remove()"></span>
+              <span class="id"><b>Lerato, 23</b><i>Garden Maintenance</i></span></div>
+            <p class="role">Turns a skill she has into something she can sell</p>
+            <p class="body">She already knows plants and gardens. BBS shows her how to package the service, price it, find customers and build repeat monthly work.</p>
+            <p class="path"><span>BBS PATH</span>Practical skill → paying customers → her own income</p>
           </article>
 
           <article class="tcard">
-            <div class="head"><span class="av" data-i="SK"><img src="img/testimonials/t03.jpg" alt="Sipho Khumalo" loading="lazy" onerror="this.remove()"></span>
-              <span class="id"><b>Sipho Khumalo, 25</b><i>Pool Maintenance</i></span></div>
-            <blockquote>“Before the course I would just tell people a price when they asked. Now I quote properly, explain what is included and keep job records. I started looking at myself like a professional instead of someone just doing odd jobs.”</blockquote>
-            <p class="out">Began servicing residential pools independently and building a recurring client base.</p>
+            <div class="head"><span class="av" data-i="S"><img src="img/testimonials/t03.jpg" alt="Illustrative learner profile" loading="lazy" onerror="this.remove()"></span>
+              <span class="id"><b>Sipho, 25</b><i>Pool Maintenance</i></span></div>
+            <p class="role">Stops guessing at prices</p>
+            <p class="body">Learns to quote properly, explain exactly what is included and keep job records, so clients treat him as a professional rather than casual help.</p>
+            <p class="path"><span>BBS PATH</span>Odd jobs → proper quotes → recurring service route</p>
           </article>
 
           <article class="tcard">
-            <div class="head"><span class="av" data-i="TM"><img src="img/testimonials/t04.jpg" alt="Tshepo Maseko" loading="lazy" onerror="this.remove()"></span>
-              <span class="id"><b>Tshepo Maseko, 22</b><i>Junk Removal</i></span></div>
-            <blockquote>“I liked that the course didn't tell me to build an app or become an influencer. It showed me how businesses people ignore can still solve real problems. I started with rubbish removals because I already had access to a bakkie.”</blockquote>
-            <p class="out">Started a small junk-removal and garden-clearance side business.</p>
+            <div class="head"><span class="av" data-i="T"><img src="img/testimonials/t04.jpg" alt="Illustrative learner profile" loading="lazy" onerror="this.remove()"></span>
+              <span class="id"><b>Tshepo, 22</b><i>Junk Removal</i></span></div>
+            <p class="role">Starts with what he already has</p>
+            <p class="body">Access to a bakkie is enough to begin. BBS shows him how to find the work, price a load, take a deposit and deliver reliably every time.</p>
+            <p class="path"><span>BBS PATH</span>A bakkie → first customers → weekend removal business</p>
           </article>
 
           <article class="tcard">
-            <div class="head"><span class="av" data-i="AD"><img src="img/testimonials/t05.jpg" alt="Ayesha Daniels" loading="lazy" onerror="this.remove()"></span>
-              <span class="id"><b>Ayesha Daniels, 27</b><i>Commercial Kitchen Cleaning</i></span></div>
-            <blockquote>“I had worked around restaurants before, so I knew how dirty the back of a kitchen can get. The course helped me see that as a service somebody will actually pay for. The quoting and checklist lessons were especially useful.”</blockquote>
-            <p class="out">Began offering after-hours deep-cleaning services to small food businesses.</p>
+            <div class="head"><span class="av" data-i="A"><img src="img/testimonials/t05.jpg" alt="Illustrative learner profile" loading="lazy" onerror="this.remove()"></span>
+              <span class="id"><b>Ayesha, 27</b><i>Commercial Kitchen Cleaning</i></span></div>
+            <p class="role">Sees a service where others see mess</p>
+            <p class="body">She knows how dirty a kitchen gets after service. BBS turns that into an after-hours deep-clean offer with checklists and professional quotes.</p>
+            <p class="path"><span>BBS PATH</span>Industry knowledge → priced service → small food-business clients</p>
           </article>
 
           <article class="tcard">
-            <div class="head"><span class="av" data-i="JP"><img src="img/testimonials/t06.jpg" alt="Johan Pretorius" loading="lazy" onerror="this.remove()"></span>
-              <span class="id"><b>Johan Pretorius, 46</b><i>Gutter &amp; Exterior Maintenance</i></span></div>
-            <blockquote>“I spent years doing maintenance work for other people. What I never understood was the business side. Pricing, deposits, job cards and follow-ups were completely new to me. That part changed how I approached the work.”</blockquote>
-            <p class="out">Started taking his own gutter-cleaning and minor exterior-maintenance jobs alongside contract work.</p>
+            <div class="head"><span class="av" data-i="J"><img src="img/testimonials/t06.jpg" alt="Illustrative learner profile" loading="lazy" onerror="this.remove()"></span>
+              <span class="id"><b>Johan, 46</b><i>Gutter &amp; Exterior Maintenance</i></span></div>
+            <p class="role">Knows the work, learns the business</p>
+            <p class="body">Years of maintenance experience, none of the commercial side. BBS covers pricing, deposits, job cards and the follow-ups that win repeat work.</p>
+            <p class="path"><span>BBS PATH</span>Hired hand → his own jobs → his own client list</p>
           </article>
 
           <article class="tcard">
-            <div class="head"><span class="av" data-i="PN"><img src="img/testimonials/t07.jpg" alt="Priya Naidoo" loading="lazy" onerror="this.remove()"></span>
-              <span class="id"><b>Priya Naidoo, 32</b><i>Facilities Services</i></span></div>
-            <blockquote>“I wasn't looking for some overnight success story. I wanted to understand how a small service company actually works. The course gave me a much clearer picture of customers, pricing, admin and repeat work.”</blockquote>
-            <p class="out">Moved into a more responsible client-facing role at a facilities-services company, with plans to work independently.</p>
+            <div class="head"><span class="av" data-i="P"><img src="img/testimonials/t07.jpg" alt="Illustrative learner profile" loading="lazy" onerror="this.remove()"></span>
+              <span class="id"><b>Priya, 32</b><i>Facilities Services</i></span></div>
+            <p class="role">Becomes the one who understands the numbers</p>
+            <p class="body">BBS gives her a clear picture of customers, pricing, admin and repeat work, which makes her far more valuable in a client-facing role.</p>
+            <p class="path"><span>BBS PATH</span>Employee → client-facing responsibility → option to go independent</p>
           </article>
 
           <article class="tcard">
-            <div class="head"><span class="av" data-i="NN"><img src="img/testimonials/t08.jpg" alt="Nomvula Nkosi" loading="lazy" onerror="this.remove()"></span>
-              <span class="id"><b>Nomvula Nkosi, 39</b><i>Industrial Cleaning</i></span></div>
-            <blockquote>“I already understood the work because I had been doing it for years. What I didn't understand was quoting, keeping records and dealing with customers professionally. Learning the business side made me much more confident.”</blockquote>
-            <p class="out">Progressed into a supervisory role with responsibility for job cards and client handovers.</p>
+            <div class="head"><span class="av" data-i="N"><img src="img/testimonials/t08.jpg" alt="Illustrative learner profile" loading="lazy" onerror="this.remove()"></span>
+              <span class="id"><b>Nomvula, 39</b><i>Industrial Cleaning</i></span></div>
+            <p class="role">Becomes more valuable at work</p>
+            <p class="body">She understands the cleaning already. BBS teaches the commercial side: job cards, costing, customer communication and quality control.</p>
+            <p class="path"><span>BBS PATH</span>Worker → supervisor-level skills → stronger earning potential</p>
           </article>
 
           <article class="tcard">
-            <div class="head"><span class="av" data-i="PW"><img src="img/testimonials/t09.jpg" alt="Pieter Williams" loading="lazy" onerror="this.remove()"></span>
-              <span class="id"><b>Pieter Williams, 57</b><i>Waste &amp; Rubble Removal</i></span></div>
-            <blockquote>“At my age I wasn't interested in chasing trends. I wanted something straightforward that people always need. The course helped me look at ordinary services differently and put a proper system around the work.”</blockquote>
-            <p class="out">Built a small independent waste, rubble and yard-clearance service instead of relying on casual work.</p>
+            <div class="head"><span class="av" data-i="P"><img src="img/testimonials/t09.jpg" alt="Illustrative learner profile" loading="lazy" onerror="this.remove()"></span>
+              <span class="id"><b>Pieter, 57</b><i>Waste &amp; Rubble Removal</i></span></div>
+            <p class="role">Wants straightforward, not trendy</p>
+            <p class="body">BBS helps him look at ordinary services differently and put a proper system around work that people are always going to need.</p>
+            <p class="path"><span>BBS PATH</span>Casual work → systemised service → steady independent income</p>
           </article>
 
           <article class="tcard">
-            <div class="head"><span class="av" data-i="KB"><img src="img/testimonials/t10.jpg" alt="Kayla Botha" loading="lazy" onerror="this.remove()"></span>
-              <span class="id"><b>Kayla Botha, 26</b><i>Mobile Fleet &amp; Vehicle Cleaning</i></span></div>
-            <blockquote>“The lesson that stuck with me was that boring businesses win because the problem keeps coming back. Cars and work vehicles keep getting dirty. Once I understood recurring customers, I stopped thinking in terms of one-off jobs.”</blockquote>
-            <p class="out">Began offering mobile vehicle and small-fleet cleaning to local businesses.</p>
+            <div class="head"><span class="av" data-i="K"><img src="img/testimonials/t10.jpg" alt="Illustrative learner profile" loading="lazy" onerror="this.remove()"></span>
+              <span class="id"><b>Kayla, 26</b><i>Mobile Fleet &amp; Vehicle Cleaning</i></span></div>
+            <p class="role">Thinks in contracts, not once-offs</p>
+            <p class="body">Vehicles keep getting dirty, which is the point. BBS shows her how to turn single washes into standing arrangements with local businesses.</p>
+            <p class="path"><span>BBS PATH</span>One-off jobs → recurring customers → small fleet contracts</p>
           </article>
 
           <article class="tcard">
-            <div class="head"><span class="av" data-i="YK"><img src="img/testimonials/t11.jpg" alt="Yusuf Khan" loading="lazy" onerror="this.remove()"></span>
-              <span class="id"><b>Yusuf Khan, 30</b><i>Pressure Washing</i></span></div>
-            <blockquote>“I had looked at pressure washing before but never knew what to charge or how to approach businesses. The course gave me a simple process. Find the problem, quote the job properly, take a deposit and deliver what you promised.”</blockquote>
-            <p class="out">Started doing driveways, walls and commercial exterior-cleaning jobs on weekends.</p>
+            <div class="head"><span class="av" data-i="Y"><img src="img/testimonials/t11.jpg" alt="Illustrative learner profile" loading="lazy" onerror="this.remove()"></span>
+              <span class="id"><b>Yusuf, 30</b><i>Pressure Washing</i></span></div>
+            <p class="role">Starts without R30,000 of equipment</p>
+            <p class="body">Instead of saving up first, he learns the deposit model: sell the job, secure the customer, rent or hire what he needs, deliver, then reinvest.</p>
+            <p class="path"><span>BBS PATH</span>No capital → deposit-funded jobs → weekend business</p>
           </article>
 
           <article class="tcard">
-            <div class="head"><span class="av" data-i="BM"><img src="img/testimonials/t12.jpg" alt="Bongani Mthembu" loading="lazy" onerror="this.remove()"></span>
-              <span class="id"><b>Bongani Mthembu, 54</b><i>Grease Trap &amp; Waste Services</i></span></div>
-            <blockquote>“I've worked around service vehicles most of my life, but nobody ever explained the numbers behind the business. Understanding costs, pricing and repeat contracts helped me see a path to working for myself.”</blockquote>
-            <p class="out">Building toward an independent grease-trap and waste-service operation using his industry experience.</p>
+            <div class="head"><span class="av" data-i="B"><img src="img/testimonials/t12.jpg" alt="Illustrative learner profile" loading="lazy" onerror="this.remove()"></span>
+              <span class="id"><b>Bongani, 54</b><i>Grease Trap &amp; Waste Services</i></span></div>
+            <p class="role">Finally sees the numbers behind the work</p>
+            <p class="body">A lifetime around service vehicles, but nobody ever explained costs, pricing or repeat contracts. BBS makes the path to working for himself visible.</p>
+            <p class="path"><span>BBS PATH</span>Industry experience → business mechanics → independent operation</p>
           </article>
 
         </div>
-        <button class="cnav next" type="button" aria-label="Next testimonials">›</button>
+        <button class="cnav next" type="button" aria-label="Next profiles">›</button>
       </div>
       <div class="cdots" id="cdots" aria-hidden="true"></div>
+      <p class="disclose">Illustrative learner profiles showing how the skills taught in Boring Business School can be applied. These are examples, not actual student testimonials. Individual results vary.</p>
     </div>
   </section>
 

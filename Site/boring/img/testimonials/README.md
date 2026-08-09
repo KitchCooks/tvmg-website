@@ -1,31 +1,37 @@
-# Testimonial photos
+# Learner profile portraits
 
-All 12 are in place (400x400 JPEG, centre-cropped square with a slight upward
-bias so faces sit well inside the circular avatar, ~22-28 KB each, 320 KB total,
-lazy-loaded).
+These twelve portraits illustrate the "Meet your possible next chapter" carousel
+on the landing page. That section presents **illustrative learner profiles, not
+testimonials** — first names only, no fabricated quotes, and a disclosure line
+directly beneath the carousel.
 
-Source originals live in `BORING BUSINESS SCHOOL/Testimonials/`. To replace one,
-drop the new image over the matching filename below and re-crop to square.
+Because the profiles are explicitly examples rather than claimed real students,
+stock or generated portraits are appropriate here. The wording is what keeps it
+honest, so if the section is ever relabelled as real testimonials, these images
+must be replaced with photos of the actual people.
 
-If a file is ever missing, the card falls back to gold initials automatically,
-so a missing photo never looks broken.
+Files are 400x400 progressive JPEGs, centre-cropped square with a slight upward
+bias so faces sit well inside the circular avatar. ~22-28 KB each, 320 KB total,
+lazy-loaded. Originals live in `BORING BUSINESS SCHOOL/Testimonials/`.
 
-| File | Person | Trade |
+A missing file falls back to a gold initial automatically, so a gap never looks
+broken.
+
+| File | Profile | Trade |
 |---|---|---|
-| `t01.jpg` | Kabelo Mokoena, 24 | Pest Control |
-| `t02.jpg` | Lerato Mosiane, 23 | Garden & Property Maintenance |
-| `t03.jpg` | Sipho Khumalo, 25 | Pool Maintenance |
-| `t04.jpg` | Tshepo Maseko, 22 | Junk Removal |
-| `t05.jpg` | Ayesha Daniels, 27 | Commercial Kitchen Cleaning |
-| `t06.jpg` | Johan Pretorius, 46 | Gutter & Exterior Maintenance |
-| `t07.jpg` | Priya Naidoo, 32 | Facilities Services |
-| `t08.jpg` | Nomvula Nkosi, 39 | Industrial Cleaning |
-| `t09.jpg` | Pieter Williams, 57 | Waste & Rubble Removal |
-| `t10.jpg` | Kayla Botha, 26 | Mobile Fleet & Vehicle Cleaning |
-| `t11.jpg` | Yusuf Khan, 30 | Pressure Washing |
-| `t12.jpg` | Bongani Mthembu, 54 | Grease Trap & Waste Services |
+| `t01.jpg` | Kabelo, 24 | Pest Control |
+| `t02.jpg` | Lerato, 23 | Garden Maintenance |
+| `t03.jpg` | Sipho, 25 | Pool Maintenance |
+| `t04.jpg` | Tshepo, 22 | Junk Removal |
+| `t05.jpg` | Ayesha, 27 | Commercial Kitchen Cleaning |
+| `t06.jpg` | Johan, 46 | Gutter & Exterior Maintenance |
+| `t07.jpg` | Priya, 32 | Facilities Services |
+| `t08.jpg` | Nomvula, 39 | Industrial Cleaning |
+| `t09.jpg` | Pieter, 57 | Waste & Rubble Removal |
+| `t10.jpg` | Kayla, 26 | Mobile Fleet & Vehicle Cleaning |
+| `t11.jpg` | Yusuf, 30 | Pressure Washing |
+| `t12.jpg` | Bongani, 54 | Grease Trap & Waste Services |
 
-Use a photo of the actual person quoted on each card. A stock or generated
-portrait attached to a named testimonial misrepresents the person and the
-result, which is both an ASA/Consumer Protection Act problem in South Africa
-and a Meta ad-policy problem if the page is used as an ad destination.
+When genuine student reviews arrive, add a separate section below this one
+headed "Real stories from BBS students" and populate it only with real quotes.
+Keep the two clearly distinct.
