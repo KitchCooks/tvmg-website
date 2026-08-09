@@ -463,6 +463,12 @@ footer{background:var(--ink);color:var(--inkmut);padding:40px 0;font-size:12.5px
 var YOCO_LINK = "";
 var REFUND_INBOX = "trainvisualmedia@gmail.com";
 
+/* Meta click/browser ids. Sent to checkout so server-side Purchase events can
+   match to a real user, which is the biggest lever on event match rate. */
+function bbsCookie(n){
+  var m=document.cookie.match('(^|;)\\s*'+n+'\\s*=\\s*([^;]+)');
+  return m?m.pop():'';
+}
 function openPay(){
   if(YOCO_LINK){ location.href = YOCO_LINK; return; }
   document.getElementById('paymodal').classList.add('open');
@@ -487,7 +493,7 @@ async function startCheckout(){
     var endpoints=['/api/checkout','api/checkout.php'],lastErr='unavailable';
     for(var i=0;i<endpoints.length;i++){
       try{
-        var r=await fetch(endpoints[i],{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:name,email:email})});
+        var r=await fetch(endpoints[i],{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:name,email:email,fbp:bbsCookie('_fbp'),fbc:bbsCookie('_fbc')})});
         var d=await r.json().catch(function(){return {}});
         if(r.ok&&d.redirectUrl){location.href=d.redirectUrl;return}
         if(d.error)lastErr=d.error;
