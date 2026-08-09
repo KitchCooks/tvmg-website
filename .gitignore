@@ -11,3 +11,7 @@ MD files/
 # large brand source archives
 Brand/*.zip
 Brand/tvmg_brand_assets/
+
+# BBS payment secrets and order logs (created on the server, never committed)
+Site/boring/api/config.php
+Site/boring/api/orders.log

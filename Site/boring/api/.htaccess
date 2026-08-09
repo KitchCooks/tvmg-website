@@ -1,0 +1,14 @@
+# Never serve secrets, logs or the sample config over the web.
+<FilesMatch "\.(log|sample\.php)$">
+  Require all denied
+</FilesMatch>
+<Files "config.php">
+  Require all denied
+</Files>
+# Fallback for older Apache
+<IfModule !mod_authz_core.c>
+  <FilesMatch "\.(log|sample\.php)$">
+    Order allow,deny
+    Deny from all
+  </FilesMatch>
+</IfModule>
