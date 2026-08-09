@@ -22,7 +22,9 @@ return [
     'currency' => 'ZAR',
 
     // Where Yoco sends the buyer after each outcome.
-    'success_url' => 'https://boring.tvmg.co.za/success.html',
+    // Must match the page that actually delivers login details after payment.
+    // On the live VPS that is welcome.html, NOT success.html.
+    'success_url' => 'https://boring.tvmg.co.za/welcome.html',
     'cancel_url'  => 'https://boring.tvmg.co.za/#pricing',
     'failure_url' => 'https://boring.tvmg.co.za/#pricing?failed=1',
 
