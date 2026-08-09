@@ -5,6 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Boring Business School · Boring Business Breeds Billionaires</title>
 <meta name="description" content="Learn to start a boring South African service business with the money already in your pocket. The Boring Business Billionaire Blueprint Workshop. R649 once-off, instant access.">
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1710674963370376');
+fbq('track', 'PageView');
+fbq('track', 'ViewContent', {
+  content_name: 'Boring Business Billionaire Blueprint Workshop',
+  content_category: 'Course',
+  content_ids: ['bbs-workshop'],
+  content_type: 'product',
+  value: 649.00, currency: 'ZAR'
+});
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1710674963370376&ev=PageView&noscript=1" /></noscript>
+<!-- End Meta Pixel -->
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/icon/icon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/icon/icon-192.png">
@@ -448,6 +471,13 @@ async function startCheckout(){
   var err=document.getElementById('payerr');
   if(!name||!/.+@.+\..+/.test(email)){err.textContent='Please enter your name and a valid email.';err.style.display='block';return}
   err.style.display='none';
+  /* Meta: buyer committed to paying. event_id lets the Conversions API
+     dedupe if the same event is also sent server side. */
+  window.bbsEventId='ic-'+Date.now()+'-'+Math.random().toString(36).slice(2,10);
+  if(typeof fbq==='function'){fbq('track','InitiateCheckout',{
+    content_name:'Boring Business Billionaire Blueprint Workshop',
+    content_ids:['bbs-workshop'],content_type:'product',
+    value:649.00,currency:'ZAR'},{eventID:window.bbsEventId});}
   var b=document.getElementById('paybtn');b.disabled=true;b.textContent='Preparing secure checkout...';
   try{
     /* Works on either host: the VPS serves /api/checkout, Afrihost serves
