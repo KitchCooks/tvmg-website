@@ -473,15 +473,30 @@ async function doRefund(ev){
   ev.preventDefault();
   var email=document.getElementById('refundemail').value.trim();
   var m=document.getElementById('refundmsg');
-  m.style.display='block';m.style.color='#6B6455';m.textContent='Sending...';
+  m.style.display='block';m.style.color='#6B6455';m.textContent='Checking...';
+  /* The real refund runs server side at /api/refund-request, which actually
+     refunds via Yoco and revokes access. Only if there is no such server (a
+     static host) do we fall back to emailing the request through. Never let
+     the fallback shadow the live endpoint. */
   try{
-    var r=await fetch('https://formsubmit.co/ajax/'+REFUND_INBOX,{
+    var r=await fetch('/api/refund-request',{method:'POST',
+      headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email})});
+    if(r.ok){
+      var d=await r.json().catch(function(){return {}});
+      if(d.ok){m.style.color='#1FA95C';m.textContent=d.message||'Refund processed. It will reflect in 5 to 7 working days.';
+               document.getElementById('refundemail').value='';return false}
+      m.style.color='#E4574C';m.textContent=d.message||'Request could not be processed.';return false;
+    }
+  }catch(e){}
+  /* no refund server here: send it to a human instead of failing silently */
+  try{
+    var f=await fetch('https://formsubmit.co/ajax/'+REFUND_INBOX,{
       method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
       body:JSON.stringify({_subject:'BBS refund request (3-day guarantee)',email:email,form:'bbs-refund'})});
-    if(!r.ok) throw new Error();
+    if(!f.ok) throw new Error();
     m.style.color='#1FA95C';m.textContent='Refund request received. We process it and confirm by email.';
     document.getElementById('refundemail').value='';
-  }catch(e){
+  }catch(e2){
     m.style.color='#E4574C';
     m.innerHTML='Could not send. Email <b>hello@tvmg.co.za</b> with the address you paid with and we will sort it out.';
   }
