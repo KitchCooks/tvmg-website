@@ -15,9 +15,9 @@ VPS, replacing the current `index.html`, and add the new files alongside it.
 
 BASE="https://raw.githubusercontent.com/KitchCooks/tvmg-website/main/Site/boring"
 
-# 2. The page itself
-curl -fsSL "$BASE/index.html"   -o index.html
-curl -fsSL "$BASE/success.html" -o success.html
+# 2. The page itself. Do NOT fetch success.html, it was removed on purpose:
+#    your Yoco successUrl points at welcome.html, which delivers logins.
+curl -fsSL "$BASE/index.html" -o index.html
 
 # 3. The twelve learner-profile portraits the new carousel needs
 mkdir -p img/testimonials
@@ -62,7 +62,12 @@ Never put it in the repo. The repo is public.
 - Added a compact carousel of twelve illustrative learner profiles, styled to
   your paper/green palette. These are explicitly labelled as illustrative
   examples, not testimonials, with a disclosure line beneath the carousel.
-- Added `success.html` for the post-payment return.
+- Added a Sekou-narrated explainer video under the hero.
+- Fixed the certificate mock: its heading and name were cream on a light
+  background and unreadable.
+- Restored the accreditation FAQ entry, reworded to lead with what the buyer
+  gets and land the negative at the end.
+- Lesson count corrected from 37 to 34.
 
 ## Verify after deploying
 
