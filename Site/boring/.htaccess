@@ -1,0 +1,12 @@
+# Apache only (Afrihost cPanel). The VPS runs Caddy/nginx and ignores this file,
+# so the real page still serves there.
+#
+# boring.tvmg.co.za is the live home of this page. Any other host reaching this
+# folder (e.g. tvmg.co.za/boring/) is a stale duplicate, so send it to the real
+# one. The condition prevents a redirect loop if boring.tvmg.co.za is ever
+# pointed at this cPanel instead.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_HOST} !^boring\.tvmg\.co\.za$ [NC]
+  RewriteRule ^(.*)$ https://boring.tvmg.co.za/$1 [R=301,L]
+</IfModule>
