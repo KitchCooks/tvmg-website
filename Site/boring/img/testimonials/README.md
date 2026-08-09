@@ -1,11 +1,14 @@
 # Testimonial photos
 
-Drop the 12 student photos in this folder using these exact filenames. Square
-images, ideally 400x400 or larger (they render as a 46px circular avatar, so
-anything above 200px is plenty). `.jpg` expected.
+All 12 are in place (400x400 JPEG, centre-cropped square with a slight upward
+bias so faces sit well inside the circular avatar, ~22-28 KB each, 320 KB total,
+lazy-loaded).
 
-If a file is missing the card falls back to gold initials automatically, so a
-missing photo never looks broken.
+Source originals live in `BORING BUSINESS SCHOOL/Testimonials/`. To replace one,
+drop the new image over the matching filename below and re-crop to square.
+
+If a file is ever missing, the card falls back to gold initials automatically,
+so a missing photo never looks broken.
 
 | File | Person | Trade |
 |---|---|---|
@@ -21,9 +24,6 @@ missing photo never looks broken.
 | `t10.jpg` | Kayla Botha, 26 | Mobile Fleet & Vehicle Cleaning |
 | `t11.jpg` | Yusuf Khan, 30 | Pressure Washing |
 | `t12.jpg` | Bongani Mthembu, 54 | Grease Trap & Waste Services |
-
-Note: only 11 photos were supplied in the original batch, so one slot will show
-initials until the twelfth is added.
 
 Use a photo of the actual person quoted on each card. A stock or generated
 portrait attached to a named testimonial misrepresents the person and the
